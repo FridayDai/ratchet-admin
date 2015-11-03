@@ -14,4 +14,5 @@ class Client {
 	int activePatientCount = 0
 	int activeTreatmentCount = 0
 	Staff clientStaff
+	boolean isTesting
 }

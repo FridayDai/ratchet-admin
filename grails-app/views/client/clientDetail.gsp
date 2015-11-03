@@ -19,6 +19,10 @@
 				</div>
 
 				<div class="main-info col-sm-5">
+					<dl class="testing dl-horizontal">
+						<dt>Testing:</dt>
+						<dd><strong>${client.isTesting}</strong></dd>
+					</dl>
 					<dl class="sub-domain dl-horizontal">
 						<dt>Domain:</dt>
 						<dd>${client.subDomain}</dd>
@@ -34,6 +38,14 @@
 					<dl class="favicon dl-horizontal">
 						<dt>Favicon:</dt>
 						<dd><img class="favicon" src="${client.favIcon}" alt="favicon"/></dd>
+					</dl>
+					<dl class="favicon dl-horizontal">
+						<dt>Secret:</dt>
+						<dd>${client.secret}</dd>
+					</dl>
+					<dl class="favicon dl-horizontal">
+						<dt>Token:</dt>
+						<dd>${client.token}</dd>
 					</dl>
 				</div>
 
@@ -144,6 +156,13 @@
 						<div class="alert alert-danger rc-server-error" role="alert"></div>
 						<form action="/clients/${client.id}" method="post" class="form form-horizontal"
 							  enctype="multipart/form-data" novalidate="novalidate">
+							<div class="form-group">
+								<label for="isTesting" class="col-sm-5 control-label">Testing:</label>
+
+								<div class="col-sm-6">
+									<input id="isTesting" name="isTesting" type="checkbox"/>
+								</div>
+							</div>
 							<div class="form-group">
 								<label for="name" class="col-sm-5 control-label">* Client Name:</label>
 

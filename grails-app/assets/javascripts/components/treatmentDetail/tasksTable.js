@@ -154,6 +154,10 @@ function tasksTable() {
             });
     };
 
+    this.getPageSize = function () {
+        return 100;
+    };
+
     this.onCreateTaskSuccess = function (event, data) {
         this.addRow(data);
     };

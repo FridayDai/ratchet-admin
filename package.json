@@ -26,10 +26,8 @@
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
     "gulp-scss-lint": "^0.1.4",
-    "gulp-webpack-build": "^0.11.1",
     "jshint-stylish": "^1.0.0",
     "node-libs-browser": "^0.5.2",
-    "webpack": "^1.10.5",
-    "webpack-config": "^0.7.0"
+    "webpack": "^1.10.5"
   }
 }

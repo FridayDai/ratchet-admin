@@ -7,6 +7,7 @@ function addClientFormDialog () {
     this.attributes({
         submitBtnSelector: '.update-btn',
 
+        testingFieldSelector: '#isTesting',
         clientNameSelector: '#name',
         subDomainSelector: '#subDomain',
         portalNameSelector: '#portalName',
@@ -14,6 +15,7 @@ function addClientFormDialog () {
     });
 
     this.onShow = function (event, data) {
+        this.select('testingFieldSelector').prop('checked', data.isTesting);
         this.select('clientNameSelector').val(data.clientName);
         this.select('subDomainSelector').val(data.subDomain);
         this.select('portalNameSelector').val(data.portalName);

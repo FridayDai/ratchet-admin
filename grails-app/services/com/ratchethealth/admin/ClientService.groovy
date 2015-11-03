@@ -68,6 +68,7 @@ class ClientService extends RatchetAPIService {
                     .field("subDomain", client.subDomain)
                     .field("portalName", client.portalName)
                     .field("primaryColorHex", client.primaryColorHex)
+                    .field("isTesting", client.isTesting)
                     .asString()
 
             if (resp.status == 201) {
@@ -102,6 +103,7 @@ class ClientService extends RatchetAPIService {
                     .field("logoFileName", client.logoFileName)
                     .field("favIcon", client.favIcon)
                     .field("favIconFileName", client.favIconFileName)
+                    .field("isTesting", client.isTesting)
                     .asString()
 
             if (resp.status == 200) {

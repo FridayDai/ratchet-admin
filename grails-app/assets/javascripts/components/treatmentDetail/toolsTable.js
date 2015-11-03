@@ -94,6 +94,10 @@ function toolsTable() {
             });
     };
 
+    this.getPageSize = function () {
+        return 100;
+    };
+
     this.onCreateDefinedToolSuccess = function (event, data) {
         this.addRow(data);
     };

@@ -5,6 +5,7 @@ function clientInfoPanel() {
     /* jshint validthis:true */
 
     this.attributes({
+        testingSelector: '.testing strong',
         clientNameSelector: '.client-name strong',
         subDomainSelector: '.sub-domain dd',
         portalNameSelector: '.portal-name dd',
@@ -12,17 +13,9 @@ function clientInfoPanel() {
         editClientBtnSelector: '.edit button'
     });
 
-    this.onClientInfoChanged = function (event, data) {
-        data = {} || data;
-
-        this.set('clientName', data.clientName);
-        this.set('subDomain', data.subDomain);
-        this.set('portalName', data.portalName);
-        this.set('primaryColor', data.primaryColor);
-    };
-
     this.onEditClientBtnClick = function () {
         this.trigger('showEditClientFormDialog', {
+            isTesting: this.get('testing') === 'true',
             clientName: this.get('clientName'),
             subDomain: this.get('subDomain'),
             portalName: this.get('portalName'),
@@ -31,8 +24,6 @@ function clientInfoPanel() {
     };
 
     this.after('initialize', function () {
-        this.on(document, 'clientInfoChanged', this.onClientInfoChanged);
-
         this.on('click', {
             'editClientBtnSelector': this.onEditClientBtnClick
         });

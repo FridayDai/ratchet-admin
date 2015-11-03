@@ -79,6 +79,14 @@
 						<g:uploadForm controller="clients" method="post" name="tableForm"
 								class="form form-horizontal" novalidate="novalidate">
 							<div class="form-group">
+								<label for="isTesting" class="col-sm-5 control-label">Testing:</label>
+
+								<div class="col-sm-6">
+									<input id="isTesting" name="isTesting" type="checkbox" checked/>
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label for="name" class="col-sm-5 control-label">* Client Name:</label>
 
 								<div class="col-sm-6">
@@ -114,7 +122,7 @@
 								<label for="logo" class="col-sm-5 control-label">* Logo:</label>
 
 								<div class="col-sm-6">
-									<input type="file" id="logo" name="logo" class="form-control" required/>
+									<input type="file" id="logo" name="logo" required/>
 								</div>
 							</div>
 
@@ -122,7 +130,7 @@
 								<label for="favIcon" class="col-sm-5 control-label">* Favicon:</label>
 
 								<div class="col-sm-6">
-									<input type="file" id="favIcon" name="favIcon" class="form-control" required/>
+									<input type="file" id="favIcon" name="favIcon" required/>
 								</div>
 							</div>
 						</g:uploadForm>

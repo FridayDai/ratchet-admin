@@ -59,15 +59,15 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         compile "com.mashape.unirest:unirest-java:1.3.27"
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
-        test "org.gebish:geb-spock:$gebVersion"
-        test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
-        test "org.seleniumhq.selenium:selenium-safari-driver:$seleniumVersion"
-        test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
-        test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
-        test "org.seleniumhq.selenium:selenium-ie-driver:${webdriverVersion}"
-        test("com.github.detro.ghostdriver:phantomjsdriver:${ghostDriverVersion}") {
-            transitive = false
-        }
+//        test "org.gebish:geb-spock:$gebVersion"
+//        test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+//        test "org.seleniumhq.selenium:selenium-safari-driver:$seleniumVersion"
+//        test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+//        test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+//        test "org.seleniumhq.selenium:selenium-ie-driver:${webdriverVersion}"
+//        test("com.github.detro.ghostdriver:phantomjsdriver:${ghostDriverVersion}") {
+//            transitive = false
+//        }
         runtime 'biz.paluch.logging:logstash-gelf:1.5.4'
     }
 
@@ -88,7 +88,7 @@ grails.project.dependency.resolution = {
 
         test ':code-coverage:2.0.3-3'
 
-        test ":geb:$gebVersion"
+//        test ":geb:$gebVersion"
 
         // plugins needed at runtime but not for compilation
 //        runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
