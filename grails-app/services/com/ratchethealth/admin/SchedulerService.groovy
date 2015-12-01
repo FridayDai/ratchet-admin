@@ -42,4 +42,57 @@ class SchedulerService extends RatchetAPIService {
         }
     }
 
+    def triggerExpired(String token) {
+        log.info("Call backend service to triggering expried job, token: ${token}.")
+        String timeUrl = grailsApplication.config.ratchetv2.server.url.trigger.expired
+
+        withPost(token, timeUrl) { req ->
+            def resp = req
+                    .asString()
+
+            if (resp.status == 200) {
+                log.info("Trigger successfully, token: ${token}")
+
+                true
+            } else {
+                handleError(resp)
+            }
+        }
+    }
+
+    def triggerNotification(String token) {
+        log.info("Call backend service to triggering send task job, token: ${token}.")
+        String timeUrl = grailsApplication.config.ratchetv2.server.url.trigger.notification
+
+        withPost(token, timeUrl) { req ->
+            def resp = req
+                    .asString()
+
+            if (resp.status == 200) {
+                log.info("Trigger successfully, token: ${token}")
+
+                true
+            } else {
+                handleError(resp)
+            }
+        }
+    }
+
+    def triggerResendConfirm(String token) {
+        log.info("Call backend service to triggering resend confirmation job, token: ${token}.")
+        String timeUrl = grailsApplication.config.ratchetv2.server.url.trigger.resend.confirmation
+
+        withPost(token, timeUrl) { req ->
+            def resp = req
+                    .asString()
+
+            if (resp.status == 200) {
+                log.info("Trigger successfully, token: ${token}")
+
+                true
+            } else {
+                handleError(resp)
+            }
+        }
+    }
 }

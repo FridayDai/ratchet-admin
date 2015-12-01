@@ -7,15 +7,24 @@
     <head>
         <title>Welcome to ratchet</title>
     </head>
-
     <body>
-
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Triggered Success</strong>
+    </div>
     <div class="content">
         <div class="btn-group-vertical">
             <button type="button" id="update-password" class="rc-line-space btn btn-primary"
                     data-toggle="modal" data-target="#change-password-modal">Change Password</button>
             <button type="button" id="debug-schedule" class="rc-line-space btn btn-warning"
                     data-toggle="modal" data-target="#change-time-modal">Debug Schedule</button>
+            <button type="button" id="resend-confirmation" class="rc-line-space btn btn-warning"
+                    data-toggle="modal">Resend Confirmation</button>
+            <button type="button" id="notification" class="rc-line-space btn btn-warning"
+                    data-toggle="modal">Notification</button>
+            <button type="button" id="expired-task" class="rc-line-space btn btn-warning"
+                    data-toggle="modal">Expired</button>
+
             <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
         </div>
 
@@ -121,6 +130,7 @@
             </div>
         </div>
     </div>
+
     </body>
     </html>
 </g:applyLayout>

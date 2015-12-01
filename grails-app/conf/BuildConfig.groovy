@@ -80,8 +80,6 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:2.1.5"
 
-        compile ":compass-sass:0.7"
-        runtime ":resources:1.2.13"
         compile ":cookie-session:2.0.17"
 
         compile ":codenarc:0.23"

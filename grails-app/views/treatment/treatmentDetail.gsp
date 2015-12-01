@@ -284,7 +284,7 @@
 				<h3 class="title sub-title pull-left">Task</h3>
 
 				<div class="action pull-right">
-					<button type="button" id="add-item-btn" class="btn btn-primary">Add</button>
+					<button type="button" id="add-item-btn" class="btn btn-primary <g:if test="${!treatment.surgeryTimeRequired}">disabled</g:if>">Add</button>
 				</div>
 			</div>
 

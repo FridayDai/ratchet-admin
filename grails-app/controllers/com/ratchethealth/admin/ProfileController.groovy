@@ -7,6 +7,8 @@ class ProfileController extends BaseController {
     def authenticationService
     def schedulerService
 
+    def beforeInterceptor = [action: this.&auth]
+
     def goToProfilePage() {
         render view: 'profile'
     }
@@ -40,4 +42,30 @@ class ProfileController extends BaseController {
         render result as JSON
     }
 
+    def triggerResendConfirm() {
+        String token = request.session.token
+
+        def resp = schedulerService.triggerResendConfirm(token)
+        def result = [resp: resp]
+
+        render result as JSON
+    }
+
+    def triggerNotification() {
+        String token = request.session.token
+
+        def resp = schedulerService.triggerNotification(token)
+        def result = [resp: resp]
+
+        render result as JSON
+    }
+
+    def triggerExpired() {
+        String token = request.session.token
+
+        def resp = schedulerService.triggerExpired(token)
+        def result = [resp: resp]
+
+        render result as JSON
+    }
 }
