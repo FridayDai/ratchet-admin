@@ -9,7 +9,7 @@ function triggerResendConfirm() {
         loadingState: 'loading',
         resetState: 'reset',
         urls: {
-            triggerResendConfirm: "/profile/triggerResendConfirm"
+            triggerResendConfirm: "/profile/triggerNow"
         }
     });
 

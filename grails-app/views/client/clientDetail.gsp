@@ -96,9 +96,6 @@
 						<button type="button" class="trigger btn btn-default" data-toggle="modal" data-target="#agent-modal">
 							<span class="edit-btn glyphicon glyphicon-edit"></span>
 						</button>
-						<button type="button" class="delete btn btn-default" data-toggle="modal" data-target="#agent-delete-modal">
-							<span class="edit-btn glyphicon glyphicon-trash"></span>
-						</button>
 					</div>
 				</div>
 			</div>
@@ -241,7 +238,7 @@
 								<label for="email" class="col-sm-5 control-label">* Agent Email:</label>
 
 								<div class="col-sm-6">
-									<input type="email" id="email" name="email" class="form-control" required readonly/>
+									<input type="email" id="email" name="email" class="form-control" required/>
 								</div>
 							</div>
 
@@ -272,29 +269,29 @@
 			</div>
 		</div>
 
-		<div id="agent-delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Delete Agent</h4>
-					</div>
+		%{--<div id="agent-delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">--}%
+			%{--<div class="modal-dialog">--}%
+				%{--<div class="modal-content">--}%
+					%{--<div class="modal-header">--}%
+						%{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}%
+							%{--<span aria-hidden="true">&times;</span>--}%
+						%{--</button>--}%
+						%{--<h4 class="modal-title">Delete Agent</h4>--}%
+					%{--</div>--}%
 
-					<div class="modal-body">
-						<div class="alert alert-danger rc-server-error" role="alert"></div>
-						<div>Are you sure to delete this agent?</div>
-					</div>
+					%{--<div class="modal-body">--}%
+						%{--<div class="alert alert-danger rc-server-error" role="alert"></div>--}%
+						%{--<div>Are you sure to delete this agent?</div>--}%
+					%{--</div>--}%
 
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button type="button" class="delete-btn btn btn-primary"
-								data-loading-text="Deleting">Delete</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					%{--<div class="modal-footer">--}%
+						%{--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>--}%
+						%{--<button type="button" class="delete-btn btn btn-primary"--}%
+								%{--data-loading-text="Deleting">Delete</button>--}%
+					%{--</div>--}%
+				%{--</div>--}%
+			%{--</div>--}%
+		%{--</div>--}%
 
 		<div id="treatment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">

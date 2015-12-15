@@ -7,10 +7,14 @@ function toolPoolPanelTool() {
     });
 
     this.onAddTaskBtnClick = function () {
-        this.trigger('showCreateTaskFormDialog', {
-            clientId: treatmentStorage.get('clientId'),
-            treatmentId: treatmentStorage.get('treatmentId')
-        });
+        var $addButton = this.select('addTaskBtnSelector');
+
+        if (!$addButton.hasClass('disabled')) {
+            this.trigger('showCreateTaskFormDialog', {
+                clientId: treatmentStorage.get('clientId'),
+                treatmentId: treatmentStorage.get('treatmentId')
+            });
+        }
     };
 
     this.onEditTreatmentSuccess = function (e, data) {

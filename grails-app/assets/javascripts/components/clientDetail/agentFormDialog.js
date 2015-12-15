@@ -36,7 +36,6 @@ function agentFormDialog () {
     this.setEditModal = function () {
         this.model = 'edit';
 
-        this.select('agentEmailSelector').attr('readonly', 'readonly');
         this.select('modalTitleSelector').text('Edit Agent');
 
         this.select('submitBtnSelector').text('Update');

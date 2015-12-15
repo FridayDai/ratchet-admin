@@ -75,11 +75,11 @@ class TreatmentsController extends BaseController {
     def getTools() {
         String token = request.session.token
         def page = params.page ?: RatchetConstants.DEFAULT_PAGE_OFFSET
-        def pageSize = params.pagesize ?: RatchetConstants.DEFAULT_PAGE_SIZE
+        def pageSize = params.length ?: RatchetConstants.DEFAULT_PAGE_SIZE
 
         long treatmentId = params.treatmentId as long
 
-        def toolList = treatmentService.getTools(token, treatmentId, page, pageSize)
+        def toolList = treatmentService.getTools(token, treatmentId, page as int, pageSize as int)
 
         if (toolList) {
             render toolList as JSON
@@ -89,11 +89,11 @@ class TreatmentsController extends BaseController {
     def getTasks() {
         String token = request.session.token
         def page = params.page ?: RatchetConstants.DEFAULT_PAGE_OFFSET
-        def pageSize = params.pagesize ?: RatchetConstants.DEFAULT_PAGE_SIZE
+        def pageSize = params.length ?: RatchetConstants.DEFAULT_PAGE_SIZE
 
         long treatmentId = params.treatmentId as long
 
-        def taskList = treatmentService.getTasks(token, treatmentId, page, pageSize)
+        def taskList = treatmentService.getTasks(token, treatmentId, page as int, pageSize as int)
 
         if (taskList) {
             render taskList as JSON

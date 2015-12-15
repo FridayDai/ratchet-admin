@@ -42,28 +42,10 @@ class ProfileController extends BaseController {
         render result as JSON
     }
 
-    def triggerResendConfirm() {
+    def triggerNow() {
         String token = request.session.token
 
-        def resp = schedulerService.triggerResendConfirm(token)
-        def result = [resp: resp]
-
-        render result as JSON
-    }
-
-    def triggerNotification() {
-        String token = request.session.token
-
-        def resp = schedulerService.triggerNotification(token)
-        def result = [resp: resp]
-
-        render result as JSON
-    }
-
-    def triggerExpired() {
-        String token = request.session.token
-
-        def resp = schedulerService.triggerExpired(token)
+        def resp = schedulerService.triggerNow(token)
         def result = [resp: resp]
 
         render result as JSON

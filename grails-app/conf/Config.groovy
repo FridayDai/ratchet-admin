@@ -246,9 +246,7 @@ ratchetv2 {
 			}
             // Debug Schedule URL
             scheduleTime = "${ratchetv2.server.url.base}/admin/debug/set-date"
-			trigger.notification = "${ratchetv2.server.url.base}/admin/quartz/trigger/notification"
-			trigger.expired = "${ratchetv2.server.url.base}/admin/quartz/trigger/expiredTask"
-			trigger.resend.confirmation = "${ratchetv2.server.url.base}/admin/quartz/trigger/resendConfirmation"
+			trigger.now = "${ratchetv2.server.url.base}/admin/quartz/trigger/triggerNow"
 
 			// Db backup URL
 			testdata = "${ratchetv2.server.url.base}/db/backups"

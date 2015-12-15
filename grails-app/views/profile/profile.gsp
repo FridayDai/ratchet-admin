@@ -19,11 +19,7 @@
             <button type="button" id="debug-schedule" class="rc-line-space btn btn-warning"
                     data-toggle="modal" data-target="#change-time-modal">Debug Schedule</button>
             <button type="button" id="resend-confirmation" class="rc-line-space btn btn-warning"
-                    data-toggle="modal">Resend Confirmation</button>
-            <button type="button" id="notification" class="rc-line-space btn btn-warning"
-                    data-toggle="modal">Notification</button>
-            <button type="button" id="expired-task" class="rc-line-space btn btn-warning"
-                    data-toggle="modal">Expired</button>
+                    data-toggle="modal">Trigger Now</button>
 
             <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
         </div>
