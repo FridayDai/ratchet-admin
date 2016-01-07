@@ -3,8 +3,11 @@
 @import '../partials/form';
 @import '../partials/dialog';
 @import "../partials/jquery.dataTable";
+@import '../select2/select2';
 
-
+.groups {
+    display: none;
+}
 //.account-list-table{
 //    td{
 //        position: relative;

@@ -48,3 +48,4 @@ grails-app/assets/stylesheets/.sass-cache
 *.hot-update.json
 
 dist/
+npm-debug.log

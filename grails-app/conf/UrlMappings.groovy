@@ -90,6 +90,11 @@ class UrlMappings {
             action = [GET: "index", POST: "generateTestData"]
         }
 
+        // QA Debug Functions
+        "/debug"(controller: "dubug"){
+            action = [GET: "index"]
+        }
+
         // Error
         "500"(view: '/error/503')
     }

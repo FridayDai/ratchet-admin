@@ -14,8 +14,14 @@ function addAccountFormDialog() {
     };
 
     this.after('initialize', function () {
+        this.on('hidden.bs.modal', this.clearAllForm);
         this.on('formSuccess', this.onFormSuccess);
     });
+
+    this.clearAllForm = function() {
+        this.clearForm();
+        $(".group-multiple").select2("val", "");
+    };
 }
 
 module.exports = flight.component(withFormDialog, addAccountFormDialog);

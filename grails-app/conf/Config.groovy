@@ -198,6 +198,7 @@ ratchet.api.anonymous.token = System.getProperty("ANONYMOUS_API_TOKEN") ?: "FkvV
 
 ratchetv2 {
 	server {
+		debug = System.getProperty("IS_DEBUG") ?: false
 		url {
 			base = System.getProperty("SERVER_URL") ?: "http://api.develop.ratchethealth.com/api/v1"
 

@@ -42,6 +42,7 @@ class AccountService extends RatchetAPIService {
         withPost(token, adminsUrl) { req ->
             def resp = req
                     .field("email", account?.email)
+                    .field("groups", account?.groups)
                     .asString()
 
             if (resp.status == 201) {
@@ -77,7 +78,7 @@ class AccountService extends RatchetAPIService {
         }
     }
 
-    def updateAccount(String token, long accountId, email, enabled) {
+    def updateAccount(String token, long accountId, email, enabled, groups) {
         log.info("Call backend service to update account,token: ${token}.")
 
         String adminUrl = grailsApplication.config.ratchetv2.server.url.oneAdmin
@@ -87,6 +88,7 @@ class AccountService extends RatchetAPIService {
             def resp = req
                     .field("email", email)
                     .field("enabled", enabled)
+                    .field("groups", groups)
                     .asString()
 
             if (resp.status == 200) {

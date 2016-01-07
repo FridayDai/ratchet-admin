@@ -36,9 +36,11 @@ class AuthenticationService extends RatchetAPIService {
 
             if (resp.status == 200) {
                 log.info("login Authenticate success, token: ${token}")
+                def groupList = result?.groups ?  result.groups.split(',') : []
 
                 return [
                         token        : result?.token,
+                        groups       : groupList,
                         authenticated: true
                 ]
             } else if (resp.status == 403) {

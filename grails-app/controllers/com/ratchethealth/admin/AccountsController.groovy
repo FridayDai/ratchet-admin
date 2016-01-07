@@ -63,7 +63,12 @@ class AccountsController extends BaseController {
             enabled = false
         }
 
-        def resp = accountService.updateAccount(token, params?.accountId as long, params?.email, enabled)
+        def updatedGroups = params.updatedGroups
+        if (!(updatedGroups instanceof String)) {
+            updatedGroups = updatedGroups?.join(',')
+        }
+
+        def resp = accountService.updateAccount(token, params?.accountId as long, params?.email, enabled, updatedGroups)
 
         render resp as JSON
     }

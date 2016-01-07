@@ -51,6 +51,11 @@ function accountsTable() {
                                 .format(meta.row, row.id);
                     }
                 }
+            },
+            {
+                title: 'Groups',
+                data: 'groups',
+                className: "groups"
             }
         ]
     });
@@ -59,6 +64,7 @@ function accountsTable() {
         data = data || {};
         this.$node.$ele = data.$ele;
         this.$node.$ele.find('.isEnabled').text(data.enabled);
+        this.$node.$ele.find('.groups').text(data.groups);
     };
 
     this.onDeleteAccountSuccess = function (e, data) {

@@ -142,7 +142,7 @@ class AccountsServiceSpec extends Specification {
 		}
 
 		when:
-		def result = service.updateAccount('token', 1, 'email', true)
+		def result = service.updateAccount('token', 1, 'email', true, 'ROLE_ADMIN')
 
 		then:
 		result.id == 1
@@ -158,7 +158,7 @@ class AccountsServiceSpec extends Specification {
 		}
 
 		when:
-		service.updateAccount('token', 1, 'email', true)
+		service.updateAccount('token', 1, 'email', true, 'ROLE_ADMIN')
 
 		then:
 		ServerException e = thrown()

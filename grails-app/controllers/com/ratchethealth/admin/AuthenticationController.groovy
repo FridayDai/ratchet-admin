@@ -35,6 +35,10 @@ class AuthenticationController extends BaseController {
                 request.session.token = resp.token
             }
 
+            if (resp.groups) {
+                request.session.groups = resp.groups
+            }
+
             if (resp?.authenticated) {
                 redirect(uri: '/')
             }

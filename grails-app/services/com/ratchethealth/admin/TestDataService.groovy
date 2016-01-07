@@ -28,13 +28,15 @@ class TestDataService extends RatchetAPIService {
         }
     }
 
-    def generateTestData(String token) {
+    def generateTestData(String token, Boolean isDataAnonymized) {
         log.info("Call backend service to generate test data, token: ${token}.")
 
         String testDataURL = grailsApplication.config.ratchetv2.server.url.testdata
 
         withPost(token, testDataURL) { req ->
-            def resp = req.asString()
+            def resp = req
+                    .field("isDataAnonymized", isDataAnonymized)
+                    .asString()
 
             if (resp.status == 200) {
                 log.info("Generate test data success, token: ${token}")

@@ -28,6 +28,7 @@
                     <td>Enabled</td>
                     <td></td>
                     <td></td>
+                    <td style="display: none"></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,7 @@
                                data-toggle="modal" data-target="#delete-account-modal"
                                data-account-id="${account.id}"></a>
                         </td>
+                        <td style="display: none">${account.groups}</td>
                     </tr>
                 </g:each>
                 </tbody>
@@ -75,6 +77,19 @@
                                     <input id="email" name="email" type="email" class="form-control" required/>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="account-add-groups" class="col-sm-5 control-label">Groups:</label>
+
+                                <div class="col-sm-6">
+                                    <select id="account-add-groups" class="group-multiple" multiple="multiple" style="width: 100%" name="groups" optionKey="id">
+                                        <option value="ROLE_ADMIN">Admin</option>
+                                        <option value="ROLE_QA">QA</option>
+                                        <option value="ROLE_MANAGER">Manager</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </g:uploadForm>
                     </div>
 
@@ -107,6 +122,18 @@
 
                                 <div class="col-sm-6">
                                     <input id="account-email" name="email" type="email" class="form-control" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="account-edit-groups" class="col-sm-5 control-label">Groups:</label>
+
+                                <div class="col-sm-6">
+                                    <select id="account-edit-groups" class="group-multiple" multiple="multiple" style="width: 100%" name="updatedGroups" optionKey="id">
+                                        <option value="ROLE_ADMIN">Admin</option>
+                                        <option value="ROLE_QA">QA</option>
+                                        <option value="ROLE_MANAGER">Manager</option>
+                                    </select>
                                 </div>
                             </div>
 

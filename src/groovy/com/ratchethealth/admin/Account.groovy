@@ -5,4 +5,6 @@ class Account {
     String email
     int status = 2
     boolean enabled = true
+    String groups
+    String updatedGroups
 }

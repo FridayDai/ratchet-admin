@@ -14,4 +14,10 @@ class RatchetConstants {
 
 	// Backup
 	public static final DEFAULT_TEST_DATA_SIZE = 7
+
+	public static final ROLE_QA = "ROLE_QA"
+
+	public static final ROLE_ADMIN = "ROLE_ADMIN"
+
+	public static final ROLE_MANAGER = "ROLE_MANAGER"
 }
