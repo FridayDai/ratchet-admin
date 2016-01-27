@@ -138,6 +138,7 @@ function tasksTable() {
                 me.trigger('showEditTaskFormDialog', {
                     clientId: treatmentStorage.get('clientId'),
                     treatmentId: treatmentStorage.get('treatmentId'),
+                    surgeryTimeRequire: treatmentStorage.get('surgeryTimeRequire'),
                     task: me.getRowData(rawRow)
                 });
             });

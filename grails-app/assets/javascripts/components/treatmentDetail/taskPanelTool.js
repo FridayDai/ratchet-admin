@@ -12,20 +12,9 @@ function toolPoolPanelTool() {
         if (!$addButton.hasClass('disabled')) {
             this.trigger('showCreateTaskFormDialog', {
                 clientId: treatmentStorage.get('clientId'),
-                treatmentId: treatmentStorage.get('treatmentId')
+                treatmentId: treatmentStorage.get('treatmentId'),
+                surgeryTimeRequire: treatmentStorage.get('surgeryTimeRequire')
             });
-        }
-    };
-
-    this.onEditTreatmentSuccess = function (e, data) {
-        var $addButton = this.select('addTaskBtnSelector');
-
-        if (data.surgeryTimeRequire === 'Yes') {
-            $addButton.removeClass('disabled');
-        } else {
-            if (!$addButton.hasClass('disabled')) {
-                $addButton.addClass('disabled');
-            }
         }
     };
 
@@ -33,8 +22,6 @@ function toolPoolPanelTool() {
         this.on('click', {
             addTaskBtnSelector: this.onAddTaskBtnClick
         });
-
-        this.on(document, 'editTreatmentSuccess', this.onEditTreatmentSuccess);
     });
 }
 

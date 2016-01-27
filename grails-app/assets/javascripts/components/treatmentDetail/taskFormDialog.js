@@ -60,6 +60,8 @@ function taskFormDialog() {
         this.formEl.attr('action', this.attr.createUrl.format(data.clientId, data.treatmentId));
 
         this.select('sendTimeDirectionFieldSelector').val('0');
+
+        this.checkSurgeryTimeRequire(data);
         this.toggleSendTimeNumberFiled(false);
     };
 
@@ -84,6 +86,7 @@ function taskFormDialog() {
         this.select('submitBtnSelector').text('Update');
         this.formEl.attr('action', this.attr.editUrl.format(data.clientId, data.treatmentId, data.task.id));
 
+        this.checkSurgeryTimeRequire(data);
         this.setEditModalFieldValue(data.task);
     };
 
@@ -113,6 +116,17 @@ function taskFormDialog() {
             this.select('sendTimeDaysFieldSelector').val(0).attr('disabled', 'disabled');
             this.select('sendTimeHoursFieldSelector').val(0).attr('disabled', 'disabled');
             this.select('sendTimeMinutesFieldSelector').val(0).attr('disabled', 'disabled');
+        }
+    };
+
+    this.checkSurgeryTimeRequire = function (data) {
+        var $sendTime = this.select('sendTimeDirectionFieldSelector');
+        if (data.surgeryTimeRequire === 'Yes') {
+            $sendTime.removeClass('disabled').removeAttr('disabled');
+        } else {
+            if (!$sendTime.hasClass('disabled')) {
+                $sendTime.addClass('disabled').attr('disabled', 'disabled');
+            }
         }
     };
 

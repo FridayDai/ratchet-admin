@@ -37,6 +37,7 @@ function treatmentInfoPanel() {
         this.select('templateTitleSelector').text(data.templateTitle);
         this.select('surgeryTimeRequireSelector').text(data.surgeryTimeRequire);
         this.select('descriptionSelector').text(data.description);
+        treatmentStorage.set('surgeryTimeRequire', data.surgeryTimeRequire);
     };
 
     this.onCloseTreatmentSuccess = function () {
@@ -46,7 +47,8 @@ function treatmentInfoPanel() {
     this.setValue4TreatmentStore = function () {
         treatmentStorage
             .set('clientId', this.$node.data('clientId'))
-            .set('treatmentId', this.$node.data('treatmentId'));
+            .set('treatmentId', this.$node.data('treatmentId'))
+            .set('surgeryTimeRequire', this.get('surgeryTimeRequire'));
     };
 
     this.after('initialize', function () {
