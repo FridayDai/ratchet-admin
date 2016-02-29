@@ -75,8 +75,8 @@ Ratchet V2 Admin Portal
 
 	```
   vim grails-app/conf/resources/noredist/override.properties
-  # change ratchetv2.server.url.base = http://54.164.12.147:8091/api/v1 to
-  ratchetv2.server.url.base = http://localhost:8090/api/v1
+  # change ratchetv2.server.url.host = http://54.164.12.147:8091/api to
+  ratchetv2.server.url.host = http://localhost:8090/api
 ```
 
 	- navigate to the backend server project

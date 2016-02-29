@@ -27,7 +27,7 @@
         margin-top: 50px;
 
         &:before {
-            content: url('../../../images/ratchet_health_cube.png');
+            content: image-url('ratchet_health_cube.png');
         }
     }
 }

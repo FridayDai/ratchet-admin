@@ -159,7 +159,10 @@ class TreatmentService extends RatchetAPIService {
         String url = String.format(allToolsUrl, treatmentId)
 
         withGet(token, url) { req ->
-            def resp = req.asString()
+            def resp = req
+                .queryString("offset", 0)
+                .queryString("max", RatchetConstants.DEFAULT_MAX)
+                .asString()
 
             if (resp.status == 200) {
                 log.info("Get tools in treatment success, token: ${token}")

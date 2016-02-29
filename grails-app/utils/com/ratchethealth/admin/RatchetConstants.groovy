@@ -20,4 +20,6 @@ class RatchetConstants {
 	public static final ROLE_ADMIN = "ROLE_ADMIN"
 
 	public static final ROLE_MANAGER = "ROLE_MANAGER"
+
+	public static final DEFAULT_MAX = 100
 }

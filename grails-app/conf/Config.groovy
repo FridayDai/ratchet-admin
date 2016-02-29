@@ -193,6 +193,9 @@ grails {
 	}
 }
 
+hmac.access.secret = System.getProperty("HMAC_ACCESS_SECRET") ?: "Fk5R5udHYU0CWRXnPAdZtlfDIRQsscgvPIUEwd0c"
+hmac.access.token = System.getProperty("HMAC_ACCESS_TOKEN") ?: "rpZL8RQj2R65fzOPtJ22"
+
 grails.mail.default.from = "no-reply@ratchet.com"
 ratchet.api.anonymous.token = System.getProperty("ANONYMOUS_API_TOKEN") ?: "FkvVedyg9hT\$dvkUGhNVqj"
 
@@ -200,61 +203,68 @@ ratchetv2 {
 	server {
 		debug = System.getProperty("IS_DEBUG") ?: false
 		url {
-			base = System.getProperty("SERVER_URL") ?: "http://api.develop.ratchethealth.com/api/v1"
+			host = System.getProperty("SERVER_URL") ?: "http://api.develop.ratchethealth.com"
 
 			// Authentication
-			login = "${ratchetv2.server.url.base}/login"
-			logout = "${ratchetv2.server.url.base}/logout"
-			validateSessionId = "${ratchetv2.server.url.base}/check_token"
+			login = "${ratchetv2.server.url.host}/api/v1/login"
+			logout = "${ratchetv2.server.url.host}/api/v1/logout"
+			validateSessionId = "${ratchetv2.server.url.host}/api/v1/check_token"
 
             //forgotPassword
-            password.reset = "${ratchetv2.server.url.base}/password/reset"
-            password.restCheck = "${ratchetv2.server.url.base}/password/reset/check"
-            password.confirm = "${ratchetv2.server.url.base}/password/confirm"
-            updatePassword = "${ratchetv2.server.url.base}/password/update"
+            password.reset = "${ratchetv2.server.url.host}/api/v1/password/reset"
+            password.restCheck = "${ratchetv2.server.url.host}/api/v1/password/reset/check"
+            password.confirm = "${ratchetv2.server.url.host}/api/v1/password/confirm"
+            updatePassword = "${ratchetv2.server.url.host}/api/v1/password/update"
 
 			// Client URL
-			clients = "${ratchetv2.server.url.base}/clients"
-			oneClient = "${ratchetv2.server.url.base}/clients/%d"
+			clients = "${ratchetv2.server.url.host}/api/v1/clients"
+			oneClient = "${ratchetv2.server.url.host}/api/v1/clients/%d"
 
 			//Admin URL
-			admins = "${ratchetv2.server.url.base}/admins"
-			oneAdmin = "${ratchetv2.server.url.base}/admins/%d"
-			admin.confirm = "${ratchetv2.server.url.base}/admin/confirm"
-			admin.validateCode = "${ratchetv2.server.url.base}/admin/validation/%s"
+			admins = "${ratchetv2.server.url.host}/api/v1/admins"
+			oneAdmin = "${ratchetv2.server.url.host}/api/v1/admins/%d"
+			admin.confirm = "${ratchetv2.server.url.host}/api/v1/admin/confirm"
+			admin.validateCode = "${ratchetv2.server.url.host}/api/v1/admin/validation/%s"
 
 			// Announcement URL
-			announcements = "${ratchetv2.server.url.base}/announcements"
-			oneAnnouncement = "${ratchetv2.server.url.base}/announcements/%d"
+			announcements = "${ratchetv2.server.url.host}/api/v1/announcements"
+			oneAnnouncement = "${ratchetv2.server.url.host}/api/v1/announcements/%d"
 
 			// Staff URL
-			staffs = "${ratchetv2.server.url.base}/staffs"
-			oneStaff = "${ratchetv2.server.url.base}/staffs/%d"
+			staffs = "${ratchetv2.server.url.host}/api/v1/staffs"
+			oneStaff = "${ratchetv2.server.url.host}/api/v1/staffs/%d"
 
 			// Treatment URL
-			treatments = "${ratchetv2.server.url.base}/clients/%d/treatments"
-			oneTreatment = "${ratchetv2.server.url.base}/clients/%d/treatments/%d"
+			treatments = "${ratchetv2.server.url.host}/api/v1/clients/%d/treatments"
+			oneTreatment = "${ratchetv2.server.url.host}/api/v1/clients/%d/treatments/%d"
 
 			treatment {
-				tools = "${ratchetv2.server.url.base}/treatments/%d/tools"
-				oneTool = "${ratchetv2.server.url.base}/treatments/%d/tools/%d"
-				allToolsOfTreatment = "${ratchetv2.server.url.base}/treatments/%d/tools/loadToolByTreatment"
-				allToolsOfPredefined = "${ratchetv2.server.url.base}/tools/allPredefinedTools"
+				tools = "${ratchetv2.server.url.host}/api/v1/treatments/%d/tools"
+				oneTool = "${ratchetv2.server.url.host}/api/v1/treatments/%d/tools/%d"
+				allToolsOfTreatment = "${ratchetv2.server.url.host}/api/v1/treatments/%d/tools/loadToolByTreatment"
+				allToolsOfPredefined = "${ratchetv2.server.url.host}/api/v1/tools/allPredefinedTools"
 
-				tasks = "${ratchetv2.server.url.base}/treatments/%d/tasks"
-				oneTask = "${ratchetv2.server.url.base}/treatments/%d/tasks/%d"
+				tasks = "${ratchetv2.server.url.host}/api/v1/treatments/%d/tasks"
+				oneTask = "${ratchetv2.server.url.host}/api/v1/treatments/%d/tasks/%d"
 
 			}
             // Debug Schedule URL
-            scheduleTime = "${ratchetv2.server.url.base}/admin/debug/set-date"
-			trigger.now = "${ratchetv2.server.url.base}/admin/quartz/trigger/triggerNow"
+            scheduleTime = "${ratchetv2.server.url.host}/api/v1/admin/debug/set-date"
+			trigger.now = "${ratchetv2.server.url.host}/api/v1/admin/quartz/trigger/triggerNow"
 
 			// Db backup URL
-			testdata = "${ratchetv2.server.url.base}/db/backups"
+			testdata = "${ratchetv2.server.url.host}/api/v1/db/backups"
 
 			ratchetv2.server.client_platform = ancient
 			ratchetv2.server.client_type = admin
 
+			// HL7
+			HL7 {
+				queueStatusURI = "/api/v2/hl7/metrics/queue"
+				messageStatusURI = "/api/v2/hl7/metrics/status"
+				failuresListURI = "/api/v2/hl7/error"
+				failureRetryURI = "/api/v2/hl7/error/%s/reprocess"
+			}
 		}
 	}
 }
