@@ -88,3 +88,7 @@ table.dataTable {
 .modal-dialog {
     z-index: 9999;
 }
+
+label.error {
+    color: $base-color-error;
+}

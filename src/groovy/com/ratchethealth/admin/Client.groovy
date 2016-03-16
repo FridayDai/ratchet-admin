@@ -10,6 +10,7 @@ class Client {
 	String subDomain
 	String portalName
 	String primaryColorHex
+	int sessionTimeout
 	int activeStaffCount = 0
 	int activePatientCount = 0
 	int activeTreatmentCount = 0

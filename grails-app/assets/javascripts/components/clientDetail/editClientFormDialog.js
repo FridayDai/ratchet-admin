@@ -11,7 +11,8 @@ function addClientFormDialog () {
         clientNameSelector: '#name',
         subDomainSelector: '#subDomain',
         portalNameSelector: '#portalName',
-        primaryColorSelector: '#primaryColorHex'
+        primaryColorSelector: '#primaryColorHex',
+        sessionTimeoutSelector: '#sessionTimeout'
     });
 
     this.onShow = function (event, data) {
@@ -20,6 +21,7 @@ function addClientFormDialog () {
         this.select('subDomainSelector').val(data.subDomain);
         this.select('portalNameSelector').val(data.portalName);
         this.select('primaryColorSelector').val(data.primaryColor);
+        this.select('sessionTimeoutSelector').val(data.sessionTimeout);
     };
 
     this.onFormSuccess = function () {

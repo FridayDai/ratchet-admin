@@ -38,7 +38,8 @@ module.exports = {
             dataTable: "bower_components/DataTables/media/js/jquery.dataTables.js",
             moment: "bower_components/moment/min/moment.min.js",
             momentTZ: "bower_components/moment-timezone/builds/moment-timezone-with-data.js",
-            select2: "bower_components/select2/select2.js"
+            select2: "bower_components/select2/select2.js",
+            tooltipster: "bower_components/tooltipster/js/jquery.tooltipster.js"
         }
     },
     module: {

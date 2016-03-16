@@ -68,6 +68,7 @@ class ClientService extends RatchetAPIService {
                     .field("subDomain", client.subDomain)
                     .field("portalName", client.portalName)
                     .field("primaryColorHex", client.primaryColorHex)
+                    .field("sessionTimeout", client.sessionTimeout)
                     .field("isTesting", client.isTesting)
                     .asString()
 
@@ -103,11 +104,80 @@ class ClientService extends RatchetAPIService {
                     .field("logoFileName", client.logoFileName)
                     .field("favIcon", client.favIcon)
                     .field("favIconFileName", client.favIconFileName)
+                    .field("sessionTimeout", client.sessionTimeout)
                     .field("isTesting", client.isTesting)
                     .asString()
 
             if (resp.status == 200) {
                 log.info("Update client success, token: ${token}")
+
+                true
+            } else {
+                handleError(resp)
+            }
+        }
+    }
+
+    def addIP(String token, clientId, ip) {
+        log.info("Call backend service to add ip limit for client, token: ${token}.")
+
+        String ipsUrl = grailsApplication.config.ratchetv2.server.url.ips
+        def url = String.format(ipsUrl, clientId)
+
+        withPost(token, url) { req ->
+            def resp = req
+                .field("ip", ip.ip)
+                .field("name", ip.name)
+                .field("description", ip.description)
+                .asString()
+
+            if (resp.status == 201) {
+                def result = JSON.parse(resp.body)
+                log.info("Create limit ip fir client success, token: ${token}")
+
+                ip.id = result.id
+
+                ip
+            } else {
+                handleError(resp)
+            }
+        }
+    }
+
+    def updateIP(String token, clientId, ip) {
+        log.info("Call backend service to update ip limit for client, token: ${token}.")
+
+        String oneIPUrl = grailsApplication.config.ratchetv2.server.url.oneIP
+        def url = String.format(oneIPUrl, clientId, ip.id)
+
+        withPost(token, url) { req ->
+            def resp = req
+                .field("ip", ip.ip)
+                .field("name", ip.name)
+                .field("description", ip.description)
+                .asString()
+
+            if (resp.status == 200) {
+                log.info("Update limit ip fir client success, token: ${token}")
+
+                true
+            } else {
+                handleError(resp)
+            }
+        }
+    }
+
+    def deleteIP(String token, clientId, ip) {
+        log.info("Call backend service to delete ip limit for client, token: ${token}.")
+
+        String oneIPUrl = grailsApplication.config.ratchetv2.server.url.oneIP
+        def url = String.format(oneIPUrl, clientId, ip.id)
+
+        withDelete(token, url) { req ->
+            def resp = req.asString()
+
+            if (resp.status == 204) {
+                log.info("Delete ip limit for client success, token: ${token}")
 
                 true
             } else {

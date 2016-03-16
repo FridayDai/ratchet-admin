@@ -37,7 +37,17 @@ function withForm() {
 
         if (_.isFunction(this.initValidation)) {
             this.initValidation();
+        } else {
+            this.formEl.validate();
         }
+
+        var componentValidations = this.formEl.data('componentRules');
+
+        _.each(componentValidations, function (item) {
+            if (item.element) {
+                item.element.rules('add', item.rules);
+            }
+        });
     };
 
     this.onSubmit = function () {

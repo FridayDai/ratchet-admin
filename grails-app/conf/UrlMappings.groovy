@@ -38,6 +38,12 @@ class UrlMappings {
         "/clients/$clientId/agents/$agentId"(controller: "clients") {
             action = [POST: "editAgent", DELETE: "deleteAgent"]
         }
+        "/clients/$clientId/ips"(controller: "clients") {
+            action = [POST: "addIP"]
+        }
+        "/clients/$clientId/ips/$ipId"(controller: "clients") {
+            action = [POST: "editIP", DELETE: "deleteIP"]
+        }
 
         // Announcement
         "/getAnnouncements"(controller: "announcements", action: "getAnnouncements")

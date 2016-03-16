@@ -10,7 +10,8 @@ function clientInfoPanel() {
         subDomainSelector: '.sub-domain dd',
         portalNameSelector: '.portal-name dd',
         primaryColorSelector: '.primary-color dd',
-        editClientBtnSelector: '.edit button'
+        editClientBtnSelector: '.edit button',
+        sessionTimeoutSelector: '.session-time-out dd span'
     });
 
     this.onEditClientBtnClick = function () {
@@ -19,7 +20,8 @@ function clientInfoPanel() {
             clientName: this.get('clientName'),
             subDomain: this.get('subDomain'),
             portalName: this.get('portalName'),
-            primaryColor: this.get('primaryColor')
+            primaryColor: this.get('primaryColor'),
+            sessionTimeout: this.get('sessionTimeout') ? this.get('sessionTimeout') : 0
         });
     };
 

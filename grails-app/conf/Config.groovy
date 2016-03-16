@@ -108,9 +108,11 @@ grails.assets.excludes = [
 
 grails.assets.plugin."resources".excludes =["**"]
 grails.assets.plugin."cookie-session".excludes =["**"]
+grails.plugin.cookiesession.httponly = true
 grails.assets.minifyJs = false
+grails.plugin.cookiesession.setsecure = !System.getProperty("NOT_SUPPORT_HTTPS")?.toBoolean()
 
-if (System.getProperty("CDN_ENABLE")?.toBoolean() == true) {
+if (System.getProperty("CDN_ENABLE")?.toBoolean()) {
 	cdn_domain = System.getProperty("CDN_ASSET_DOMAIN_ADMIN") ?: "https://d1gdqclzwn7f9.cloudfront.net"
 	grails.assets.url = "${cdn_domain}/assets/"
 }
@@ -219,6 +221,8 @@ ratchetv2 {
 			// Client URL
 			clients = "${ratchetv2.server.url.host}/api/v1/clients"
 			oneClient = "${ratchetv2.server.url.host}/api/v1/clients/%d"
+			ips = "${ratchetv2.server.url.host}/api/v1/clients/%d/ips"
+			oneIP = "${ratchetv2.server.url.host}/api/v1/clients/%d/ips/%d"
 
 			//Admin URL
 			admins = "${ratchetv2.server.url.host}/api/v1/admins"

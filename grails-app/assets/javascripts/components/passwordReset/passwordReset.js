@@ -1,4 +1,7 @@
 var flight = require('flight');
+
+var WithElementValidation = require('../common/WithElementValidation');
+var PasswordValidation = require('../share/validation/PasswordValidation');
 var withPrimitiveForm = require('../common/withPrimitiveForm');
 
 function passwordReset() {
@@ -12,6 +15,17 @@ function passwordReset() {
         errorMsgSelector: ".error-area",
         errorMsg: "Your passwords don't match. Please try again."
     });
+
+    this.initPasswordValidation = function () {
+        this.setElementValidation(
+            this.select('originSelector'),
+            PasswordValidation.rules
+        );
+    };
+
+    this.after('initialize', function() {
+        this.initPasswordValidation();
+    });
 }
 
-module.exports = flight.component(withPrimitiveForm, passwordReset);
+module.exports = flight.component(WithElementValidation, passwordReset, withPrimitiveForm);
