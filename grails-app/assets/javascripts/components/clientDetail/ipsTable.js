@@ -11,19 +11,23 @@ function ipsTable() {
             {
                 title: 'ID',
                 data: 'id',
-                width: '10%'
+                width: '10%',
+                orderable: false
             }, {
                 title: 'IP',
                 data: 'ip',
-                width: '25%'
+                width: '25%',
+                orderable: false
             }, {
                 title: 'Name',
                 data: 'name',
-                width: '15%'
+                width: '15%',
+                orderable: false
             }, {
                 title: 'Description',
                 data: "description",
-                width: '40%'
+                width: '40%',
+                orderable: false
             }, {
                 title: '',
                 data: function (row, type, set, meta) {
@@ -37,7 +41,8 @@ function ipsTable() {
                         ].join('').format(meta.row);
                     }
                 },
-                width: '20px'
+                width: '20px',
+                orderable: false
             }
         ]
     });

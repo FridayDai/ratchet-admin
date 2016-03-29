@@ -1,6 +1,6 @@
 package com.ratchethealth.admin.exceptions
 
-class ServerException extends Exception {
+class ServerException extends RuntimeException {
 
 	private Integer statusId;
 

@@ -16,20 +16,25 @@ function toolsTable() {
         columns: [
             {
                 title: 'ID',
-                data: 'id'
+                data: 'id',
+                orderable: false
             }, {
                 title: 'Tool Title',
-                data: 'title'
+                data: 'title',
+                orderable: false
             }, {
                 title: 'Tool Description',
-                data: 'description'
+                data: 'description',
+                orderable: false
             }, {
                 title: 'Tool Type',
+                orderable: false,
                 data: function (row) {
                     return AdminPortalConstants.TOOL_TYPE[row.type];
                 }
             }, {
                 title: 'Last Updated',
+                orderable: false,
                 data: function (row) {
                     return moment(row.lastUpdated)
                         .tz("America/Vancouver")
@@ -37,6 +42,7 @@ function toolsTable() {
                 }
             }, {
                 title: '',
+                orderable: false,
                 data: function (row, type, set, meta) {
                     return [
                         '<span class="edit-btn glyphicon glyphicon-edit" ',

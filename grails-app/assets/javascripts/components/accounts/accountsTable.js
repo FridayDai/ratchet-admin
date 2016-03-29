@@ -14,24 +14,28 @@ function accountsTable() {
             {
                 title: 'ID',
                 data: 'id',
-                width: '15%'
+                width: '15%',
+                orderable: false
             }, {
                 title: 'Email Address',
                 data: 'email',
                 width: '35%',
-                className: "email"
+                className: "email",
+                orderable: false
             }, {
                 title: 'Status',
                 "render": function (data, type, full) {
                     var status = data ? data - 1 : full.status ? full.status - 1 : 1;
                     return accountStatus[status];
                 },
-                width: '15%'
+                width: '15%',
+                orderable: false
             }, {
                 title: 'Enabled',
                 data: "enabled",
                 width: '15%',
-                className: "isEnabled"
+                className: "isEnabled",
+                orderable: false
             }, {
                 data: function (row, type, set, meta) {
                     if (meta) {
@@ -40,7 +44,8 @@ function accountsTable() {
                             'aria-hidden="true" data-row="{0}" data-account-id="{1}"></a>'
                                 .format(meta.row, row.id);
                     }
-                }
+                },
+                orderable: false
             },
             {
                 data: function (row, type, set, meta) {
@@ -50,12 +55,14 @@ function accountsTable() {
                             'aria-hidden="true" data-row="{0}" data-account-id="{1}"></a>'
                                 .format(meta.row, row.id);
                     }
-                }
+                },
+                orderable: false
             },
             {
                 title: 'Groups',
                 data: 'groups',
-                className: "groups"
+                className: "groups",
+                orderable: false
             }
         ]
     });

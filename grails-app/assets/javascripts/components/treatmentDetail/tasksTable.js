@@ -16,20 +16,25 @@ function tasksTable() {
         columns: [
             {
                 title: 'ID',
-                data: 'id'
+                data: 'id',
+                orderable: false
             }, {
                 title: 'Tool Title',
-                data: 'toolTitle'
+                data: 'toolTitle',
+                orderable: false
             }, {
                 title: 'Tool Description',
-                data: 'toolDescription'
+                data: 'toolDescription',
+                orderable: false
             }, {
                 title: 'Tool Type',
+                orderable: false,
                 data: function (row) {
                     return AdminPortalConstants.TOOL_TYPE[row.toolType];
                 }
             }, {
                 title: 'Send Time',
+                orderable: false,
                 data: function (row) {
                     var sendTime = row.sendTimeOffset,
                         timeStr = '',
@@ -79,6 +84,7 @@ function tasksTable() {
                 }
             }, {
                 title: 'Due Time',
+                orderable: false,
                 data: function (row) {
                     var dueTime = row.defaultDueTime;
                     var timeStr = '';
@@ -100,6 +106,7 @@ function tasksTable() {
             },
             {
                 title: 'Expire Time',
+                orderable: false,
                 data: function (row) {
                     var expireTime = row.defaultExpireTime;
                     var timeStr = '';
@@ -121,12 +128,14 @@ function tasksTable() {
             },
             {
                 title: 'Last Updated',
+                orderable: false,
                 data: function (row) {
                     return moment(row.lastUpdated).tz("America/Vancouver").format('MMM DD, YYYY  h:mm A');
                 }
             },
             {
                 title: '',
+                orderable: false,
                 data: function (row, type, set, meta) {
                     return [
                         '<span class="edit-btn glyphicon glyphicon-edit" ',
