@@ -16,7 +16,7 @@
 
         <div class="col-lg-12 login-form">
             <g:form class="form" uri="/login" method="post" name="loginForm"
-                    novalidate="novalidate">
+                    novalidate="novalidate" autocomplete="off">
                 <g:if test="${errorMsg}">
                     <p class="error" id="error_login" rateLimit="${rateLimit}">${errorMsg}</p>
                 </g:if>

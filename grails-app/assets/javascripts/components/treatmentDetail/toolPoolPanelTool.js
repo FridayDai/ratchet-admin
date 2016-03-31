@@ -3,13 +3,16 @@ var treatmentStorage = require('./treatmentStorage');
 
 function toolPoolPanelTool() {
     this.attributes({
-        definedBtnSelector: '#add-defined-tool-btn'
+        definedBtnSelector: '.defined'
     });
 
-    this.onDefinedBtnClick = function () {
+    this.onDefinedBtnClick = function (e) {
+        var type = $(e.target).data('type');
+
         this.trigger('showCreateDefinedToolFormDialog', {
             clientId: treatmentStorage.get('clientId'),
-            treatmentId: treatmentStorage.get('treatmentId')
+            treatmentId: treatmentStorage.get('treatmentId'),
+            toolType: type
         });
     };
 

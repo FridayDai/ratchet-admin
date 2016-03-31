@@ -69,6 +69,15 @@ function toolsTable() {
             });
         }
 
+        if (_.isUndefined(data.defaultExireTimeDay) && data.defaultExpireTime) {
+            var expire = utility.getTimeInterval(data.defaultExpireTime);
+
+            _.extend(data, {
+                defaultExpireTimeDay: expire.totalDays,
+                defaultExpireTimeHour: expire.hours
+            });
+        }
+
         var me = this;
 
         $(rawRow)

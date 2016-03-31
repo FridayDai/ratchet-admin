@@ -10,20 +10,23 @@ function withPrimitiveForm() {
         withServerError
     ]);
 
-    var ERROR_SELECTOR = 'help-block',
-        ERROR_CLASS = 'has-error',
-        FORM_SELECTOR = '.form-group';
+    this._setDefaultValidation = function () {
+        $.validator.setDefaults({
+            errorClass: 'error-help-block',
+            errorPlacement: function(error, element) {
+                var errorContainer = element.parent();
+                var $form = element.closest('form');
+                var validator = $form.data('validator');
 
-    $.validator.setDefaults({
-        errorClass: ERROR_SELECTOR,
-        highlight: function (element) {
-            $(element).parents(FORM_SELECTOR).addClass(ERROR_CLASS);
-        },
-        unhighlight: function (element) {
-            $(element).parents(FORM_SELECTOR).removeClass(ERROR_CLASS);
+                if (element.data('groupValidation')) {
+                    var $groupPatient = element.closest('.' + validator.groups[element.attr('name')] + '-groups');
+                    errorContainer = $groupPatient.parent();
+                }
 
-        }
-    });
+                $("<div class='error-container'></div>").appendTo(errorContainer).append(error);
+            }
+        });
+    };
 
     this.attributes({
         formSelector: 'form'
@@ -34,7 +37,19 @@ function withPrimitiveForm() {
 
         if (_.isFunction(this.initValidation)) {
             this.initValidation();
+        } else {
+            this.formEl.validate();
         }
+
+        this._setDefaultValidation();
+
+        var componentValidations = this.formEl.data('componentRules');
+
+        _.each(componentValidations, function (item) {
+            if (item.element) {
+                item.element.rules('add', item.rules);
+            }
+        });
     };
 
     this.onCheckConsistency = function (e) {

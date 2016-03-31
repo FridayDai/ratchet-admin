@@ -1,4 +1,7 @@
 var flight = require('flight');
+
+var WithElementValidation = require('../common/WithElementValidation');
+var PasswordValidation = require('../share/validation/PasswordValidation');
 var withPrimitiveForm = require('../common/withPrimitiveForm');
 
 function accountActivate() {
@@ -14,6 +17,17 @@ function accountActivate() {
 
     });
 
+    this.initPasswordValidation = function () {
+        this.setElementValidation(
+            this.select('originSelector'),
+            PasswordValidation.rules
+        );
+    };
+
+    this.after('initialize', function() {
+        this.initPasswordValidation();
+    });
+
 }
 
-module.exports = flight.component(withPrimitiveForm, accountActivate);
+module.exports = flight.component(WithElementValidation, accountActivate, withPrimitiveForm);

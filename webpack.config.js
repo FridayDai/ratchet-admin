@@ -18,7 +18,8 @@ module.exports = {
         login: "./pages/login.js",
         passwordForget: "./pages/passwordForget.js",
         passwordReset: "./pages/passwordReset.js",
-        accountActivate:"./pages/accountActivate.js"
+        accountActivate:"./pages/accountActivate.js",
+        hl7Failures:"./pages/hl7/failures.js"
     },
     output: {
         path: absoluteContext,
@@ -32,12 +33,14 @@ module.exports = {
             flight: "bower_components/flight/index.js",
             bootstrap: "bower_components/bootstrap/dist/js/bootstrap.js",
             datepicker: "bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker",
+            datetimepicker: "bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js",
             jValidate: "bower_components/jquery-validation/dist/jquery.validate.js",
             jForm: "bower_components/jquery-form/jquery.form.js",
             dataTable: "bower_components/DataTables/media/js/jquery.dataTables.js",
             moment: "bower_components/moment/min/moment.min.js",
             momentTZ: "bower_components/moment-timezone/builds/moment-timezone-with-data.js",
-            select2: "bower_components/select2/select2.js"
+            select2: "bower_components/select2/select2.js",
+            tooltipster: "bower_components/tooltipster/js/jquery.tooltipster.js"
         }
     },
     module: {

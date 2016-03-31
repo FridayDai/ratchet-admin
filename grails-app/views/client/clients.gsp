@@ -119,6 +119,14 @@
 							</div>
 
 							<div class="form-group">
+								<label for="sessionTimeout" class="col-sm-5 control-label">Session Timeout(in minutes):</label>
+
+								<div class="col-sm-6">
+									<input id="sessionTimeout" name="sessionTimeout" type="number" class="form-control" min="0"/>
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label for="logo" class="col-sm-5 control-label">* Logo:</label>
 
 								<div class="col-sm-6">

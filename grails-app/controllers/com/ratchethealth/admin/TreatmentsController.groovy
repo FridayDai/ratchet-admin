@@ -23,6 +23,10 @@ class TreatmentsController extends BaseController {
         String token = request.session.token
         treatment.clientId = params.clientId as long
 
+        if (treatment.archiveDay || treatment.archiveWeek) {
+            treatment.archiveTime = (treatment.archiveWeek * 7 + treatment.archiveDay) * 24 * 3600000
+        }
+
         treatment = treatmentService.createTreatment(token, treatment)
 
         if (treatment.id) {
@@ -41,17 +45,31 @@ class TreatmentsController extends BaseController {
         def treatment = treatmentService.getTreatment(token, clientId, treatmentId)
         def tools = treatmentService.getToolsInTreatment(token, treatmentId)
         def predefinedTools = treatmentService.getPredefinedTools(token)
+        def outcomeTools = [], voiceTools = []
 
-        render view: '/treatment/treatmentDetail', model: [clientId       : clientId,
-                                                           treatment      : treatment,
-                                                           tools          : tools,
-                                                           predefinedTools: predefinedTools]
+        for (tool in predefinedTools) {
+            //4.voice, 2:outcome
+            if (tool.type == 4) {
+                voiceTools.add(tool)
+            } else {
+                outcomeTools.add(tool)
+            }
+        }
+        render view: '/treatment/treatmentDetail', model: [clientId    : clientId,
+                                                           treatment   : treatment,
+                                                           tools       : tools,
+                                                           voiceTools  : voiceTools,
+                                                           outcomeTools: outcomeTools]
     }
 
     def editTreatment(Treatment treatment) {
         String token = request.session.token
         treatment.clientId = params.clientId as long
         treatment.id = params.treatmentId as long
+
+        if (treatment.archiveDay || treatment.archiveWeek) {
+            treatment.archiveTime = (treatment.archiveWeek * 7 + treatment.archiveDay) * 24 * 3600000
+        }
 
         def success = treatmentService.updateTreatment(token, treatment)
 
@@ -104,6 +122,7 @@ class TreatmentsController extends BaseController {
         String token = request.session.token
         tool.treatmentId = params.treatmentId as long
         tool.defaultDueTime = (tool.defaultDueTimeHour + tool.defaultDueTimeDay * 24) * 3600000
+        tool.defaultExpireTime = (tool.defaultExpireTimeHour + tool.defaultExpireTimeDay * 24) * 3600000
 
         def result = treatmentService.addTool(token, tool)
 
@@ -117,6 +136,7 @@ class TreatmentsController extends BaseController {
         tool.treatmentId = params.treatmentId as long
         tool.id = params.toolId as long
         tool.defaultDueTime = (tool.defaultDueTimeHour + tool.defaultDueTimeDay * 24) * 3600000
+        tool.defaultExpireTime = (tool.defaultExpireTimeHour + tool.defaultExpireTimeDay * 24) * 3600000
 
         def result = treatmentService.updateTool(token, tool)
 

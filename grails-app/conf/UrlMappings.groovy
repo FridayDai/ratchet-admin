@@ -38,6 +38,12 @@ class UrlMappings {
         "/clients/$clientId/agents/$agentId"(controller: "clients") {
             action = [POST: "editAgent", DELETE: "deleteAgent"]
         }
+        "/clients/$clientId/ips"(controller: "clients") {
+            action = [POST: "addIP"]
+        }
+        "/clients/$clientId/ips/$ipId"(controller: "clients") {
+            action = [POST: "editIP", DELETE: "deleteIP"]
+        }
 
         // Announcement
         "/getAnnouncements"(controller: "announcements", action: "getAnnouncements")
@@ -94,8 +100,23 @@ class UrlMappings {
         "/debug"(controller: "dubug"){
             action = [GET: "index"]
         }
+        "/debug/set-time"(controller: "debug") {
+            action = [GET: "setDateTime", POST: "changeScheduleDateTime"]
+        }
+        "/debug/set-random-hour"(controller: "debug") {
+            action = [GET: "setRandomHour", POST: "changeRandomHour"]
+        }
+
+        // HL7
+        "/hl7"(controller: "HL7", action: "index")
+        "/hl7/reporting"(controller: "HL7", action: "getReportingPage")
+        "/hl7/failures"(controller: "HL7", action: "getFailuresPage")
+        "/hl7/error/$errorJobId/reprocess"(controller: "HL7", action: "retryFailure")
 
         // Error
         "500"(view: '/error/503')
+
+        "/robots.txt" (view: "/robots")
+        "/sitemap.xml" (view: "/sitemap")
     }
 }

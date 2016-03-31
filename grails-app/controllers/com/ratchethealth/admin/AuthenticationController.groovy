@@ -89,7 +89,7 @@ class AuthenticationController extends BaseController {
         def resp = authenticationService.resetPassword(token, code, newPassword, confirmPassword)
 
         if (resp) {
-            render view: '/security/login'
+            redirect(uri: '/login')
         }
     }
 }

@@ -99,6 +99,27 @@ function tasksTable() {
                 }
             },
             {
+                title: 'Expire Time',
+                data: function (row) {
+                    var expireTime = row.defaultExpireTime;
+                    var timeStr = '';
+                    var expire = {};
+
+                    if (!expireTime) {
+                        timeStr = 'NA';
+                    } else {
+                        expire = utility.getTimeInterval(expireTime);
+
+                        timeStr = '{0}D {1}H'.format(
+                            expire.totalDays,
+                            expire.hours
+                        );
+                    }
+
+                    return timeStr;
+                }
+            },
+            {
                 title: 'Last Updated',
                 data: function (row) {
                     return moment(row.lastUpdated).tz("America/Vancouver").format('MMM DD, YYYY  h:mm A');

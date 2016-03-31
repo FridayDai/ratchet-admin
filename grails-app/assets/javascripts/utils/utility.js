@@ -6,6 +6,10 @@ module.exports = {
     },
 
     getTimeInterval: function (difference) {
+        if (!_.isNumber(difference)) {
+            return 0;
+        }
+
         if (difference < 0) {
             difference = -difference;
         }

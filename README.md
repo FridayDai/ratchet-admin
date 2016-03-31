@@ -55,6 +55,9 @@ Ratchet V2 Admin Portal
 
 	```
         grails run-app
+        
+        //If running on localhost should add NOT_SUPPORT_HTTPS ENV variable to true, as:
+        grails run-app -DNOT_SUPPORT_HTTPS=true
     ```
     
     ```
@@ -63,20 +66,23 @@ Ratchet V2 Admin Portal
         npm start
     ```
     
+    
 ## Running 
 
 1. Using **remote** backend server **http://54.164.12.147:8091/api/v1**
 
 	```
   grails run-app
+  //If running on localhost should add NOT_SUPPORT_HTTPS ENV variable to true, as:
+  grails run-app -DNOT_SUPPORT_HTTPS=true
 ```
 
 2. Using **locally** running backend server
 
 	```
   vim grails-app/conf/resources/noredist/override.properties
-  # change ratchetv2.server.url.base = http://54.164.12.147:8091/api/v1 to
-  ratchetv2.server.url.base = http://localhost:8090/api/v1
+  # change ratchetv2.server.url.host = http://54.164.12.147:8091/api to
+  ratchetv2.server.url.host = http://localhost:8090/api
 ```
 
 	- navigate to the backend server project
@@ -102,6 +108,8 @@ Ratchet V2 Admin Portal
   ```	  
   cd /where-your-projects-are/ratchet-v2-admin-portal
   ./grailsw run-app
+  //If running on localhost should add NOT_SUPPORT_HTTPS ENV variable to true, as:
+  grails run-app -DNOT_SUPPORT_HTTPS=true
 ```
 	- See http://localhost:8080
 
@@ -131,3 +139,6 @@ npm start
 - SERVER_URL
 - CDN_ENABLE    # true | false | not define
 - CDN_ASSET_DOMAIN_ADMIN    // just cloudfront url like: ```https://d1gdqclzwn7f9.cloudfront.net```
+- NOT_SUPPORT_HTTPS    # true | false | not define
+- RUM_ENABLE    # true | false | not define
+

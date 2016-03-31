@@ -1,0 +1,19 @@
+@import '../../partials/common';
+
+.nav {
+    margin-bottom: 40px;
+}
+
+.overview-heros {
+    text-align: center;
+    font-weight: bold;
+
+    .hero-text {
+        font-size: 30px;
+    }
+
+    .sub-text {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+}

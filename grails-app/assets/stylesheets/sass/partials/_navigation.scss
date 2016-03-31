@@ -1,4 +1,4 @@
-.nav {
+.main-nav {
     position: fixed;
     top: 50px;
     left: 0;
@@ -15,83 +15,84 @@
         list-style: none;
         text-align: center;
     }
-}
 
-.nav-li {
-    position: relative;
-    height: 83px;
-
-    a {
-        width: 100%;
-        height: 100%;
-        color: $base-color-mid-grey;
-    }
-
-    .ui-icon {
-        width: 30px;
-        height: 30px;
-        margin: 15px auto 10px;
-    }
-
-    .icon-client {
-        background: url('../../../images/client.png') no-repeat 0 0;
-        background-size: cover;
-    }
-
-    .icon-account {
-        background: url('../../../images/account.png') no-repeat 0 0;
-        background-size: cover;
-    }
-
-    .icon-announcements {
-        background: url('../../../images/tool.png') no-repeat 0 0;
-        background-size: cover;
-    }
-
-    &:hover,
-    &:focus,
-    &.active {
+    .nav-li {
+        position: relative;
         height: 83px;
-        color: $base-color-white;
-        background: url('../../../images/nav_background.png') no-repeat 0 0;
-        background-size: cover;
 
         a {
-            color: $base-color-white;
+            width: 100%;
+            height: 100%;
+            color: $base-color-mid-grey;
+        }
+
+        .ui-icon {
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 15px auto 10px;
         }
 
         .icon-client {
-            background: url('../../../images/client_hover.png') no-repeat 0 0;
+            background: image-url('client.png') no-repeat 0 0;
             background-size: cover;
         }
 
         .icon-account {
-            background: url('../../../images/account_hover.png') no-repeat 0 0;
+            background: image-url('account.png') no-repeat 0 0;
             background-size: cover;
         }
 
         .icon-announcements {
-            background: url('../../../images/tool_hover.png') no-repeat 0 0;
+            background: image-url('tool.png') no-repeat 0 0;
             background-size: cover;
         }
 
-        &:before {
-            position: absolute;
-            top: 42.5%;
-            right: 0;
-            margin-left: -6px;
-            border: solid 6px transparent;
-            border-right-color: #fff;
-            content: '';
-        }
-    }
+        &:hover,
+        &:focus,
+        &.active {
+            height: 83px;
+            color: $base-color-white;
+            background: image-url('nav_background.png') no-repeat 0 0;
+            background-size: cover;
 
-    &:after {
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        content: url('../../../images/underline.png');
+            a {
+                color: $base-color-white;
+            }
+
+            .icon-client {
+                background: image-url('client_hover.png') no-repeat 0 0;
+                background-size: cover;
+            }
+
+            .icon-account {
+                background: image-url('account_hover.png') no-repeat 0 0;
+                background-size: cover;
+            }
+
+            .icon-announcements {
+                background: image-url('tool_hover.png') no-repeat 0 0;
+                background-size: cover;
+            }
+
+            &:before {
+                position: absolute;
+                top: 42.5%;
+                right: 0;
+                margin-left: -6px;
+                border: solid 6px transparent;
+                border-right-color: #fff;
+                content: '';
+            }
+        }
+
+        &:after {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            content: image-url('underline.png');
+        }
     }
 }
 

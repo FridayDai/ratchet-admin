@@ -156,22 +156,34 @@ function withDataTable() {
     this.initDataTable = function () {
         var that = this;
 
-        this.tableEl = $(this.$node).DataTable({
-            autoWidth: false,
-            lengthChange: false,
-            processing: true,
-            serverSide: true,
-            pageLength: this.getPageSize(),
-            fnDrawCallback: _.bind(that.drawCallback, that),
-            ajax: that.getPipeline(),
-            deferLoading: that.getTotalCount(),
-            order: [[0, 'desc']],
-            rowCallback: _.bind(that._rowCallback, that),
-            columns: that.attr.columns,
-            "language": {
-                "processing": "Loading"
-            }
-        });
+        if (this.attr.serverSide === false) {
+            this.tableEl = $(this.$node).DataTable({
+                autoWidth: false,
+                lengthChange: false,
+                serverSide: false,
+                order: [[0, 'desc']],
+                columns: that.attr.columns,
+                rowCallback: _.bind(that._rowCallback, that),
+                paging: false
+            });
+        } else {
+            this.tableEl = $(this.$node).DataTable({
+                autoWidth: false,
+                lengthChange: false,
+                processing: true,
+                serverSide: true,
+                pageLength: this.getPageSize(),
+                fnDrawCallback: _.bind(that.drawCallback, that),
+                ajax: that.getPipeline(),
+                deferLoading: that.getTotalCount(),
+                order: [[0, 'desc']],
+                rowCallback: _.bind(that._rowCallback, that),
+                columns: that.attr.columns,
+                "language": {
+                    "processing": "Loading"
+                }
+            });
+        }
     };
 
     this.getPageSize = function () {

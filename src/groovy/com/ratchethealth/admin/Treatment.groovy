@@ -11,4 +11,7 @@ class Treatment {
 	String description
 	String status
 	long lastUpdated
+	long archiveWeek
+	long archiveDay
+	long archiveTime
 }

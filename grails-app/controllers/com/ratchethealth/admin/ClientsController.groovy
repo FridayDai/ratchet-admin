@@ -136,4 +136,39 @@ class ClientsController extends BaseController {
             render status: 204
         }
     }
+
+    def addIP(ClientIP ip) {
+        String token = request.session.token
+        def clientId = params.clientId as long
+
+        def success = clientService.addIP(token, clientId, ip)
+
+        if (success) {
+            render ip as JSON
+        }
+    }
+
+    def editIP(ClientIP ip) {
+        String token = request.session.token
+        def clientId = params.clientId as long
+        ip.id = params.ipId as long
+
+        def success = clientService.updateIP(token, clientId, ip)
+
+        if (success) {
+            render ip as JSON
+        }
+    }
+
+    def deleteIP(ClientIP ip) {
+        String token = request.session.token
+        def clientId = params.clientId as long
+        ip.id = params.ipId as long
+
+        def success = clientService.deleteIP(token, clientId, ip)
+
+        if (success) {
+            render ip as JSON
+        }
+    }
 }

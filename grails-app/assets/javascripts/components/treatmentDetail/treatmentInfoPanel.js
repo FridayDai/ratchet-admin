@@ -1,6 +1,7 @@
 var flight = require('flight');
 var withPanel = require('../common/withPanel');
 var treatmentStorage = require('./treatmentStorage');
+var Utility = require('../../utils/utility');
 
 function treatmentInfoPanel() {
     /* jshint validthis:true */
@@ -11,18 +12,33 @@ function treatmentInfoPanel() {
         surgeryTimeRequireSelector: '.surgery-time-required .text',
         descriptionSelector: '.description',
         statusSelector: '.status .text',
+        autoArchiveSelector: '.auto-archive',
+        autoArchiveTextSelector: '.auto-archive span',
 
         editTreatmentBtnSelector: 'button[data-target="#edit-treatment-modal"]',
         closeTreatmentBtnSelector: 'button[data-target="#close-treatment-modal"]'
     });
 
     this.onShowEditTreatmentDialog = function () {
-        this.trigger('showEditTreatmentFormDialog', {
+        var data = {
             treatmentTitle: this.get('treatmentTitle'),
             templateTitle: this.get('templateTitle'),
             surgeryTimeRequire: this.get('surgeryTimeRequire'),
             description: this.get('description')
-        });
+        };
+
+        var archiveTime = this.select('autoArchiveSelector').data('autoArchive');
+
+        if (archiveTime) {
+            var separateTime = Utility.getTimeInterval(archiveTime);
+
+            data.autoArchive = {
+                time: archiveTime,
+                week: separateTime.weeks,
+                day: separateTime.days
+            };
+        }
+        this.trigger('showEditTreatmentFormDialog', data);
     };
 
     this.onShowCloseTreatmentDialog = function () {
@@ -38,6 +54,15 @@ function treatmentInfoPanel() {
         this.select('surgeryTimeRequireSelector').text(data.surgeryTimeRequire);
         this.select('descriptionSelector').text(data.description);
         treatmentStorage.set('surgeryTimeRequire', data.surgeryTimeRequire);
+
+        this.select('autoArchiveSelector').data('autoArchive', data.autoArchive ? data.autoArchive.time : 0);
+
+        this.select('autoArchiveTextSelector').text(
+            data.autoArchive && data.autoArchive.time ?
+                '{0}W {1}D after surgery'.format(data.autoArchive.week, data.autoArchive.day) :
+                'NA'
+        );
+
     };
 
     this.onCloseTreatmentSuccess = function () {

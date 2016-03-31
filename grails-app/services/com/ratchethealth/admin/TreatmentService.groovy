@@ -45,6 +45,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("title", treatment.title)
                     .field("tmpTitle", treatment.tmpTitle)
                     .field("description", treatment.description)
+                    .field("archiveTime", treatment.archiveTime)
                     .field("surgeryTimeRequired", treatment.surgeryTimeRequired)
                     .asString()
 
@@ -92,6 +93,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("title", treatment.title)
                     .field("tmpTitle", treatment.tmpTitle)
                     .field("description", treatment.description)
+                    .field("archiveTime", treatment.archiveTime)
                     .field("surgeryTimeRequired", treatment.surgeryTimeRequired)
                     .asString()
 
@@ -159,7 +161,10 @@ class TreatmentService extends RatchetAPIService {
         String url = String.format(allToolsUrl, treatmentId)
 
         withGet(token, url) { req ->
-            def resp = req.asString()
+            def resp = req
+                .queryString("offset", 0)
+                .queryString("max", RatchetConstants.DEFAULT_MAX)
+                .asString()
 
             if (resp.status == 200) {
                 log.info("Get tools in treatment success, token: ${token}")
@@ -203,6 +208,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("description", tool.description)
                     .field("requireCompletion", tool.requireCompletion)
                     .field("defaultDueTime", tool.defaultDueTime)
+                    .field("defaultExpireTime", tool.defaultExpireTime)
                     .field("reminder", tool.reminder)
                     .field("detailedDescription", tool.detailedDescription)
                     .field("type", tool.type)
@@ -231,6 +237,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("description", tool.description)
                     .field("requireCompletion", tool.requireCompletion)
                     .field("defaultDueTime", tool.defaultDueTime)
+                    .field("defaultExpireTime", tool.defaultExpireTime)
                     .field("reminder", tool.reminder)
                     .field("detailedDescription", tool.detailedDescription)
                     .field("type", tool.type)

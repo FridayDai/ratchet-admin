@@ -8,6 +8,9 @@ class Tool {
 	long defaultDueTime
 	long defaultDueTimeDay
 	long defaultDueTimeHour
+	long defaultExpireTime
+	long defaultExpireTimeDay
+	long defaultExpireTimeHour
 	String reminder
 	String detailedDescription
 	boolean requireCompletion

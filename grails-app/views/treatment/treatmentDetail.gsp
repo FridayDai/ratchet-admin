@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="com.ratchethealth.admin.Utility" %>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
 <g:set var="scriptPath" value="dist/treatmentDetail.bundle.js"/>
 <g:set var="cssPath" value="treatmentDetail"/>
@@ -32,6 +33,9 @@
 						class="text">${treatment.active ? 'Active' : 'Closed'}</span></div>
 
 				<div class="active-patient rc-line-space"><strong>Active Patient:</strong> ${treatment.activePatient}</div>
+                <div class="auto-archive rc-line-space" data-auto-archive="${treatment.archiveTime}"><strong>Auto Archive:</strong>
+                    <br><span>${Utility.getAutoArchiveStr(treatment.archiveTime)}</span>
+                </div>
 			</div>
 
 			<div class="description col-sm-6">${treatment.description}</div>
@@ -99,6 +103,26 @@
 								</div>
 							</div>
 
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">Auto Archive:</label>
+
+                                <div class="col-sm-7">
+                                    <select name="archiveWeek" class="form-control inline-select">
+                                        <g:each var="i" in="${(0..<1001)}">
+                                            <option value="${i}">${i}</option>
+                                        </g:each>
+                                    </select>
+                                    <span>weeks</span>
+                                    <select name="archiveDay" class="form-control inline-select">
+                                        <g:each var="i" in="${(0..<7)}">
+                                            <option value="${i}">${i}</option>
+                                        </g:each>
+                                    </select>
+                                    <span>days</span>
+                                    <span>after surgery</span>
+                                </div>
+                            </div>
+
 							<div class="form-group">
 								<label for="edit-treatment-description"
 									   class="col-sm-5 control-label">* Description:</label>
@@ -157,7 +181,8 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#" class="basic" data-toggle="modal"
 								   data-target="#add-basic-tool-modal">Basic</a></li>
-							<li><a href="#" id="add-defined-tool-btn" class="defined">Defined</a></li>
+							<li><a href="#" id="add-outcome-tool-btn" class="defined" data-type="OUTCOME">Outcome</a></li>
+                            <li><a href="#" id="add-voice-tool-btn" class="defined" data-type="VOICE">Voice</a></li>
 						</ul>
 					</div>
 				</div>
@@ -184,14 +209,20 @@
 							  class="form form-horizontal" enctype="multipart/form-data" novalidate="novalidate">
 							<input type="hidden" name="type" value="2"/>
 							<div class="form-group">
-								<label for="defined-tool-type" class="col-sm-5 control-label">* Tool:</label>
+								<label class="col-sm-5 control-label">* Tool:</label>
 
 								<div class="col-sm-6">
-									<select name="id" id="defined-tool-type" class="form-control" required>
-										<g:each var="tool" in="${predefinedTools}">
+									<select name="id" id="outcome-tool-type" class="form-control defined-tool-type" required>
+										<g:each var="tool" in="${outcomeTools}">
 											<option value="${tool.id}">${tool.title}</option>
 										</g:each>
 									</select>
+
+                                    <select name="idle" id="voice-tool-type" class="form-control defined-tool-type" required>
+                                        <g:each var="tool" in="${voiceTools}">
+                                            <option value="${tool.id}">${tool.title}</option>
+                                        </g:each>
+                                    </select>
 								</div>
 							</div>
 
@@ -214,6 +245,28 @@
 									</select>
 									<span>days</span>
 									<select name="defaultDueTimeHour" class="form-control inline-select" required>
+										<g:each var="i" in="${(0..<24)}">
+											<option value="${i}">${i}</option>
+										</g:each>
+									</select>
+									<span>hours</span>
+									<span>upon receiving</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-5 control-label">Default Expire Time:</label>
+
+								<div class="col-sm-7 default-expire-time">
+									<select name="defaultExpireTimeDay" class="form-control inline-select">
+										<option value=""></option>
+										<g:each var="i" in="${(0..<100)}">
+											<option value="${i}">${i}</option>
+										</g:each>
+									</select>
+									<span>days</span>
+									<select name="defaultExpireTimeHour" class="form-control inline-select">
+										<option value=""></option>
 										<g:each var="i" in="${(0..<24)}">
 											<option value="${i}">${i}</option>
 										</g:each>

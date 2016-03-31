@@ -43,12 +43,12 @@ class AuthenticationService extends RatchetAPIService {
                         groups       : groupList,
                         authenticated: true
                 ]
-            } else if (resp.status == 403) {
+            } else if (resp.status == 401 && result?.error?.errorID == 403) {
                 log.info("login Authenticate forbidden")
 
-                def rateLimit = result?.error?.errorMessage ?: '10'
+                def rateLimit = result?.error?.errorMessage?.toString() ?: '10'
 
-                Integer[] args = [rateLimit]
+                String[] args = [rateLimit]
                 def errorMessage = messageSource.getMessage("security.errors.login.rateLimit", args, Locale.ENGLISH)
 
                 throw new AccountValidationException(errorMessage, rateLimit)

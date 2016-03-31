@@ -39,13 +39,23 @@
 						<dt>Favicon:</dt>
 						<dd><img class="favicon" src="${client.favIcon}" alt="favicon"/></dd>
 					</dl>
-					<dl class="favicon dl-horizontal">
+					<dl class="dl-horizontal">
 						<dt>Secret:</dt>
 						<dd>${client.secret}</dd>
 					</dl>
-					<dl class="favicon dl-horizontal">
+					<dl class="dl-horizontal">
 						<dt>Token:</dt>
 						<dd>${client.token}</dd>
+					</dl>
+
+					<dl class="session-time-out dl-horizontal">
+						<dt>Session Timeout:</dt>
+					    <g:if test="${client?.sessionTimeout && client?.sessionTimeout > 0}">
+						<dd>in <span>${client.sessionTimeout}</span> minutes</dd>
+					    </g:if>
+					    <g:else>
+						<dd>never</dd>
+					    </g:else>
 					</dl>
 				</div>
 
@@ -101,7 +111,39 @@
 			</div>
 		</div>
 
-		<div id="treatment-list-panel">
+        <div id="ip-list-panel" class="panel">
+            <div class="tool-bar">
+                <button id="add-ip" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ip-modal">Add IP</button>
+            </div>
+
+            <div class="table-container">
+                <table id="ip-table" class="display" data-total="${treatmentList.recordsTotal}" data-pagesize="${pagesize}" data-client-id="${client.id}">
+                    <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>IP</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each var="ipItem" in="${client?.ips}" status="i">
+                        <tr>
+                            <td>${ipItem.id}</td>
+                            <td>${ipItem.ip}</td>
+                            <td>${ipItem.name}</td>
+                            <td>${ipItem.description}</td>
+                            <td><span class="copy-btn glyphicon glyphicon-copy" aria-hidden="true"
+                                      data-row="${i}"></span></td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+		<div id="treatment-list-panel" class="panel">
 			<div class="tool-bar">
 				<button id="add-treatment" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#treatment-modal">Add Treatment</button>
 			</div>
@@ -193,6 +235,14 @@
 								</div>
 							</div>
 
+                            <div class="form-group">
+                                <label for="sessionTimeout" class="col-sm-5 control-label">Session Timeout(in minutes):</label>
+
+                                <div class="col-sm-6">
+                                    <input id="sessionTimeout" name="sessionTimeout" type="number" class="form-control" min="0"/>
+                                </div>
+                            </div>
+
 							<div class="form-group">
 								<label for="logo" class="col-sm-5 control-label">* Logo:</label>
 
@@ -269,29 +319,102 @@
 			</div>
 		</div>
 
-		%{--<div id="agent-delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">--}%
-			%{--<div class="modal-dialog">--}%
-				%{--<div class="modal-content">--}%
-					%{--<div class="modal-header">--}%
-						%{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}%
-							%{--<span aria-hidden="true">&times;</span>--}%
-						%{--</button>--}%
-						%{--<h4 class="modal-title">Delete Agent</h4>--}%
-					%{--</div>--}%
+        <div id="ip-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-client-id="${client.id}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Add IP</h4>
+                    </div>
 
-					%{--<div class="modal-body">--}%
-						%{--<div class="alert alert-danger rc-server-error" role="alert"></div>--}%
-						%{--<div>Are you sure to delete this agent?</div>--}%
-					%{--</div>--}%
+                    <div class="modal-body">
+                        <div class="alert alert-danger rc-server-error" role="alert"></div>
+                        <form action="/clients/${client.id}/agents/${client.clientStaff?.id}" method="post"
+                              class="form form-horizontal" enctype="multipart/form-data" novalidate="novalidate">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">* Type:</label>
 
-					%{--<div class="modal-footer">--}%
-						%{--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>--}%
-						%{--<button type="button" class="delete-btn btn btn-primary"--}%
-								%{--data-loading-text="Deleting">Delete</button>--}%
-					%{--</div>--}%
-				%{--</div>--}%
-			%{--</div>--}%
-		%{--</div>--}%
+                                <div class="col-sm-6">
+                                    <select name="type">
+                                        <option value="anywhere">Anywhere</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">* IP:</label>
+
+                                <div class="col-sm-6">
+                                    <input type="text" name="ip" class="form-control" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">* Name:</label>
+
+                                <div class="col-sm-6">
+                                    <input type="text" name="name" class="form-control" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">* description:</label>
+
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" name="description" cols="30"
+                                              rows="10" required></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="update-btn btn btn-primary" data-loading-text="Updating"
+                                data-creating-text="Creating">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="delete-ip-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-client-id="${client.id}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Delete IP</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="alert alert-danger rc-server-error" role="alert"></div>
+                        <div>Are you sure to delete this IP?</div>
+                        <div class="item-description">
+                            <input type="hidden" class="row-index"/>
+                            <dl class="dl-horizontal">
+                                <dt>ID:</dt>
+                                <dd class="id"></dd>
+                                <dt>IP:</dt>
+                                <dd class="ip"></dd>
+                                <dt>Name:</dt>
+                                <dd class="name"></dd>
+                                <dt>Description:</dt>
+                                <dd class="description"></dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="delete-btn btn btn-primary"
+                                data-loading-text="Deleting">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<div id="treatment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
@@ -332,6 +455,26 @@
 										<option value="true">Yes</option>
 										<option value="false">No</option>
 									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-5 control-label">Auto Archive:</label>
+
+								<div class="col-sm-7">
+									<select name="archiveWeek" class="form-control inline-select">
+										<g:each var="i" in="${(0..<1001)}">
+											<option value="${i}">${i}</option>
+										</g:each>
+									</select>
+									<span>weeks</span>
+									<select name="archiveDay" class="form-control inline-select">
+										<g:each var="i" in="${(0..<7)}">
+											<option value="${i}">${i}</option>
+										</g:each>
+									</select>
+									<span>days</span>
+									<span>after surgery</span>
 								</div>
 							</div>
 

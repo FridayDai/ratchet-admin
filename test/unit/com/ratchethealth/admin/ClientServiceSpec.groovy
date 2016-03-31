@@ -1,6 +1,7 @@
 package com.ratchethealth.admin
 
 import com.mashape.unirest.request.GetRequest
+import com.mashape.unirest.request.HttpRequestWithBody
 import com.mashape.unirest.request.body.MultipartBody
 import com.ratchethealth.admin.exceptions.ServerException
 import grails.test.mixin.TestFor
@@ -210,4 +211,138 @@ class ClientServiceSpec extends Specification {
 		ServerException e = thrown()
 		e.getMessage() == "body"
 	}
+
+	def "test addIP with successful result"() {
+		given:
+		def jBuilder = new JsonBuilder()
+		jBuilder {
+			id 2
+		}
+
+		MultipartBody.metaClass.asString = { ->
+			return [
+				status: 201,
+				body: jBuilder.toString()
+			]
+		}
+
+		ClientIP ip = new ClientIP()
+		ip.name = 'name'
+		ip.description = 'description'
+		ip.ip = '0.0.0.0/0'
+
+		when:
+		def result = service.addIP('token', 1, ip)
+
+		then:
+		result.id == 2
+		result.name == 'name'
+		result.ip == '0.0.0.0/0'
+		result.description == 'description'
+	}
+
+	def "test addIP without successful result"() {
+		given:
+		MultipartBody.metaClass.asString = { ->
+			return [
+				status: 400,
+				body: "body"
+			]
+		}
+
+		ClientIP ip = new ClientIP()
+
+		when:
+		service.addIP('token', 1, ip)
+
+		then:
+		ServerException e = thrown()
+		e.getMessage() == "body"
+	}
+
+    def "test updateIP with successful result"() {
+        given:
+        def jBuilder = new JsonBuilder()
+        jBuilder {
+            id 1
+        }
+
+        MultipartBody.metaClass.asString = { ->
+            return [
+                status: 200,
+                body: jBuilder.toString()
+            ]
+        }
+
+        ClientIP ip = new ClientIP()
+        ip.name = 'name'
+        ip.description = 'description'
+        ip.ip = '0.0.0.0/0'
+
+
+        when:
+        def result = service.updateIP('token', 1, ip)
+
+        then:
+        result == true
+    }
+
+    def "test updateIP without successful result"() {
+        given:
+        MultipartBody.metaClass.asString = { ->
+            return [
+                status: 400,
+                body: "body"
+            ]
+        }
+
+        ClientIP ip = new ClientIP()
+
+        when:
+        service.updateIP('token', 1, ip)
+
+        then:
+        ServerException e = thrown()
+        e.getMessage() == "body"
+    }
+
+    def "test deleteIP with successful result"() {
+        given:
+        HttpRequestWithBody.metaClass.asString = { ->
+            return [
+                status: 204,
+                body: ''
+            ]
+        }
+
+        ClientIP ip = new ClientIP()
+        ip.id = 1
+
+
+        when:
+        def result = service.deleteIP('token', 1, ip)
+
+        then:
+        result == true
+    }
+
+    def "test deleteIP without successful result"() {
+        given:
+        HttpRequestWithBody.metaClass.asString = { ->
+            return [
+                status: 400,
+                body: "body"
+            ]
+        }
+
+        ClientIP ip = new ClientIP()
+        ip.id = 1
+
+        when:
+        service.deleteIP('token', 1, ip)
+
+        then:
+        ServerException e = thrown()
+        e.getMessage() == "body"
+    }
 }
