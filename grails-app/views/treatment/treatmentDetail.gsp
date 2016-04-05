@@ -259,14 +259,12 @@
 
 								<div class="col-sm-7 default-expire-time">
 									<select name="defaultExpireTimeDay" class="form-control inline-select">
-										<option value=""></option>
 										<g:each var="i" in="${(0..<100)}">
 											<option value="${i}">${i}</option>
 										</g:each>
 									</select>
 									<span>days</span>
 									<select name="defaultExpireTimeHour" class="form-control inline-select">
-										<option value=""></option>
 										<g:each var="i" in="${(0..<24)}">
 											<option value="${i}">${i}</option>
 										</g:each>
