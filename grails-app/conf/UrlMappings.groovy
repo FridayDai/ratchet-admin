@@ -16,6 +16,8 @@ class UrlMappings {
         // Account
         "/login"(controller: "authentication", action: "login")
         "/login/two-factor"(controller: "authentication", action: "twoFactorAuthentication")
+        "/login/beforeTFA"(controller: "authentication", action: "beforeTFA")
+        "/login/two-factor-enabled"(controller: "authentication", action: "beforeTFAVerify")
 
         "/logout"(controller: "authentication", action: 'logout')
         "/forgot-password"(controller: "authentication") {

@@ -1,6 +1,7 @@
 package com.ratchethealth.admin
 
 class AuthenticationController extends BaseController {
+    def MFAValidationRequired = false;
 
     static allowedMethods = [
             login: ['POST', 'GET'],
@@ -13,6 +14,9 @@ class AuthenticationController extends BaseController {
 
     def beforeInterceptor = [action: this.&auth, except: [
             'login',
+            'beforeTFAVerify',
+            'beforeTFA',
+            'twoFactorAuthenticationVerify',
             'goToForgetPasswordPage',
             'forgotPassword',
             'resetPassword',
@@ -31,31 +35,110 @@ class AuthenticationController extends BaseController {
 
             def resp = authenticationService.authenticate(token, email, password)
 
-            if (resp.token) {
-                request.session.token = resp.token
+            if(resp.sessionId) {
+                request.session.sessionId = resp.sessionId
             }
 
-            if (resp.groups) {
-                request.session.groups = resp.groups
-            }
-
-            if (resp?.authenticated) {
+            if(resp.MFAValidationRequired){
+                redirect(uri: '/login/two-factor-enabled')
+            }else{
+                //redirect(uri: '/')
                 redirect(uri: '/login/two-factor')
             }
+
         }
+    }
+
+    def beforeTFA(){
+        render view:'/security/beforeTFA'
     }
 
     def twoFactorAuthentication(){
-        if(request.method == "POST") {
-            def MFAresp = authenticationService.MFAuthenticationEnable(request.session.token, resp.id)
+        String token = request.session.token
+        String id = request.session.accountId
 
-            def validate = authenticationService.MFAValidate(request.session.token, resp.id)
+        def enable = authenticationService.MFAuthenticationEnable(token, id)
 
-            authenticationService.MFAuthenticationDisable(request.session.token, resp.id)
+        request.session.key = enable?.key;
+        request.session.keyUrl = enable?.QRBarcodeURL;
+
+        render view: '/security/beforeTFA'
+
+    }
+
+    def beforeTFAVerify(){
+        render view:'/security/twoFactor'
+    }
+
+    def twoFactorAuthenticationVerify(){
+        String token = request.session.token
+        String sessionId = request.session.sessionId
+
+        def otpCode = params.otp // input 6
+
+        def resp = authenticationService.TFAuthenticate(token, sessionId, otpCode)
+
+        if(resp.token){
+            request.session.token = resp.token
+        }
+
+        if(resp.groups){
+            request.session.groups = resp.groups
+        }
+
+        if(resp.id){
+            request.session.accountId = resp.id
+        }
+
+        if(resp.authenticated == true){
+            redirect(uri: '/')
         }
     }
 
+    def goToApp(){
+        String token = request.session.token
+        String keyUrl = request.session.keyUrl
 
+        def QRcode = authenticationService.getQRcode(token, keyUrl)
+
+        if( !QRcode ){
+            render view: '/security/app', model:[png: "Already Enable!!"]
+        }else{
+            render view: '/security/app', model:[png: QRcode]
+        }
+    }
+
+    def goToKey(){
+        String keycode = request.session.key
+        if( !keycode ){
+            render view: '/security/key', model: [key: "Already Enable!!"]
+        }else {
+            render view: '/security/key', model: [key: keycode]
+        }
+
+    }
+
+    def enableTFA(){
+        String token = request.session.token
+        String id = request.session.accountId
+        def otpCode = params.key
+
+        def validate = authenticationService.MFAValidate(token, id, otpCode)
+
+        request.session.MFAValidationRequired = true;
+
+        if(validate.MFAValidationRequired){
+            redirect(uri: '/')
+        }
+    }
+
+    def disableTFA(){
+        String token = request.session.token
+        String id = request.session.accountId
+
+        authenticationService.MFAuthenticationDisable(token, id)
+
+    }
 
     def logout() {
         def session = request.session

@@ -1,0 +1,47 @@
+@import '../partials/common';
+
+.content{
+
+    padding: 11% 10% 50px;
+
+    p{
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .show-app{
+        margin: 0 auto;
+
+        .app-barcode{
+            margin-top: 20px;
+        }
+
+        a{
+            font-size: 24px;
+            border: 1px solid #ccc;
+        }
+
+    }
+
+    #authentication{
+        margin: 50px auto;
+
+        input{
+            display: block;
+            width: 400px;
+            height: 45px;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            color: white;
+            background-color: #5ca941;
+            width: 400px;
+            height: 45px;
+            font-size: 20px;
+        }
+    }
+
+}

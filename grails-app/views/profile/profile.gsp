@@ -17,6 +17,9 @@
             <button type="button" id="update-password" class="rc-line-space btn btn-primary"
                     data-toggle="modal" data-target="#change-password-modal">Change Password</button>
 
+            <g:link controller="authentication" action="twoFactorAuthentication" class="rc-line-space btn btn-primary">Enable 2-Factor Authentication</g:link>
+            <g:link controller="authentication" action="disableTFA" class="rc-line-space btn btn-primary">Disable 2-Factor Authentication</g:link>
+
             <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
         </div>
 
