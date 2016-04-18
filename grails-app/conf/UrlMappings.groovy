@@ -45,6 +45,14 @@ class UrlMappings {
             action = [POST: "editIP", DELETE: "deleteIP"]
         }
 
+        // Basic Tool
+        "/basic_tool"(controller: "basicTool") {
+            action = [GET: "index", POST: "addBasicToolTemplate"]
+        }
+        "/basic_tool/$basicToolId"(controller: "basicTool") {
+            action = [POST: "editBasicToolTemplate"]
+        }
+
         // Announcement
         "/getAnnouncements"(controller: "announcements", action: "getAnnouncements")
         "/announcements"(controller: "announcements") {

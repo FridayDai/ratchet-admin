@@ -1,6 +1,7 @@
 var flight = require('flight');
 var withDialog = require('../common/withDialog');
 var withForm = require('../common/withForm');
+var Utility = require('../../utils/utility');
 
 var MODELS = {
     CREATE: 'CREATE',
@@ -8,6 +9,7 @@ var MODELS = {
 };
 
 var TOOLTYPE = {
+    1: 'BASIC',
     2: 'OUTCOME',
     4: 'VOICE'
 };
@@ -26,6 +28,7 @@ function definedToolFormDialog() {
         toolTypeFieldSelector: '.defined-tool-type',
         toolTypeOutcomeSelector: '#outcome-tool-type',
         toolTypeVoiceSelector: '#voice-tool-type',
+        toolTypeBasicSelector: '#basic-tool-type',
         defaultDueTimeDayFieldSelector: '[name="defaultDueTimeDay"]',
         defaultDueTimeHourFieldSelector: '[name="defaultDueTimeHour"]',
         defaultExpireTimeDayFieldSelector: '[name="defaultExpireTimeDay"]',
@@ -106,21 +109,23 @@ function definedToolFormDialog() {
 
     this.onCreateModal = function (e, data) {
         this.model = MODELS.CREATE;
-        this.changeTollSelect(data.toolType);
+        this.changeToolSelect(data.toolType);
 
         this.setCreateModal(data);
 
         this.showDialog();
     };
 
-    this.changeTollSelect = function (type) {
-        if(type === "VOICE") {
-            this.select('toolTypeOutcomeSelector').hide().attr('name', 'idle');
-            this.select('toolTypeVoiceSelector').show().attr('name', 'id');
-        } else{
-            this.select('toolTypeOutcomeSelector').show().attr('name', 'id');
-            this.select('toolTypeVoiceSelector').hide().attr('name', 'idle');
-        }
+    this.changeToolSelect = function (type) {
+        _.each(['BASIC', 'OUTCOME', 'VOICE'], function (item) {
+            var $item = this.select('toolType{0}Selector'.format(Utility.capitalize(item)));
+
+            if (type === item) {
+                $item.show().prop('disabled', false);
+            } else {
+                $item.hide().prop('disabled', true);
+            }
+        }, this);
     };
 
     this.setCreateModal = function (data) {
@@ -131,14 +136,13 @@ function definedToolFormDialog() {
         });
 
         this.select('dialogTitleSelector').text('Add Tool');
-        this.select('toolTypeFieldSelector').removeAttr('disabled');
         this.select('submitBtnSelector').text('Create');
         this.formEl.attr('action', this.attr.createUrl.format(data.clientId, data.treatmentId));
     };
 
     this.onEditModal = function (e, data) {
         this.model = MODELS.EDIT;
-        this.changeTollSelect(TOOLTYPE[data.tool.type]);
+        this.changeToolSelect(TOOLTYPE[data.tool.type]);
 
         this.setEditModal(data);
 

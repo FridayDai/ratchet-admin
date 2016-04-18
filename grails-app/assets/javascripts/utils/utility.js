@@ -30,5 +30,9 @@ module.exports = {
             weeks: weeks,
             totalDays: differenceDays
         };
+    },
+
+    capitalize: function (str) {
+        return str && (str.charAt(0).toUpperCase() + str.slice(1).toLowerCase());
     }
 };
