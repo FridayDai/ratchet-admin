@@ -1,7 +1,10 @@
 @import '../partials/common';
+@import '../partials/form';
+@import '../partials/datepicker';
+@import '../partials/password_tooltip';
 
 .content {
-    padding-top: 150px;
+    padding-top: 100px;
 
     .app-or-key {
         width: 500px;
@@ -20,10 +23,18 @@
     }
     #app{
         margin-top: 30px;
+
+        button:hover {
+            border: 2px solid deepskyblue;
+        }
     }
 
     #key{
         margin-top:30px;
+
+        button:hover {
+            border: 2px solid deepskyblue;
+        }
     }
 
     button {

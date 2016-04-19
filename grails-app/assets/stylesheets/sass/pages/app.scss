@@ -1,8 +1,11 @@
 @import '../partials/common';
+@import '../partials/form';
+@import '../partials/datepicker';
+@import '../partials/password_tooltip';
 
 .content{
 
-    padding: 11% 10% 50px;
+    padding: 8% 10% 50px;
 
     p{
         font-size: 24px;
@@ -42,6 +45,11 @@
             height: 45px;
             font-size: 20px;
         }
+    }
+
+    #AlreadyEnabled {
+        font-size: 24px;
+        color: red;
     }
 
 }

@@ -2,8 +2,10 @@ package com.ratchethealth.admin
 
 import com.ratchethealth.admin.exceptions.AccountValidationException
 import grails.converters.JSON
+import sun.misc.BASE64Decoder
 
 import javax.imageio.ImageIO
+import javax.xml.bind.DatatypeConverter
 import java.awt.image.BufferedImage
 
 
@@ -42,6 +44,9 @@ class AuthenticationService extends RatchetAPIService {
                 def groupList = result?.groups ?  result.groups.split(',') : []
 
                 return [
+                        token                : result?.token,
+                        id                   : result?.id,
+                        groups               : groupList,
                         account              : result?.account,
                         sessionId            : result?.sessionId,
                         MFAValidationRequired: result?.MFAValidationRequired
@@ -102,6 +107,31 @@ class AuthenticationService extends RatchetAPIService {
         }
     }
 
+    def MFARecoveryCodes(String token, id) throws AccountValidationException{
+        if (!token) {
+            log.error("There is no token.")
+            return false
+        }
+        String MFARecoveryCodesUrl = grailsApplication.config.ratchetv2.server.url.MFA + "/${id}/mfa/codes"
+
+        withGet(token, MFARecoveryCodesUrl) { req ->
+            def resp = req.asString()
+
+            if(resp.status == 200){
+                def result = JSON.parse(resp.body)
+
+                return [
+                        totalCount: result?.totalCount,
+                        codes: result?.codes
+                ]
+            }else if ( resp.status == 400 || resp.status == 404){
+                log.info("Can't get Recovery Codes");
+            }
+
+        }
+
+    }
+
 
     def MFAuthenticationDisable(String token, id) throws AccountValidationException{
         if (!token) {
@@ -109,13 +139,14 @@ class AuthenticationService extends RatchetAPIService {
             return false
         }
 
-        String MFAdisableUrl = "http://api.develop.ratchethealth.com/api/v1/admins/${id}/mfa/disable"
+        String MFAdisableUrl = grailsApplication.config.ratchetv2.server.url.MFA +"/${id}/mfa/disable"
 
         withDelete(token, MFAdisableUrl) { req ->
             def resp = req.asString()
 
             if(resp.status == 204 ){
                 log.info("MFA is disabled");
+                return 204;
             }else if ( resp.status == 400 || resp.status == 404){
                 log.info("MFA Disable error");
             }
@@ -124,30 +155,17 @@ class AuthenticationService extends RatchetAPIService {
 
     def getQRcode(String token, url) throws AccountValidationException{
 
-        String MFAEnableUrl = url
+        String MFAEnableUrl = grailsApplication.config.ratchetv2.server.url.MFAText + url
 
         withGet(token, MFAEnableUrl) { req ->
             def resp = req.asString()
-
+            def data = resp.body
             if( resp.status == 200 ){
-//                def sourceDate = resp.body;
-//                def parts = sourceDate.tokenize(",");
-//                def imageString = parts[0];
-//
-//                BufferedImage image = null;
-//                byte[] imageByte;
-//                BASE64Decoder decoder = new BASE64Decoder();
-//                imageByte = decoder.decodeBuffer(imageString);
-//                ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-//                image = ImageIO.read(bis);
-//                bis.close();
-                String data = resp.body;
 
-                String base64Image = data.split(",")[1];
-                byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
-                BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageBytes))
+                int start = data.indexOf(",");
+                def img = data.substring(start + 1);
 
-                return  image;
+                return  [data: img, status: 200];
 
             }else if( resp.status == 404 || resp.status == 400 ){
                 log.info("get QRcode error");
@@ -163,8 +181,7 @@ class AuthenticationService extends RatchetAPIService {
 
         log.info("Call back-end service to login with Multi-Factor authentication")
 
-        //String MFAEnableUrl = grailsApplication.config.ratchetv2.server.url.MFAEnable
-        String MFAEnableUrl = "http://api.develop.ratchethealth.com/api/v1/admins/${id}/mfa/enable"
+        String MFAEnableUrl = grailsApplication.config.ratchetv2.server.url.MFA + "/${id}/mfa/enable"
 
         withPost(token, MFAEnableUrl) { req ->
             def resp = req.asString()
@@ -183,7 +200,7 @@ class AuthenticationService extends RatchetAPIService {
             if( resp.status == 200 ){
                 log.info("Enable MFA for admin account")
                 return [
-                        QRBarcodeURL: "http://api.develop.ratchethealth.com/api/v1/qrcode/text?text="+result?.QRBarcodeURL,
+                        QRBarcodeURL: result?.QRBarcodeURL,
                         key: result?.key
                 ];
             }else if( resp.status == 404 || resp.status == 400 ){
@@ -193,40 +210,9 @@ class AuthenticationService extends RatchetAPIService {
 
     }
 
-    def getRecoveryCodes(String token, id) throws AccountValidationException{
-        String getRecoveryUrl = "http://api.develop.ratchethealth.com/api/v1/admins/${id}/mfa/codes"
-
-        withGet(token, getRecoveryUrl) { req ->
-            def resp = req.asString()
-
-            def result = null;
-
-            if(resp?.body){
-                try{
-                    result = JSON.parse(resp.body)
-                }catch(Exception e){
-                    log.error("JSON parse failed" + e)
-                    throw new AccountValidationException('');
-                }
-            }
-
-            if(resp.status == 200){
-                log.info("Acquire recovery codes")
-
-                return [
-                        totalCount: result?.totalCount,
-                        codes: result?.codes
-                ]
-            }else if(resp.status == 404 || resp.status == 400){
-                log.info("can't get recovery codes")
-            }
-        }
-    }
-
-
     def MFAValidate(String token, id, otpCode) throws AccountValidationException{
 
-        String validateUrl = "http://api.develop.ratchethealth.com/api/v1/admins/${id}/mfa/validate"
+        String validateUrl = grailsApplication.config.ratchetv2.server.url.MFA+ "/${id}/mfa/validate"
 
         withPost(token, validateUrl) { req ->
             def resp = req

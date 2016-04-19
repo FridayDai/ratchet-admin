@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
-<g:set var="scriptPath" value="dist/beforeTFA.bundle.js"/>
-<g:set var="cssPath" value="beforeTFA"/>
+<g:set var="scriptPath" value="dist/profile.bundle.js"/>
+<g:set var="cssPath" value="info"/>
 <g:applyLayout name="main">
     <html>
     <head>
-        <title>Before Two-Factor Authentication</title>
+        <title>Welcome to ratchet</title>
     </head>
     <body>
     <div class="content">
-        <div class="container">
-            <div class="app-or-key">
-                <div id="app">
-                    <div class="context-app">
-                        Use an application on your phone to get two-factor authentication codes when prompted.
+        <g:if test="${request.session.recoveryCodes && request.session.MFAValidationRequired}">
+            <div class="container">
+                <h1> Enable Successful! This is your <strong>Recovery Codes</strong>, Please store it</h1>
+                <p> Recovery codes can be used to access your account in the event you lose access to your device and
+                cannot receive two-factor authentication codes.</p>
+
+                <div class="recoveryCodes">
+                    <div class="recoveryCodesArea">
+                        <g:each in="${request.session.CODE1}" var="code">
+                            <div class="codes">${code}</div>
+                        </g:each>
                     </div>
-                    <g:form name="app" url="[controller:'authentication', action:'goToApp']">
-                        <button type="submit">Set up using an APP</button>
-                    </g:form>
-                </div>
-                <div id="key">
-                    <div class="context-key">
-                        Use a key for two-factor authentication code when prompted.
+                    <div class="recoveryCodesArea">
+                        <g:each in="${request.session.CODE2}" var="code">
+                            <div class="codes">${code}</div>
+                        </g:each>
                     </div>
-                    <g:form name="key" url="[controller: 'authentication', action: 'goToKey']">
-                        <button type="submit">Set up using a key</button>
-                    </g:form>
                 </div>
             </div>
-        </div>
-
+        </g:if>
+        <g:else>
+            <p class="info">${info}</p>
+        </g:else>
     </div>
 
     %{-- Modal dialog --}%
@@ -136,7 +138,3 @@
     </body>
     </html>
 </g:applyLayout>
-
-
-
-
