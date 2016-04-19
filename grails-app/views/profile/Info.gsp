@@ -11,7 +11,7 @@
     <div class="content">
         <g:if test="${request.session.recoveryCodes && request.session.MFAValidationRequired}">
             <div class="container">
-                <h1> Enable Successful! This is your <strong>Recovery Codes</strong>, Please store it</h1>
+                <h1> Two-factor recovery codes</h1>
                 <p> Recovery codes can be used to access your account in the event you lose access to your device and
                 cannot receive two-factor authentication codes.</p>
 
