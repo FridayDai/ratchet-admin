@@ -176,13 +176,15 @@ class TreatmentService extends RatchetAPIService {
         }
     }
 
-    def getPredefinedTools(String token) {
+    def getPredefinedTools(String token, clientId) {
         log.info("Call backend service to get predefined tools, token: ${token}.")
 
         String allPredefinedToolsUrl = grailsApplication.config.ratchetv2.server.url.treatment.allToolsOfPredefined
 
         withGet(token, allPredefinedToolsUrl) { req ->
-            def resp = req.asString()
+            def resp = req
+                .queryString('clientId', clientId)
+                .asString()
 
             if (resp.status == 200) {
                 log.info("Get predefined tools success, token: ${token}")

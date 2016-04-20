@@ -44,7 +44,7 @@ class TreatmentsController extends BaseController {
 
         def treatment = treatmentService.getTreatment(token, clientId, treatmentId)
         def tools = treatmentService.getToolsInTreatment(token, treatmentId)
-        def predefinedTools = treatmentService.getPredefinedTools(token)
+        def predefinedTools = treatmentService.getPredefinedTools(token, clientId)
         def outcomeTools = [], voiceTools = [], basicTools = []
 
         for (tool in predefinedTools) {
