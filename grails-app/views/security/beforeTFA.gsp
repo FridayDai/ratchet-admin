@@ -16,7 +16,7 @@
                         Use an application on your phone to get two-factor authentication codes when prompted.
                     </div>
                     <g:form name="app" url="[controller:'authentication', action:'goToApp']">
-                        <button type="submit">Set up using an APP</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Set up using an APP</button>
                     </g:form>
                 </div>
                 <div id="key">
@@ -24,7 +24,7 @@
                         Use a key for two-factor authentication code when prompted.
                     </div>
                     <g:form name="key" url="[controller: 'authentication', action: 'goToKey']">
-                        <button type="submit">Set up using a key</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Set up using a key</button>
                     </g:form>
                 </div>
             </div>

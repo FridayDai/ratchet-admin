@@ -8,15 +8,15 @@
         <title>Welcome to ratchet</title>
     </head>
     <body>
-    <div class="content">
+    <div class="content jumbotron">
         <g:if test="${request.session.recoveryCodes && request.session.MFAValidationRequired}">
             <div class="container">
-                <h1> Two-factor recovery codes</h1>
-                <p> Recovery codes can be used to access your account in the event you lose access to your device and
+                <h1 class="h1"> Two-factor recovery codes</h1>
+                <p role="alert">Heads up! Recovery codes can be used to access your account in the event you lose access to your device and
                 cannot receive two-factor authentication codes.</p>
 
                 <div class="recoveryCodes">
-                    <div class="recoveryCodesArea">
+                    <div class="recoveryCodesArea ">
                         <g:each in="${request.session.CODE1}" var="code">
                             <div class="codes">${code}</div>
                         </g:each>

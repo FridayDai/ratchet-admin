@@ -4,6 +4,7 @@
   Date: 16/4/12
   Time: 下午6:40
 --%>
+<!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
 <g:set var="scriptPath" value="dist/twoFactorAuthentication.bundle.js"/>
 <g:set var="cssPath" value="login"/>
@@ -28,7 +29,7 @@
                             <div class="sms-error">Wrong authentication codes, Please try again.</div>
                         </g:if>
 
-                        <button class="btn" type="submit">Verify</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Verify</button>
                     </div>
                 </g:form>
 

@@ -24,17 +24,11 @@
     #app{
         margin-top: 30px;
 
-        button:hover {
-            border: 2px solid deepskyblue;
-        }
     }
 
     #key{
         margin-top:30px;
 
-        button:hover {
-            border: 2px solid deepskyblue;
-        }
     }
 
     button {
@@ -43,7 +37,7 @@
         height: 45px;
         font-size: 24px;
         color: white;
-        background-color: #5ca941;
+        line-height: 25px;
     }
 
     #disable{

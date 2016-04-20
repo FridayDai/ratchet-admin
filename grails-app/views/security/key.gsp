@@ -22,7 +22,7 @@
                     <div id="authentication">
                         <p>2. Enter the Key</p>
                         <input name="otp" type="text" placeholder="Input Your Key" name="authentication">
-                        <button type="submit">Enable two-factor authentication</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Enable two-factor authentication</button>
                     </div>
                 </g:form>
             </g:if>
