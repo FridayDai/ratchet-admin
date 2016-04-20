@@ -19,7 +19,8 @@ module.exports = {
         passwordForget: "./pages/passwordForget.js",
         passwordReset: "./pages/passwordReset.js",
         accountActivate:"./pages/accountActivate.js",
-        hl7Failures:"./pages/hl7/failures.js"
+        hl7Failures:"./pages/hl7/failures.js",
+        basicTool:"./pages/basicTool.js",
     },
     output: {
         path: absoluteContext,

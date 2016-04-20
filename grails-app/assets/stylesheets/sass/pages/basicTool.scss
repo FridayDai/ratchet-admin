@@ -1,0 +1,15 @@
+@import '../partials/common';
+@import '../partials/table';
+@import '../partials/form';
+@import '../partials/dialog';
+@import "../partials/jquery.dataTable";
+
+#isTesting {
+    margin-top: 11px;
+}
+
+#basic-tool-modal {
+    .modal-dialog {
+        width: 1000px;
+    }
+}

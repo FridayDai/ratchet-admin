@@ -270,6 +270,11 @@ ratchetv2 {
 			ratchetv2.server.client_platform = ancient
 			ratchetv2.server.client_type = admin
 
+			basicTool {
+				templates = "${ratchetv2.server.url.host}/api/v1/basicTools"
+				oneTemplate = "${ratchetv2.server.url.host}/api/v1/basicTools/%s"
+			}
+
 			// HL7
 			HL7 {
 				queueStatusURI = "/api/v2/hl7/metrics/queue"
