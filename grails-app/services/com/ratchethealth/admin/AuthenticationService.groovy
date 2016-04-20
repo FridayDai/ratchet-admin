@@ -49,7 +49,8 @@ class AuthenticationService extends RatchetAPIService {
                         groups               : groupList,
                         account              : result?.account,
                         sessionId            : result?.sessionId,
-                        MFAValidationRequired: result?.MFAValidationRequired
+                        MFAValidationRequired: result?.MFAValidationRequired,
+                        authenticated        : true
                 ]
             } else if (resp.status == 401 && result?.error?.errorID == 403) {
                 log.info("login Authenticate forbidden")
@@ -92,14 +93,13 @@ class AuthenticationService extends RatchetAPIService {
             }
 
             if (resp.status == 200) {
-                log.info("login Authenticate success, token: ${token}")
+                log.info("login TFAuthenticate success, token: ${token}")
                 def groupList = result?.groups ? result.groups.split(',') : []
 
                 return [
                         id                   : result?.id,
                         token                : result?.token,
-                        groups               : groupList,
-                        authenticated        : true
+                        groups               : groupList
                 ]
             } else if (resp.status == 417) {
                 log.info(" invalid ")

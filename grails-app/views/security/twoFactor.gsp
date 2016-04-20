@@ -25,7 +25,7 @@
                     <div class="auth-form-body">
                         <label for="otp">Authentication code</label>
                         <input type="text" id="otp" name="otp" class="form-control">
-                        <g:if test="${request.session.authenticated == false}">
+                        <g:if test="${request.session.authen == false}">
                             <div class="sms-error">Wrong authentication codes, Please try again.</div>
                         </g:if>
 

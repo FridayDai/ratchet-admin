@@ -87,16 +87,16 @@ class AuthenticationController extends BaseController {
     def twoFactorAuthenticationVerify(){
         String token = request.session.token
         String sessionId = request.session.sessionId
-        request.session.authenticated = true;
+        request.session.authen = true;
 
         def otpCode = params.otp
 
         def resp = authenticationService.TFAuthenticate(token, sessionId, otpCode)
 
-        if(!resp){
-            request.session.authenticated = false;
+        if(resp == null){
+            request.session.authen = false;
             render view: '/security/twoFactor'
-        }else if(resp.authenticated == true){
+        }else {
             if(resp.token){
                 request.session.token = resp.token
             }
