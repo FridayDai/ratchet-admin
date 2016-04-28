@@ -1,7 +1,6 @@
 package com.ratchethealth.admin
 
 class AuthenticationController extends BaseController {
-    def MFAValidationRequired = false;
 
     static allowedMethods = [
             login: ['POST', 'GET'],
@@ -63,9 +62,6 @@ class AuthenticationController extends BaseController {
         }
     }
 
-//    def beforeTFA(){
-//        render view:'/security/beforeTFA'
-//    }
 
     def twoFactorAuthentication(){
         String token = request.session.token
@@ -131,6 +127,8 @@ class AuthenticationController extends BaseController {
     def enableTFA(){
         String token = request.session.token
         String id = request.session.accountId
+        String keyUrl = request.session.keyUrl
+
         def otpCode = params.otp
 
         def validate = authenticationService.MFAValidate(token, id, otpCode)
@@ -139,14 +137,15 @@ class AuthenticationController extends BaseController {
             request.session.MFAValidationRequired = true;
             render view: '/profile/Info', model:[ info: "Enable Two Factor Authentication successful"]
         }else {
-            render view: '/profile/Info', model:[ info: "Wrong Code, Can't enable Two Factor Authentication."]
+            request.session.MFAValidationRequired = false;
+            render view: '/security/App', model:[ errorMsg: "Wrong Code, Can't enable Two Factor Authentication.", QRcode: keyUrl]
         }
     }
 
     def disableTFA(){
         String token = request.session.token
         String id = request.session.accountId
-
+        //String id = 287975
         def validate = authenticationService.MFAuthenticationDisable(token, id)
 
         if(validate == 204){
