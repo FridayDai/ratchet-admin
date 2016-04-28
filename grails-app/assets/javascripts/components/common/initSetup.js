@@ -15,8 +15,9 @@
         global: true,
         error: function (jqXHR) {
             if (jqXHR.status === 404) {
-            } else if (jqXHR.status === 403) {
-                alert('Permission denied! Please try to refresh page!');
+            } else if (jqXHR.status === 403 || jqXHR.status === 401) {
+                alert('Permission denied!');
+                window.location.href = '/login';
             } else if (jqXHR.status === 0) {
             }
             else {

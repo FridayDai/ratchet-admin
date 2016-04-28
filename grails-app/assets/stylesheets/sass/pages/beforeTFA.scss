@@ -1,0 +1,52 @@
+@import '../partials/common';
+@import '../partials/form';
+@import '../partials/datepicker';
+@import '../partials/password_tooltip';
+
+.content {
+    padding-top: 100px;
+
+    .app-or-key {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    #app {
+        width:100%;
+    }
+
+    .context-app, .context-key{
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+    #app{
+        margin-top: 30px;
+
+    }
+
+    #key{
+        margin-top:30px;
+
+    }
+
+    button {
+        margin-top: 20px;
+        width: 500px;
+        height: 45px;
+        font-size: 24px;
+        color: white;
+        line-height: 25px;
+    }
+
+    #disable{
+        background-color: red;
+        color: white;
+        display: block;
+        width: 200px;
+        height: 45px;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+}

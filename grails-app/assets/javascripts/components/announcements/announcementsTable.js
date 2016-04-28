@@ -24,13 +24,25 @@ function announcementsTable() {
         announceDeleteBtn: 'td span.remove-btn',
 
         columns: [
-            {title: 'ID', data: 'id', width: '5%'},
-            {title: 'Announcement', sClass: 'announce-content', data: 'content', width: '55%'},
+            {
+                title: 'ID',
+                data: 'id',
+                width: '5%',
+                orderable: false
+            },
+            {
+                title: 'Announcement',
+                sClass: 'announce-content',
+                data: 'content',
+                width: '55%',
+                orderable: false
+            },
             {
                 title: 'Status',
                 data: 'status',
                 width: '15%',
                 sClass: 'announce-status',
+                orderable: false,
                 render: function (data) {
                     return ANNOUNCEMENT_STATUS[data];
                 }
@@ -39,12 +51,14 @@ function announcementsTable() {
                 title: 'Background',
                 data: 'colorHex',
                 width: '15%',
+                orderable: false,
                 render: function (data) {
                     return ANNOUNCEMENT_COLOR[data];
                 }
             },
             {
                 title: '',
+                orderable: false,
                 data: function (data) {
 
                     if(+data.status === +ANNOUNCEMENT_STATUS_REVERSE.Inactive) {

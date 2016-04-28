@@ -8,6 +8,12 @@
                     <span>CLIENTS</span>
                 </g:link>
             </li>
+            <li class="nav-li <g:if test="${controllerName == 'basicTool'}">active</g:if>">
+                <g:link controller="basicTool" action="index">
+                    <div class="ui-icon fa fa-file-text-o fa-2x"></div>
+                    <span>BASIC TOOL</span>
+                </g:link>
+            </li>
         </g:if>
         <g:if test="${request.session.groups.contains(com.ratchethealth.admin.RatchetConstants.ROLE_ADMIN)}">
             <li class="nav-li <g:if test="${controllerName == 'accounts'}">active</g:if>">

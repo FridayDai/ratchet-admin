@@ -15,6 +15,10 @@ class UrlMappings {
 
         // Account
         "/login"(controller: "authentication", action: "login")
+        "/login/two-factor"(controller: "authentication", action: "twoFactorAuthentication")
+        "/login/beforeTFA"(controller: "authentication", action: "beforeTFA")
+        "/login/two-factor-enabled"(controller: "authentication", action: "beforeTFAVerify")
+
         "/logout"(controller: "authentication", action: 'logout')
         "/forgot-password"(controller: "authentication") {
             action = [GET: "goToForgetPasswordPage", POST: "forgotPassword"]
@@ -43,6 +47,14 @@ class UrlMappings {
         }
         "/clients/$clientId/ips/$ipId"(controller: "clients") {
             action = [POST: "editIP", DELETE: "deleteIP"]
+        }
+
+        // Basic Tool
+        "/basic_tool"(controller: "basicTool") {
+            action = [GET: "index", POST: "addBasicToolTemplate"]
+        }
+        "/basic_tool/$basicToolId"(controller: "basicTool") {
+            action = [POST: "editBasicToolTemplate"]
         }
 
         // Announcement

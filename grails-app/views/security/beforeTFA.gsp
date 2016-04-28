@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
-<g:set var="scriptPath" value="dist/profile.bundle.js"/>
-<g:set var="cssPath" value="profile"/>
+<g:set var="scriptPath" value="dist/beforeTFA.bundle.js"/>
+<g:set var="cssPath" value="beforeTFA"/>
 <g:applyLayout name="main">
     <html>
     <head>
-        <title>Welcome to ratchet</title>
+        <title>Before Two-Factor Authentication</title>
     </head>
     <body>
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Triggered Success</strong>
-    </div>
     <div class="content">
-        <div class="btn-group-vertical">
-            <button type="button" id="update-password" class="rc-line-space btn btn-primary"
-                    data-toggle="modal" data-target="#change-password-modal">Change Password</button>
-
-            <g:link controller="authentication" action="twoFactorAuthentication" class="rc-line-space btn btn-primary">Set up 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="disableTFA" class="rc-line-space btn btn-primary">Disable 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="getRecoveryCodes" class="rc-line-space btn btn-primary">Get 2-Factor Authentication Recovery Codes</g:link>
-            <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
+        <div class="container">
+            <div class="app-or-key">
+                <div id="app">
+                    <div class="context-app">
+                        Use an application on your phone to get two-factor authentication codes when prompted.
+                    </div>
+                    <g:form name="app" url="[controller:'authentication', action:'goToApp']">
+                        <button class="btn btn-lg btn-primary" type="submit">Set up using an APP</button>
+                    </g:form>
+                </div>
+                <div id="key">
+                    <div class="context-key">
+                        Use a key for two-factor authentication code when prompted.
+                    </div>
+                    <g:form name="key" url="[controller: 'authentication', action: 'goToKey']">
+                        <button class="btn btn-lg btn-primary" type="submit">Set up using a key</button>
+                    </g:form>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -129,3 +136,7 @@
     </body>
     </html>
 </g:applyLayout>
+
+
+
+

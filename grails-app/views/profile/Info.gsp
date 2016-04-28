@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
 <g:set var="scriptPath" value="dist/profile.bundle.js"/>
-<g:set var="cssPath" value="profile"/>
+<g:set var="cssPath" value="info"/>
 <g:applyLayout name="main">
     <html>
     <head>
         <title>Welcome to ratchet</title>
     </head>
     <body>
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Triggered Success</strong>
-    </div>
-    <div class="content">
-        <div class="btn-group-vertical">
-            <button type="button" id="update-password" class="rc-line-space btn btn-primary"
-                    data-toggle="modal" data-target="#change-password-modal">Change Password</button>
+    <div class="content jumbotron">
+        <g:if test="${request.session.recoveryCodes && request.session.MFAValidationRequired}">
+            <div class="container">
+                <h1 class="h1"> Two-factor recovery codes</h1>
+                <p role="alert">Heads up! Recovery codes can be used to access your account in the event you lose access to your device and
+                cannot receive two-factor authentication codes.</p>
 
-            <g:link controller="authentication" action="twoFactorAuthentication" class="rc-line-space btn btn-primary">Set up 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="disableTFA" class="rc-line-space btn btn-primary">Disable 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="getRecoveryCodes" class="rc-line-space btn btn-primary">Get 2-Factor Authentication Recovery Codes</g:link>
-            <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
-        </div>
-
+                <div class="recoveryCodes">
+                    <div class="recoveryCodesArea ">
+                        <g:each in="${request.session.CODE1}" var="code">
+                            <div class="codes">${code}</div>
+                        </g:each>
+                    </div>
+                    <div class="recoveryCodesArea">
+                        <g:each in="${request.session.CODE2}" var="code">
+                            <div class="codes">${code}</div>
+                        </g:each>
+                    </div>
+                </div>
+            </div>
+        </g:if>
+        <g:else>
+            <p class="info">${info}</p>
+        </g:else>
     </div>
 
     %{-- Modal dialog --}%

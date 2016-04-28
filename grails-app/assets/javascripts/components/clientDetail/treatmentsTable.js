@@ -16,27 +16,33 @@ function treatmentsTable() {
             {
                 title: 'ID',
                 data: 'id',
-                width: '5%'
+                width: '5%',
+                orderable: false
             }, {
                 title: 'Treatment Title',
                 data: 'title',
-                width: '10%'
+                width: '10%',
+                orderable: false
             }, {
                 title: 'Template Title',
                 data: 'tmpTitle',
-                width: '10%'
+                width: '10%',
+                orderable: false
             }, {
                 title: 'Active',
                 data: "activePatient",
-                width: '5%'
+                width: '5%',
+                orderable: false
             }, {
                 title: 'Description',
                 data: "description",
-                width: '37%'
+                width: '37%',
+                orderable: false
             }, {
                 title: 'Status',
                 data: "active",
                 width: '8%',
+                orderable: false,
                 render: function (data) {
                     return data === true || data === 'true' ? 'Active' : 'Closed';
                 }
@@ -45,6 +51,7 @@ function treatmentsTable() {
                 title: 'Last Updated',
                 data: 'lastUpdated',
                 width: '20%',
+                orderable: false,
                 render: function (data) {
                     return moment(parseInt(data, 10))
                         .tz("America/Vancouver")
@@ -53,6 +60,7 @@ function treatmentsTable() {
             }, {
                 title: '',
                 width: '5%',
+                orderable: false,
                 data: function (row, type, set, meta) {
                     if (meta) {
                         return '<span class="edit-btn glyphicon glyphicon-copy" ' +

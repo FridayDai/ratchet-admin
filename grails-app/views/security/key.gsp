@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
-<g:set var="scriptPath" value="dist/profile.bundle.js"/>
-<g:set var="cssPath" value="profile"/>
+<g:set var="scriptPath" value="dist/key.bundle.js"/>
+<g:set var="cssPath" value="key"/>
 <g:applyLayout name="main">
     <html>
     <head>
-        <title>Welcome to ratchet</title>
+        <title>Key</title>
     </head>
     <body>
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Triggered Success</strong>
-    </div>
     <div class="content">
-        <div class="btn-group-vertical">
-            <button type="button" id="update-password" class="rc-line-space btn btn-primary"
-                    data-toggle="modal" data-target="#change-password-modal">Change Password</button>
+        <div class="container">
+            <g:if test="${session.key}">
+                <div class="show-key">
+                    <p>1. Get your key</p>
+                    <div class="sms-key">
+                        <p>This is your Key to enable two-factor authentication</p>
+                        <div>${key}</div>
+                    </div>
+                </div>
+                <g:form name="loginForm" method="post" url="[controller:'authentication', action:'enableTFA']">
+                    <div id="authentication">
+                        <p>2. Enter the Key</p>
+                        <input name="otp" type="text" placeholder="Input Your Key" name="authentication">
+                        <button class="btn btn-lg btn-primary" type="submit">Enable two-factor authentication</button>
+                    </div>
+                </g:form>
+            </g:if>
+            <g:if test="${!session.key}">
+                <p id="AlreadyEnabled"> Already Enabled!</p>
+            </g:if>
 
-            <g:link controller="authentication" action="twoFactorAuthentication" class="rc-line-space btn btn-primary">Set up 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="disableTFA" class="rc-line-space btn btn-primary">Disable 2-Factor Authentication</g:link>
-            <g:link controller="authentication" action="getRecoveryCodes" class="rc-line-space btn btn-primary">Get 2-Factor Authentication Recovery Codes</g:link>
-            <g:link controller="authentication" action="logout" class="btn btn-danger">Log Out</g:link>
         </div>
 
     </div>
@@ -129,3 +138,6 @@
     </body>
     </html>
 </g:applyLayout>
+
+
+

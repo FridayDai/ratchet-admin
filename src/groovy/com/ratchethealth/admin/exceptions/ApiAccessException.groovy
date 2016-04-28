@@ -1,6 +1,6 @@
 package com.ratchethealth.admin.exceptions
 
-class ApiAccessException extends Exception {
+class ApiAccessException extends RuntimeException {
 	public ApiAccessException() {
 		super();
 	}

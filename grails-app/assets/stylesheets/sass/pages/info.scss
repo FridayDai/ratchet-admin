@@ -1,0 +1,45 @@
+@import '../partials/common';
+@import '../partials/form';
+@import '../partials/datepicker';
+@import '../partials/password_tooltip';
+
+.content{
+
+    .container{
+
+        margin: 0 auto;
+
+        p {
+            margin: 45px auto;
+            font-size: 24px;
+            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+        }
+
+        .recoveryCodes{
+
+            border: 1px solid #ccc;
+
+            .recoveryCodesArea{
+                text-align: center;
+                float: left;
+                margin: 0 74px;
+                width: 135px;
+            }
+            .codes {
+                color: red;
+                margin-top: 40px;
+                font-size: 25px;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    .info {
+        font-size: 25px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+    }
+
+}

@@ -179,8 +179,7 @@
 							Add Tool <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" class="basic" data-toggle="modal"
-								   data-target="#add-basic-tool-modal">Basic</a></li>
+							<li><a href="#" class="defined" data-type="BASIC">Basic</a></li>
 							<li><a href="#" id="add-outcome-tool-btn" class="defined" data-type="OUTCOME">Outcome</a></li>
                             <li><a href="#" id="add-voice-tool-btn" class="defined" data-type="VOICE">Voice</a></li>
 						</ul>
@@ -218,11 +217,17 @@
 										</g:each>
 									</select>
 
-                                    <select name="idle" id="voice-tool-type" class="form-control defined-tool-type" required>
+                                    <select name="id" id="voice-tool-type" class="form-control defined-tool-type" required>
                                         <g:each var="tool" in="${voiceTools}">
                                             <option value="${tool.id}">${tool.title}</option>
                                         </g:each>
                                     </select>
+
+									<select name="id" id="basic-tool-type" class="form-control defined-tool-type" required>
+										<g:each var="tool" in="${basicTools}">
+											<option value="${tool.id}">${tool.title}</option>
+										</g:each>
+									</select>
 								</div>
 							</div>
 
@@ -259,14 +264,12 @@
 
 								<div class="col-sm-7 default-expire-time">
 									<select name="defaultExpireTimeDay" class="form-control inline-select">
-										<option value=""></option>
 										<g:each var="i" in="${(0..<100)}">
 											<option value="${i}">${i}</option>
 										</g:each>
 									</select>
 									<span>days</span>
 									<select name="defaultExpireTimeHour" class="form-control inline-select">
-										<option value=""></option>
 										<g:each var="i" in="${(0..<24)}">
 											<option value="${i}">${i}</option>
 										</g:each>

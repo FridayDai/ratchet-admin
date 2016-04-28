@@ -1,0 +1,54 @@
+@import '../partials/common';
+@import '../partials/form';
+@import '../partials/datepicker';
+@import '../partials/password_tooltip';
+
+.content{
+    padding: 8% 10% 50px;
+
+    .container{
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .show-key{
+
+
+        .sms-key{
+            div{
+                color: red;
+                font-size: 20px;
+            }
+        }
+    }
+
+    p{
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #authentication{
+        margin-top: 50px;
+
+        input{
+            display: block;
+            letter-spacing: 5px;
+            width: 400px;
+            height: 45px;
+            text-align: center;
+        }
+        button{
+            color: white;
+            width: 400px;
+            height: 45px;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    }
+
+    #AlreadyEnabled {
+        font-size: 24px;
+        color: red;
+    }
+
+}

@@ -122,12 +122,12 @@ log4j.main = {
 	// Example of changing the log pattern for the default console appender:
 	//
 	//appenders {
-	//    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+	//    console name:'stdout', layout:pattern(conversionPattern: '%d %c{2} %m%n')
 	//}
 
     if (System.getProperty("ELK_TCP_ADDR")) {
         appenders {
-            console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n')
+            console name: 'stdout', layout: pattern(conversionPattern: '%d %level %c{2} %m%n')
             appender new biz.paluch.logging.gelf.log4j.GelfLogAppender(name: 'central',
                     host: System.getProperty("ELK_TCP_ADDR"), port: 12201, additionalFields: "app_type= admin")
         }
@@ -215,6 +215,8 @@ ratchetv2 {
 			login = "${ratchetv2.server.url.host}/api/v1/login"
 			logout = "${ratchetv2.server.url.host}/api/v1/logout"
 			validateSessionId = "${ratchetv2.server.url.host}/api/v1/check_token"
+			MFA = "${ratchetv2.server.url.host}/api/v1/admins"
+			MFAText = "${ratchetv2.server.url.host}/api/v1/qrcode/text?text="
 
             //forgotPassword
             password.reset = "${ratchetv2.server.url.host}/api/v1/password/reset"
@@ -267,6 +269,11 @@ ratchetv2 {
 
 			ratchetv2.server.client_platform = ancient
 			ratchetv2.server.client_type = admin
+
+			basicTool {
+				templates = "${ratchetv2.server.url.host}/api/v1/basicTools"
+				oneTemplate = "${ratchetv2.server.url.host}/api/v1/basicTools/%s"
+			}
 
 			// HL7
 			HL7 {

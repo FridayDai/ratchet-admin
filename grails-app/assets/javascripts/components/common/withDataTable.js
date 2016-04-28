@@ -223,6 +223,15 @@ function withDataTable() {
                 });
         }
 
+        if (_.isFunction(this.onRowClick)) {
+            $(rawRow)
+                .click(function () {
+                    var data = that.getRowData(rawRow);
+
+                    that.onRowClick(data);
+                });
+        }
+
         if (_.isFunction(this.rowCallback)) {
             this.rowCallback(rawRow, data);
         }

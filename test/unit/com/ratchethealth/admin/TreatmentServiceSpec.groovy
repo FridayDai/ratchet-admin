@@ -355,7 +355,7 @@ class TreatmentServiceSpec extends Specification {
 		}
 
 		when:
-		def result = service.getPredefinedTools('token')
+		def result = service.getPredefinedTools('token', 1)
 
 		then:
 		result.totalCount == 2
@@ -372,7 +372,7 @@ class TreatmentServiceSpec extends Specification {
 		}
 
 		when:
-		service.getPredefinedTools('token')
+		service.getPredefinedTools('token', 1)
 
 		then:
 		ServerException e = thrown()
