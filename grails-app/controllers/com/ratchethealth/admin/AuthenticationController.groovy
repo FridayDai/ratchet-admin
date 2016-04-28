@@ -127,6 +127,8 @@ class AuthenticationController extends BaseController {
     def enableTFA(){
         String token = request.session.token
         String id = request.session.accountId
+        String keyUrl = request.session.keyUrl
+
         def otpCode = params.otp
 
         def validate = authenticationService.MFAValidate(token, id, otpCode)
@@ -136,7 +138,7 @@ class AuthenticationController extends BaseController {
             render view: '/profile/Info', model:[ info: "Enable Two Factor Authentication successful"]
         }else {
             request.session.MFAValidationRequired = false;
-            render view: '/security/App'
+            render view: '/security/App', model:[ errorMsg: "Wrong Code, Can't enable Two Factor Authentication.", QRcode: keyUrl]
         }
     }
 

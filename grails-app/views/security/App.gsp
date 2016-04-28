@@ -22,7 +22,7 @@
                             <p>2. Enter the code from the application</p>
                             <input type="text" placeholder="Input QRcode from your App" name="otp">
                             <g:if test="${request.session.MFAValidationRequired == false}">
-                                <div class="text-danger">Wrong Code, Can't enable Two Factor Authentication.</div>
+                                <div class="text-danger">${errorMsg}</div>
                             </g:if>
                             <button class="btn btn-lg btn-primary" type="submit">Enable two-factor Authentication</button>
                         </div>
