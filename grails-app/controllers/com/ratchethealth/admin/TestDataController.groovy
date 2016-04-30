@@ -10,6 +10,14 @@ class TestDataController extends BaseController {
 
     static final IS_DEBUG = Boolean.valueOf(Holders.config.ratchetv2.server.debug)
 
+    def getTestData() {
+        String token = request.session.token
+        def testDataMax = RatchetConstants.DEFAULT_TEST_DATA_SIZE
+        def testData = testDataService.getTestData(token, testDataMax)
+
+        [testData?.anonyData, testData?.nonAnonyData]
+    }
+
     def index() {
         def (anonyData, nonAnonyData) = getTestData()
         render(view: '/testData/index', model: [anonyLinks: anonyData, nonAnonyLinks:nonAnonyData, isDebug: IS_DEBUG])
@@ -24,11 +32,5 @@ class TestDataController extends BaseController {
         }
     }
 
-    def getTestData() {
-        String token = request.session.token
-        def testDataMax = RatchetConstants.DEFAULT_TEST_DATA_SIZE
-        def testData = testDataService.getTestData(token, testDataMax)
 
-        [testData?.anonyData, testData?.nonAnonyData]
-    }
 }

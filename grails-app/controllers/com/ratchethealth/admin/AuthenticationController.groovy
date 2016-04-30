@@ -113,6 +113,8 @@ class AuthenticationController extends BaseController {
         String token = request.session.token
         String keyUrl = request.session.keyUrl
 
+        request.session.way = 1;
+
         //def QRcode = authenticationService.getQRcode(token, keyUrl)
 
         render view: '/security/App', model:[QRcode: keyUrl]
@@ -121,6 +123,8 @@ class AuthenticationController extends BaseController {
     def goToKey(){
         String keycode = request.session.key
 
+        request.session.way = 2;
+
         render view: '/security/key', model: [key: keycode]
     }
 
@@ -128,6 +132,7 @@ class AuthenticationController extends BaseController {
         String token = request.session.token
         String id = request.session.accountId
         String keyUrl = request.session.keyUrl
+        String keycode = request.session.key
 
         def otpCode = params.otp
 
@@ -138,7 +143,13 @@ class AuthenticationController extends BaseController {
             render view: '/profile/Info', model:[ info: "Enable Two Factor Authentication successful"]
         }else {
             request.session.MFAValidationRequired = false;
-            render view: '/security/App', model:[ errorMsg: "Wrong Code, Can't enable Two Factor Authentication.", QRcode: keyUrl]
+            if(request.session.way == 1){
+                render view: '/security/App', model:[ errorMsg: "Wrong Code, Can't enable Two Factor Authentication.", QRcode: keyUrl]
+
+            }else if(request.session.way == 2){
+                render view: '/security/key', model:[ errorMsg: "Wrong Code, Can't enable Two Factor Authentication.", key: keycode]
+
+            }
         }
     }
 
@@ -151,6 +162,8 @@ class AuthenticationController extends BaseController {
         if(validate == 204){
             request.session.MFAValidationRequired = false;
             request.session.recoveryCodes = false;
+            request.session.way = 0
+
 
             render view: '/profile/Info', model:[ info: "Disable Two-Factor Authentication successful"]
         }else{

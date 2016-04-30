@@ -171,7 +171,7 @@ grails.resources.resourceLocatorEnabled = false
 grails.plugin.cookiesession.enabled = true
 grails.plugin.cookiesession.cookiename = "ratchet-session"
 grails.plugin.cookiesession.secret = "3xgyUhjKb7%w=3NBXznmXyF$H".bytes.encodeBase64(false).toString()
-grails.plugin.cookiesession.sessiontimeout = 30
+grails.plugin.cookiesession.sessiontimeout = 1800
 
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
@@ -210,7 +210,7 @@ ratchetv2 {
 	server {
 		debug = System.getProperty("IS_DEBUG") ?: false
 		url {
-			host = System.getProperty("SERVER_URL") ?: "http://api.release.ratchethealth.com"
+			host = System.getProperty("SERVER_URL") ?: "http://api.develop.ratchethealth.com"
 
 			// Authentication
 			login = "${ratchetv2.server.url.host}/api/v1/login"
