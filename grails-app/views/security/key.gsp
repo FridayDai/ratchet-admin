@@ -22,6 +22,9 @@
                     <div id="authentication">
                         <p>2. Enter the Key</p>
                         <input name="otp" type="text" placeholder="Input Your Key" name="authentication">
+                        <g:if test="${request.session.MFAValidationRequired == false}">
+                            <div class="text-danger">${errorMsg}</div>
+                        </g:if>
                         <button class="btn btn-lg btn-primary" type="submit">Enable two-factor authentication</button>
                     </div>
                 </g:form>
