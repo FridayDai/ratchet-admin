@@ -5,7 +5,7 @@ import com.ratchethealth.admin.exceptions.ApiAccessException
 import com.ratchethealth.admin.exceptions.ServerException
 import grails.converters.JSON
 
-import javax.servlet.http.HttpServletResponse
+
 
 /**
  * Base Controller.

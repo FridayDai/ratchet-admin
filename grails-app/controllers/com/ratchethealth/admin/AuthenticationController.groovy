@@ -110,7 +110,7 @@ class AuthenticationController extends BaseController {
     }
 
     def goToApp(){
-        String token = request.session.token
+//        String token = request.session.token
         String keyUrl = request.session.keyUrl
 
         request.session.way = 1;
