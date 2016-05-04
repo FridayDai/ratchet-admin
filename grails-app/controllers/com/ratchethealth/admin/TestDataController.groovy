@@ -19,6 +19,7 @@ class TestDataController extends BaseController {
     }
 
     def index() {
+        String token = request.session.token
         def (anonyData, nonAnonyData) = getTestData()
         render(view: '/testData/index', model: [anonyLinks: anonyData, nonAnonyLinks:nonAnonyData, isDebug: IS_DEBUG])
     }
