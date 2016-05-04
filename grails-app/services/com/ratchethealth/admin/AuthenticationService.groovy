@@ -109,7 +109,7 @@ class AuthenticationService extends RatchetAPIService {
 
     def MFARecoveryCodes(String token, id) throws AccountValidationException{
         if (!token) {
-            log.error("There is no token.")
+            log.error("There is no token1.")
             return false
         }
         String MFARecoveryCodesUrl = grailsApplication.config.ratchetv2.server.url.MFA + "/${id}/mfa/codes"
@@ -135,7 +135,7 @@ class AuthenticationService extends RatchetAPIService {
 
     def MFAuthenticationDisable(String token, id) throws AccountValidationException{
         if (!token) {
-            log.error("There is no token.")
+            log.error("There is no token2.")
             return false
         }
 
@@ -247,8 +247,8 @@ class AuthenticationService extends RatchetAPIService {
 
 
     def logout(String token) {
-        if (!token) {
-            log.error("There is no token.")
+        if (token) {
+            log.error("There is no token3.")
             return false
         }
 
