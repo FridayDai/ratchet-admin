@@ -2,11 +2,6 @@ package com.ratchethealth.admin
 
 import com.ratchethealth.admin.exceptions.AccountValidationException
 import grails.converters.JSON
-import sun.misc.BASE64Decoder
-
-import javax.imageio.ImageIO
-import javax.xml.bind.DatatypeConverter
-import java.awt.image.BufferedImage
 
 
 class AuthenticationService extends RatchetAPIService {
@@ -109,7 +104,7 @@ class AuthenticationService extends RatchetAPIService {
 
     def MFARecoveryCodes(String token, id) throws AccountValidationException{
         if (!token) {
-            log.error("There is no token1.")
+            log.error("There is no token.")
             return false
         }
         String MFARecoveryCodesUrl = grailsApplication.config.ratchetv2.server.url.MFA + "/${id}/mfa/codes"
@@ -135,7 +130,7 @@ class AuthenticationService extends RatchetAPIService {
 
     def MFAuthenticationDisable(String token, id) throws AccountValidationException{
         if (!token) {
-            log.error("There is no token2.")
+            log.error("There is no token.")
             return false
         }
 
@@ -247,8 +242,8 @@ class AuthenticationService extends RatchetAPIService {
 
 
     def logout(String token) {
-        if (token) {
-            log.error("There is no token3.")
+        if (!token) {
+            log.error("There is no token.")
             return false
         }
 
