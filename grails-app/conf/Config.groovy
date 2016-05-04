@@ -210,7 +210,7 @@ ratchetv2 {
 	server {
 		debug = System.getProperty("IS_DEBUG") ?: false
 		url {
-			host = System.getProperty("SERVER_URL") ?: "http://api.develop.ratchethealth.com"
+			host = System.getProperty("SERVER_URL") ?: "http://api.release.ratchethealth.com"
 
 			// Authentication
 			login = "${ratchetv2.server.url.host}/api/v1/login"

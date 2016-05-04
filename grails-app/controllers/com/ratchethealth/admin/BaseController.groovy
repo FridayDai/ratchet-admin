@@ -18,7 +18,7 @@ class BaseController {
      * @return
      */
     protected auth() {
-        if (!session.token) {
+        if (!request.session.token) {
             def back
 
             if (request.isXhr()) {
