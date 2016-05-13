@@ -88,7 +88,9 @@ grails.hibernate.osiv.readonly = false
 environments {
 	development {
 		grails.logging.jul.usebridge = true
-		grails.app.context = '/admin'
+		if (Boolean.valueOf(PropertyUtils.getProperty("IS_ROOT_CONTEXT_EXTRA_PATH"))) {
+			grails.app.context = '/admin'
+		}		
 	}
 	production {
 		grails.logging.jul.usebridge = false
