@@ -54,7 +54,11 @@
                         <h4 class="modal-title">New Basic Tool</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="alert alert-danger rc-server-error" role="alert"></div>
+                        <div class="alert alert-danger alert-dismissible rc-server-error" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Sorry, Ratchet has experienced an internal error. Try again later.
+                            <span class="sr-only">Error:</span>
+                        </div>
                             <form action="/basic_tool" method="post" class="form form-horizontal"
                                 enctype="multipart/form-data" novalidate="novalidate">
                                 <div class="form-group">

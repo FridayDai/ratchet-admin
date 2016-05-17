@@ -201,6 +201,7 @@ hmac.access.token = System.getProperty("HMAC_ACCESS_TOKEN") ?: "rpZL8RQj2R65fzOP
 
 grails.mail.default.from = "no-reply@ratchet.com"
 ratchet.api.anonymous.token = System.getProperty("ANONYMOUS_API_TOKEN") ?: "FkvVedyg9hT\$dvkUGhNVqj"
+ratchet.api.stacktrace.email = 'ratchet-dev+'+System.getProperty("ENV")+'@xplusz.com'
 
 Pingdom {
     real_user_monitor = System.getProperty("RUM_ENABLE")?.toBoolean() ?: false
@@ -218,6 +219,9 @@ ratchetv2 {
 			validateSessionId = "${ratchetv2.server.url.host}/api/v1/check_token"
 			MFA = "${ratchetv2.server.url.host}/api/v1/admins"
 			MFAText = "${ratchetv2.server.url.host}/api/v1/qrcode/text?text="
+
+			//send Exception Email
+			email = "${ratchetv2.server.url.host}/api/v1/send/stacktrace/email"
 
             //forgotPassword
             password.reset = "${ratchetv2.server.url.host}/api/v1/password/reset"
