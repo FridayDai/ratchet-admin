@@ -88,11 +88,12 @@ class BaseController {
 
         log.error("Uncaught_Exception: ${e.message},stack trace: ${e.getStackTrace()}, token: ${session.token}.")
 
+        def email = session.email
         def sw = new StringWriter()
         def pw = new PrintWriter(sw)
         e.printStackTrace(pw)
 
-        exceptionEmailService.sendExceptionEmail(sw.toString())
+        exceptionEmailService.sendExceptionEmail(sw.toString(), email)
 
         if (request.isXhr()) {
             render status: 400, error: e.message

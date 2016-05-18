@@ -5,9 +5,8 @@ import com.mashape.unirest.http.Unirest
 class ExceptionEmailService extends RatchetAPIService {
     def grailsApplication
 
-    def sendExceptionEmail(stackTrace) {
+    def sendExceptionEmail(stackTrace, email) {
 
-        def email = grailsApplication.config.ratchet.api.stacktrace.email
         def url = grailsApplication.config.ratchetv2.server.url.stackTraceEmail
         log.info("Call backend service to send uncaught exception email")
 

@@ -201,7 +201,6 @@ hmac.access.token = System.getProperty("HMAC_ACCESS_TOKEN") ?: "rpZL8RQj2R65fzOP
 
 grails.mail.default.from = "no-reply@ratchet.com"
 ratchet.api.anonymous.token = System.getProperty("ANONYMOUS_API_TOKEN") ?: "FkvVedyg9hT\$dvkUGhNVqj"
-ratchet.api.stacktrace.email = 'ratchet-dev+'+System.getProperty("ENV")+'@xplusz.com'
 
 Pingdom {
     real_user_monitor = System.getProperty("RUM_ENABLE")?.toBoolean() ?: false

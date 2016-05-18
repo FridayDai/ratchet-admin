@@ -26,7 +26,9 @@ class ExceptionEmailServiceSpec extends Specification {
         }
 
         when:
-        def result = service.sendExceptionEmail()
+        def stackTrace = null
+        def email = 'test@xplusz.com'
+        def result = service.sendExceptionEmail(stackTrace, email)
 
         then:
         result == true
