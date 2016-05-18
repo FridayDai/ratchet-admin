@@ -221,7 +221,7 @@ ratchetv2 {
 			MFAText = "${ratchetv2.server.url.host}/api/v1/qrcode/text?text="
 
 			//send Exception Email
-			email = "${ratchetv2.server.url.host}/api/v1/send/stacktrace/email"
+			stackTraceEmail = "${ratchetv2.server.url.host}/api/v1/send/stacktrace/email"
 
             //forgotPassword
             password.reset = "${ratchetv2.server.url.host}/api/v1/password/reset"

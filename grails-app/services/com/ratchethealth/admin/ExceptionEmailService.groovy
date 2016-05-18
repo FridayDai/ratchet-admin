@@ -8,8 +8,8 @@ class ExceptionEmailService extends RatchetAPIService {
     def sendExceptionEmail(stackTrace) {
 
         def email = grailsApplication.config.ratchet.api.stacktrace.email
-        def url = grailsApplication.config.ratchetv2.server.url.email
-        log.info("call backend service to send Uncaught Exception Email")
+        def url = grailsApplication.config.ratchetv2.server.url.stackTraceEmail
+        log.info("Call backend service to send uncaught exception email")
 
         def token = Unirest.setDefaultHeader("X-Anonymous-Token", grailsApplication.config.ratchet.api.anonymous.token)
 
@@ -22,8 +22,10 @@ class ExceptionEmailService extends RatchetAPIService {
 
             if(resp.status == 200){
                 log.info("send Uncaught Exception Email success")
+                return true
             }else{
                 log.info("send Uncaught Exception Email fail")
+                return false
             }
         }
     }

@@ -91,9 +91,8 @@ class BaseController {
         def sw = new StringWriter()
         def pw = new PrintWriter(sw)
         e.printStackTrace(pw)
-        def stackTrace = sw.toString()
 
-        def sendEmail = exceptionEmailService.sendExceptionEmail(stackTrace)
+        exceptionEmailService.sendExceptionEmail(sw.toString())
 
         if (request.isXhr()) {
             render status: 400, error: e.message

@@ -1,6 +1,8 @@
 package com.ratchethealth.admin
 
+import com.mashape.unirest.request.GetRequest
 import grails.test.mixin.TestFor
+import org.codehaus.groovy.grails.web.util.WebUtils
 import spock.lang.Specification
 
 /**
@@ -8,13 +10,25 @@ import spock.lang.Specification
  */
 @TestFor(ExceptionEmailService)
 class ExceptionEmailServiceSpec extends Specification {
-
-    def setup() {
+    def setupSpec() {
+        WebUtils.metaClass.'static'.retrieveGrailsWebRequest = { ->
+            return null
+        }
     }
 
-    def cleanup() {
-    }
+    void "test Send Uncaught Exception Email"() {
+        given:
+        GetRequest.metaClass.asString = { ->
+            return [
+                    status: 400,
+                    body  : "body"
+            ]
+        }
 
-    void "test something"() {
+        when:
+        def result = service.sendExceptionEmail()
+
+        then:
+        result == true
     }
 }
