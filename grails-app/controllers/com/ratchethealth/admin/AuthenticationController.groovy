@@ -237,6 +237,10 @@ class AuthenticationController extends BaseController {
         def resp = authenticationService.validPasswordCode(token, code)
         if (resp) {
             render view: '/forgotPassword/resetPassword', model: [code: code]
+        }else {
+            log.info("password has been reset")
+
+            render view: '/forgotPassword/alreadyResetPassword'
         }
     }
 
