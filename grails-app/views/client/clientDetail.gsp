@@ -447,13 +447,15 @@
 							</div>
 
 							<div class="form-group">
-								<label for="surgeryTimeRequired"
-									   class="col-sm-5 control-label">* Surgery Time Required:</label>
+								<label for="AbsoluteEventType"
+									   class="col-sm-5 control-label">* AbsoluteEventType:</label>
 
 								<div class="col-sm-6">
-									<select name="surgeryTimeRequired" id="surgeryTimeRequired" class="form-control">
-										<option value="true">Yes</option>
-										<option value="false">No</option>
+									<select name="absoluteEventType" id="AbsoluteEventType" class="form-control">
+										<option selected="selected" value="SURGERY">SURGERY</option>
+										<option value="DISCHARGE">DISCHARGE</option>
+										<option value="APPOINTMENT">APPOINTMENT</option>
+										<option value="NONE">NONE</option>
 									</select>
 								</div>
 							</div>
