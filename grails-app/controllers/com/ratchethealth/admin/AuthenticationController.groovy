@@ -34,28 +34,26 @@ class AuthenticationController extends BaseController {
 
             def resp = authenticationService.authenticate(token, email, password)
 
-            if(resp.MFAValidationRequired){
+            if (resp.MFAValidationRequired) {
                 request.session.MFAValidationRequired = true;
 
-                if(resp.sessionId) {
+                if (resp.sessionId) {
                     request.session.sessionId = resp.sessionId
                 }
 
-                redirect(uri: '/login/two-factor-enabled')
-            }else{
+                redirect( uri: '/login/two-factor-enabled')
+            }else {
 
-                def previousResp = authenticationService.authenticate(token, email, password)
-
-                if(previousResp.token){
-                    request.session.token = previousResp.token
+                if(resp.token) {
+                    request.session.token = resp.token
                 }
 
-                if(previousResp.id){
-                    request.session.accountId = previousResp.id
+                if(resp.id) {
+                    request.session.accountId = resp.id
                 }
 
-                if(previousResp.groups){
-                    request.session.groups = previousResp.groups
+                if(resp.groups) {
+                    request.session.groups = resp.groups
                 }
                 redirect(uri: '/')
             }
