@@ -18,24 +18,24 @@ function addTreatmentFormDialog () {
         this.hideDialog();
     };
 
-    //this.onAbsoluteEventTypeChange = function () {
-    //    var required = this.select('absoluteEventTypeSelector').val();
-    //
-    //    if (required === 'DISCHARGE'){
-    //        this.select('absoluteEventTypeSelector').val('DISCHARGE');
-    //    }else if (required === 'APPOINTMENT'){
-    //        this.select('absoluteEventTypeSelector').val('APPOINTMENT');
-    //    }else if (required === 'NONE'){
-    //        this.select('absoluteEventTypeSelector').val('NONE');
-    //    }
-    //};
+    this.onAbsoluteEventTypeChange = function () {
+        var required = this.select('absoluteEventTypeSelector').val();
+
+        if (required === 'NONE'){
+            this.select('archiveWeekSelector').val(0).prop('disabled', true);
+            this.select('archiveDaySelector').val(0).prop('disabled', true);
+        } else {
+            this.select('archiveWeekSelector').prop('disabled', false);
+            this.select('archiveDaySelector').prop('disabled', false);
+        }
+    };
 
     this.after('initialize', function () {
         this.on('formSuccess', this.onFormSuccess);
 
-        //this.on('change', {
-        //    absoluteEventTypeSelector: this.onAbsoluteEventTypeChange
-        //});
+        this.on('change', {
+            absoluteEventTypeSelector: this.onAbsoluteEventTypeChange
+        });
     });
 }
 

@@ -91,19 +91,19 @@
 								</div>
 							</div>
 
-							%{--<div class="form-group">--}%
-								%{--<label for="edit-treatment-absoluteEventType"--}%
-									   %{--class="col-sm-5 control-label">* AbsoluteEventType:</label>--}%
+							<div class="form-group hidden">
+								<label class="col-sm-5 control-label">* AbsoluteEventType:</label>
 
-								%{--<div class="col-sm-6">--}%
+								<div class="col-sm-6">
+									<input class="form-control" type="text" name="absoluteEventType" id="edit-treatment-absoluteEventType">
 									%{--<select name="absoluteEventType" id="edit-treatment-absoluteEventType">--}%
 										%{--<option value="SURGERY">SURGERY</option>--}%
 										%{--<option value="DISCHARGE">DISCHARGE</option>--}%
 										%{--<option value="APPOINTMENT">APPOINTMENT</option>--}%
 										%{--<option value="NONE">NONE</option>--}%
 									%{--</select>--}%
-								%{--</div>--}%
-							%{--</div>--}%
+								</div>
+							</div>
 
                             <div class="form-group">
                                 <label class="col-sm-5 control-label">Auto Archive:</label>
