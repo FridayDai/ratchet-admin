@@ -3,6 +3,7 @@ module.exports = {
         1: 'Basic',
         2: 'Outcome',
         3: 'SDM',
-        4: 'Voice'
+        4: 'Voice',
+        14: 'Outcome'
     }
 };
