@@ -26,8 +26,8 @@
 				<div class="template-title rc-line-space"><strong>Template Title:</strong> <span
 						class="text">${treatment.tmpTitle}</span></div>
 
-				<div class="surgery-time-required rc-line-space"><strong>Surgery Time Required:</strong> <span
-						class="text">${treatment.surgeryTimeRequired ? 'Yes' : 'No'}</span></div>
+				<div class="surgery-time-required rc-line-space"><strong>AbsoluteEvent Type:</strong> <span
+						class="text">${treatment.absoluteEventType }</span></div>
 
 				<div class="status rc-line-space"><strong>Status:</strong> <span
 						class="text">${treatment.active ? 'Active' : 'Closed'}</span></div>
@@ -91,15 +91,17 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label for="edit-treatment-surgeryTimeRequired"
-									   class="col-sm-5 control-label">* Surgery Time Required:</label>
+							<div class="form-group hidden">
+								<label class="col-sm-5 control-label">* AbsoluteEventType:</label>
 
 								<div class="col-sm-6">
-									<select name="surgeryTimeRequired" id="edit-treatment-surgeryTimeRequired">
-										<option value="false">No</option>
-										<option value="true">Yes</option>
-									</select>
+									<input class="form-control" type="text" name="absoluteEventType" id="edit-treatment-absoluteEventType">
+									%{--<select name="absoluteEventType" id="edit-treatment-absoluteEventType">--}%
+										%{--<option value="SURGERY">SURGERY</option>--}%
+										%{--<option value="DISCHARGE">DISCHARGE</option>--}%
+										%{--<option value="APPOINTMENT">APPOINTMENT</option>--}%
+										%{--<option value="NONE">NONE</option>--}%
+									%{--</select>--}%
 								</div>
 							</div>
 

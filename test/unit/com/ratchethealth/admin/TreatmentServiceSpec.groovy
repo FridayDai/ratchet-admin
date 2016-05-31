@@ -72,7 +72,7 @@ class TreatmentServiceSpec extends Specification {
 		treatment.title = 'title'
 		treatment.tmpTitle = 'tmpTitle'
 		treatment.active = true
-		treatment.surgeryTimeRequired = false
+		treatment.absoluteEventType = 'SURGERY'
 		treatment.description = 'description'
 		treatment.status = 'status'
 		treatment.lastUpdated = 111111111
@@ -87,7 +87,7 @@ class TreatmentServiceSpec extends Specification {
 		result.title == 'title'
 		result.tmpTitle == 'tmpTitle'
 		result.active == true
-		result.surgeryTimeRequired == false
+		result.absoluteEventType == 'SURGERY'
 		result.description == 'description'
 		result.status == 'status'
 		result.lastUpdated == 111111111
@@ -109,7 +109,7 @@ class TreatmentServiceSpec extends Specification {
 		treatment.title = 'title'
 		treatment.tmpTitle = 'tmpTitle'
 		treatment.active = true
-		treatment.surgeryTimeRequired = false
+		treatment.absoluteEventType = 'SURGERY'
 		treatment.description = 'description'
 		treatment.status = 'status'
 		treatment.lastUpdated = 111111111
@@ -183,7 +183,7 @@ class TreatmentServiceSpec extends Specification {
 		treatment.title = 'title'
 		treatment.tmpTitle = 'tmpTitle'
 		treatment.active = true
-		treatment.surgeryTimeRequired = false
+		treatment.absoluteEventType = 'SURGERY'
 		treatment.description = 'description'
 		treatment.status = 'status'
 		treatment.lastUpdated = 111111111
@@ -212,7 +212,7 @@ class TreatmentServiceSpec extends Specification {
 		treatment.title = 'title'
 		treatment.tmpTitle = 'tmpTitle'
 		treatment.active = true
-		treatment.surgeryTimeRequired = false
+		treatment.absoluteEventType = 'SURGERY'
 		treatment.description = 'description'
 		treatment.status = 'status'
 		treatment.lastUpdated = 111111111

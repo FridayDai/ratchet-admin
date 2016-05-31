@@ -7,7 +7,7 @@ function addTreatmentFormDialog () {
 
     this.attributes({
         submitBtnSelector: '.create-btn',
-        surgeryTimeRequireSelector: '#surgeryTimeRequired',
+        absoluteEventTypeSelector: '#AbsoluteEventType',
         archiveWeekSelector: '[name=archiveWeek]',
         archiveDaySelector: '[name=archiveDay]'
     });
@@ -18,10 +18,10 @@ function addTreatmentFormDialog () {
         this.hideDialog();
     };
 
-    this.onSurgeryTimeRequiredChange = function () {
-          var required = this.select('surgeryTimeRequireSelector').val();
+    this.onAbsoluteEventTypeChange = function () {
+        var required = this.select('absoluteEventTypeSelector').val();
 
-        if (required === 'false') {
+        if (required === 'NONE'){
             this.select('archiveWeekSelector').val(0).prop('disabled', true);
             this.select('archiveDaySelector').val(0).prop('disabled', true);
         } else {
@@ -34,7 +34,7 @@ function addTreatmentFormDialog () {
         this.on('formSuccess', this.onFormSuccess);
 
         this.on('change', {
-            surgeryTimeRequireSelector: this.onSurgeryTimeRequiredChange
+            absoluteEventTypeSelector: this.onAbsoluteEventTypeChange
         });
     });
 }

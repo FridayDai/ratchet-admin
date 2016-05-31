@@ -46,7 +46,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("tmpTitle", treatment.tmpTitle)
                     .field("description", treatment.description)
                     .field("archiveTime", treatment.archiveTime)
-                    .field("surgeryTimeRequired", treatment.surgeryTimeRequired)
+                    .field("absoluteEventType", treatment.absoluteEventType)
                     .asString()
 
             if (resp.status == 201) {
@@ -94,7 +94,7 @@ class TreatmentService extends RatchetAPIService {
                     .field("tmpTitle", treatment.tmpTitle)
                     .field("description", treatment.description)
                     .field("archiveTime", treatment.archiveTime)
-                    .field("surgeryTimeRequired", treatment.surgeryTimeRequired)
+                    .field("absoluteEventType", treatment.absoluteEventType)
                     .asString()
 
             if (resp.status == 200) {

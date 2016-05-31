@@ -7,7 +7,7 @@ class Treatment {
 	String title
 	String tmpTitle
 	Boolean active
-	Boolean surgeryTimeRequired
+	String absoluteEventType
 	String description
 	String status
 	long lastUpdated
