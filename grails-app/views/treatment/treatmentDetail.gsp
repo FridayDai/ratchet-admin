@@ -184,6 +184,7 @@
 							<li><a href="#" class="defined" data-type="BASIC">Basic</a></li>
 							<li><a href="#" id="add-outcome-tool-btn" class="defined" data-type="OUTCOME">Outcome</a></li>
                             <li><a href="#" id="add-voice-tool-btn" class="defined" data-type="VOICE">Voice</a></li>
+                            <li><a href="#" id="add-rapt-tool-btn" class="defined" data-type="RAPT">RAPT</a></li>
 						</ul>
 					</div>
 				</div>
@@ -227,6 +228,12 @@
 
 									<select name="id" id="basic-tool-type" class="form-control defined-tool-type" required>
 										<g:each var="tool" in="${basicTools}">
+											<option value="${tool.id}">${tool.title}</option>
+										</g:each>
+									</select>
+
+									<select name="id" id="rapt-tool-type" class="form-control defined-tool-type" required>
+										<g:each var="tool" in="${raptTools}">
 											<option value="${tool.id}">${tool.title}</option>
 										</g:each>
 									</select>
