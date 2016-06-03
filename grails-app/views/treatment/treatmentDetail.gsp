@@ -12,7 +12,7 @@
 	<body>
 	<div class="content">
 		<div id="treatment-info-panel" class="panel row" data-client-id="${clientId}"
-			 data-treatment-id="${treatment.id}">
+			 data-treatment-id="${treatment.id}" data-absolute-event-type="${treatment.absoluteEventType}">
 			<div class="main-info col-sm-3">
 				<div class="id"><strong>ID:</strong> ${treatment.id}</div>
 
