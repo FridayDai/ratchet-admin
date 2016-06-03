@@ -75,7 +75,11 @@
 						<h4 class="modal-title">New Client</h4>
 					</div>
 					<div class="modal-body">
-						<div class="alert alert-danger rc-server-error" role="alert"></div>
+						<div class="alert alert-danger alert-dismissible rc-server-error" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							Sorry, Ratchet has experienced an internal error. Try again later.
+							<span class="sr-only">Error:</span>
+						</div>
 						<g:uploadForm controller="clients" method="post" name="tableForm"
 								class="form form-horizontal" novalidate="novalidate">
 							<div class="form-group">

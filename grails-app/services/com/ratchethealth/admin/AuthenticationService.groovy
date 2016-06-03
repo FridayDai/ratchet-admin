@@ -297,7 +297,9 @@ class AuthenticationService extends RatchetAPIService {
                 log.info("Valid password code success, token: ${token}.")
 
                 true
-            } else {
+            } else if(resp.status == 412) {
+                return false
+            }else {
                 handleError(resp)
             }
 

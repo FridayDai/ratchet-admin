@@ -87,7 +87,7 @@ grails.hibernate.osiv.readonly = false
 
 environments {
 	development {
-		grails.logging.jul.usebridge = true
+		grails.logging.jul.usebridge = true		
 	}
 	production {
 		grails.logging.jul.usebridge = false
@@ -218,6 +218,9 @@ ratchetv2 {
 			validateSessionId = "${ratchetv2.server.url.host}/api/v1/check_token"
 			MFA = "${ratchetv2.server.url.host}/api/v1/admins"
 			MFAText = "${ratchetv2.server.url.host}/api/v1/qrcode/text?text="
+
+			//send Exception Email
+			stackTraceEmail = "${ratchetv2.server.url.host}/api/v1/send/stacktrace/email"
 
             //forgotPassword
             password.reset = "${ratchetv2.server.url.host}/api/v1/password/reset"

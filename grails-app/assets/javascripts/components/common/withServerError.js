@@ -8,7 +8,10 @@ function withServerError() {
     this.serverErrorHandler = function (reqObj) {
         if (reqObj.status === 403) {
             alert('Permission denied! Please try to refresh page!');
-        } else {
+        } else if(reqObj.status === 400) {
+            alert("Sorry, Ratchet has experienced an internal error. Try again later.");
+            this.showServerError();
+        }else {
             this.showServerError(reqObj.responseJSON.error.errorMessage);
         }
     };
