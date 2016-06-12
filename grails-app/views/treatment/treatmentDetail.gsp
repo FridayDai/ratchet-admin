@@ -34,7 +34,7 @@
 
 				<div class="active-patient rc-line-space"><strong>Active Patient:</strong> ${treatment.activePatient}</div>
                 <div class="auto-archive rc-line-space" data-auto-archive="${treatment.archiveTime}"><strong>Auto Archive:</strong>
-                    <br><span>${Utility.getAutoArchiveStr(treatment.archiveTime)}</span>
+                    <br><span>${Utility.getAutoArchiveStr(treatment.archiveTime)}<span>&nbsp;${(treatment.absoluteEventType).toLowerCase()}</span></span>
                 </div>
 			</div>
 

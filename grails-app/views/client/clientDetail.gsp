@@ -475,8 +475,8 @@
 											<option value="${i}">${i}</option>
 										</g:each>
 									</select>
-									<span>days</span>
-									<span>after surgery</span>
+									<span>days after</span>
+									<span id="eventType">surgery</span>
 								</div>
 							</div>
 

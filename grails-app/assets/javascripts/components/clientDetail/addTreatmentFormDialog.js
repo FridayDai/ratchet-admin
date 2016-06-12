@@ -8,6 +8,7 @@ function addTreatmentFormDialog () {
     this.attributes({
         submitBtnSelector: '.create-btn',
         absoluteEventTypeSelector: '#AbsoluteEventType',
+        eventTypeSelector: '#eventType',
         archiveWeekSelector: '[name=archiveWeek]',
         archiveDaySelector: '[name=archiveDay]'
     });
@@ -20,6 +21,8 @@ function addTreatmentFormDialog () {
 
     this.onAbsoluteEventTypeChange = function () {
         var required = this.select('absoluteEventTypeSelector').val();
+
+        this.select('eventTypeSelector').text(required.toLowerCase());
 
         if (required === 'NONE'){
             this.select('archiveWeekSelector').val(0).prop('disabled', true);

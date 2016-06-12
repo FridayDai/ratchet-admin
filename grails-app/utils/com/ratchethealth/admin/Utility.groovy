@@ -11,6 +11,6 @@ class Utility {
         int weeks = Math.floor(differenceDays / 7);
         int days = Math.floor(differenceDays % 7);
 
-        return "${weeks}W ${days}D after surgery"
+        return "${weeks}W ${days}D after"
     }
 }
