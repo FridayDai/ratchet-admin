@@ -9,7 +9,7 @@ function treatmentInfoPanel() {
     this.attributes({
         treatmentTitleSelector: '.title strong',
         templateTitleSelector: '.template-title .text',
-        surgeryTimeRequireSelector: '.surgery-time-required .text',
+        absoluteEventTypeSelector: '.surgery-time-required .text',
         descriptionSelector: '.description',
         statusSelector: '.status .text',
         autoArchiveSelector: '.auto-archive',
@@ -23,7 +23,7 @@ function treatmentInfoPanel() {
         var data = {
             treatmentTitle: this.get('treatmentTitle'),
             templateTitle: this.get('templateTitle'),
-            surgeryTimeRequire: this.get('surgeryTimeRequire'),
+            absoluteEventType: this.get('absoluteEventType'),
             description: this.get('description')
         };
 
@@ -51,9 +51,9 @@ function treatmentInfoPanel() {
     this.onEditTreatmentSuccess = function (e, data) {
         this.select('treatmentTitleSelector').text(data.treatmentTitle);
         this.select('templateTitleSelector').text(data.templateTitle);
-        this.select('surgeryTimeRequireSelector').text(data.surgeryTimeRequire);
+        this.select('absoluteEventTypeSelector').text(data.absoluteEventType);
         this.select('descriptionSelector').text(data.description);
-        treatmentStorage.set('surgeryTimeRequire', data.surgeryTimeRequire);
+        treatmentStorage.set('absoluteEventType', data.absoluteEventType);
 
         this.select('autoArchiveSelector').data('autoArchive', data.autoArchive ? data.autoArchive.time : 0);
 
@@ -73,7 +73,7 @@ function treatmentInfoPanel() {
         treatmentStorage
             .set('clientId', this.$node.data('clientId'))
             .set('treatmentId', this.$node.data('treatmentId'))
-            .set('surgeryTimeRequire', this.get('surgeryTimeRequire'));
+            .set('absoluteEventType', this.$node.data('absoluteEventType'));
     };
 
     this.after('initialize', function () {

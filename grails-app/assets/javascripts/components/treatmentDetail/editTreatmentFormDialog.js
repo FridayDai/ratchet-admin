@@ -14,7 +14,7 @@ function editTreatmentFormDialog() {
 
         treatmentTitleFieldSelector: '#edit-treatment-title',
         templateTitleFieldSelector: '#edit-treatment-tmpTitle',
-        surgeryTimeRequiredFieldSelector: '#edit-treatment-surgeryTimeRequired',
+        absoluteEventTypeFieldSelector: '#edit-treatment-absoluteEventType',
         descriptionFieldSelector: '#edit-treatment-description',
         archiveWeekSelector: '[name="archiveWeek"]',
         archiveDaySelector: '[name="archiveDay"]'
@@ -23,7 +23,8 @@ function editTreatmentFormDialog() {
     this.onShow = function (e, data) {
         this.select('treatmentTitleFieldSelector').val(data.treatmentTitle);
         this.select('templateTitleFieldSelector').val(data.templateTitle);
-        this.select('surgeryTimeRequiredFieldSelector').val(data.surgeryTimeRequire === 'Yes' ? 'true' : 'false');
+        this.select('absoluteEventTypeFieldSelector').val(data.absoluteEventType);
+        //this.select('absoluteEventTypeFieldSelector').val(data.absoluteEventType);
         this.select('descriptionFieldSelector').val(data.description);
 
         if (data.autoArchive) {
@@ -31,7 +32,7 @@ function editTreatmentFormDialog() {
             this.select('archiveDaySelector').val(data.autoArchive.day);
         }
 
-        if (data.surgeryTimeRequire === 'Yes') {
+        if (data.absoluteEventType !== "NONE") {
             this.select('archiveWeekSelector').prop('disabled', false);
             this.select('archiveDaySelector').prop('disabled', false);
         } else {
@@ -56,7 +57,7 @@ function editTreatmentFormDialog() {
         var result = {
             treatmentTitle: data.title,
             templateTitle: data.tmpTitle,
-            surgeryTimeRequire: data.surgeryTimeRequired === 'true' ? 'Yes' : 'No',
+            absoluteEventType: data.absoluteEventType,
             description: data.description
         };
 
@@ -78,9 +79,9 @@ function editTreatmentFormDialog() {
 
         this.on('formSuccess', this.onFormSuccess);
 
-        this.on('change', {
-            surgeryTimeRequiredFieldSelector: this.onSurgeryTimeRequiredChange
-        });
+        //this.on('change', {
+        //    surgeryTimeRequiredFieldSelector: this.onSurgeryTimeRequiredChange
+        //});
     });
 }
 

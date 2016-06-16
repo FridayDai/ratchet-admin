@@ -1,6 +1,5 @@
 package com.ratchethealth.admin
 
-import com.mashape.unirest.request.GetRequest
 import com.mashape.unirest.request.body.MultipartBody
 import grails.test.mixin.TestFor
 import org.codehaus.groovy.grails.web.util.WebUtils

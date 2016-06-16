@@ -3,7 +3,8 @@ var treatmentStorage = require('./treatmentStorage');
 
 function toolPoolPanelTool() {
     this.attributes({
-        addTaskBtnSelector: '#add-item-btn'
+        addTaskBtnSelector: '#add-item-btn',
+        absoluteEventTypeSelector: '.surgery-time-required'
     });
 
     this.onAddTaskBtnClick = function () {
@@ -13,7 +14,7 @@ function toolPoolPanelTool() {
             this.trigger('showCreateTaskFormDialog', {
                 clientId: treatmentStorage.get('clientId'),
                 treatmentId: treatmentStorage.get('treatmentId'),
-                surgeryTimeRequire: treatmentStorage.get('surgeryTimeRequire')
+                absoluteEventType: treatmentStorage.get('absoluteEventType')
             });
         }
     };

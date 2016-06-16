@@ -121,7 +121,7 @@ function taskFormDialog() {
 
     this.checkSurgeryTimeRequire = function (data) {
         var $sendTime = this.select('sendTimeDirectionFieldSelector');
-        if (data.surgeryTimeRequire === 'Yes') {
+        if (data.absoluteEventType !== "NONE" ) {
             $sendTime.removeClass('disabled').removeAttr('disabled');
         } else {
             if (!$sendTime.hasClass('disabled')) {
