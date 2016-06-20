@@ -45,18 +45,19 @@ class TreatmentsController extends BaseController {
         def treatment = treatmentService.getTreatment(token, clientId, treatmentId)
         def tools = treatmentService.getToolsInTreatment(token, treatmentId)
         def predefinedTools = treatmentService.getPredefinedTools(token, clientId)
-        def outcomeTools = [], voiceTools = [], basicTools = [], raptTools = []
+        def outcomeTools = [], voiceTools = [], basicTools = [], raptTools = [], userTools = []
 
         for (tool in predefinedTools) {
-            //4: voice, 2: outcome, 1: basic
+            //4: voice, 2: outcome, 1: basic, 5: user
             if (tool.type == 1) {
                 basicTools.add(tool)
             } else if (tool.type == 4) {
                 voiceTools.add(tool)
             } else if (tool.type == 6) {
                 raptTools.add(tool)
-            }
-            else {
+            } else if (tool.type == 5) {
+                userTools.add(tool)
+            } else {
                 outcomeTools.add(tool)
             }
         }
@@ -66,7 +67,9 @@ class TreatmentsController extends BaseController {
                                                            raptTools   : raptTools,
                                                            voiceTools  : voiceTools,
                                                            outcomeTools: outcomeTools,
-                                                           basicTools  : basicTools]
+                                                           basicTools  : basicTools,
+                                                           userTools   : userTools
+        ]
     }
 
     def editTreatment(Treatment treatment) {

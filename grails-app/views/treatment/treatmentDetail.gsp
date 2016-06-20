@@ -185,7 +185,8 @@
 							<li><a href="#" id="add-outcome-tool-btn" class="defined" data-type="OUTCOME">Outcome</a></li>
                             <li><a href="#" id="add-voice-tool-btn" class="defined" data-type="VOICE">Voice</a></li>
                             <li><a href="#" id="add-rapt-tool-btn" class="defined" data-type="RAPT">RAPT</a></li>
-						</ul>
+                            <li><a href="#" id="add-user-tool-btn" class="defined" data-type="USER">User</a></li>
+                        </ul>
 					</div>
 				</div>
 			</div>
@@ -237,6 +238,12 @@
 											<option value="${tool.id}">${tool.title}</option>
 										</g:each>
 									</select>
+
+                                    <select name="id" id="user-tool-type" class="form-control defined-tool-type" required>
+                                        <g:each var="tool" in="${userTools}">
+                                            <option value="${tool.id}">${tool.title}</option>
+                                        </g:each>
+                                    </select>
 								</div>
 							</div>
 
