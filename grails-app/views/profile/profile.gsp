@@ -39,7 +39,7 @@
                 <div class="modal-body">
                     <div class="alert alert-danger alert-dismissible rc-server-error" role="alert">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Sorry, Ratchet has experienced an internal error. Try again later.
+                        Sorry, something wrong!
                         <span class="sr-only">Error:</span>
                     </div>
 

@@ -6,13 +6,15 @@ function withServerError() {
     });
 
     this.serverErrorHandler = function (reqObj) {
+        var Msg = JSON.parse(reqObj.responseText);
+        //var Msg = JSON.parse(reqObj.responseText).error.errorMessage;
         if (reqObj.status === 403) {
             alert('Permission denied! Please try to refresh page!');
         } else if(reqObj.status === 400) {
-            alert("Sorry, Ratchet has experienced an internal error. Try again later.");
-            this.showServerError();
+            alert(Msg.error.errorMessage);
+            this.showServerError(Msg.error.errorMessage);
         }else {
-            this.showServerError(reqObj.responseJSON.error.errorMessage);
+            this.showServerError(Msg.error.errorMessage);
         }
     };
 
