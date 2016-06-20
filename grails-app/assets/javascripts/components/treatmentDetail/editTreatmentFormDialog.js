@@ -1,6 +1,7 @@
 var flight = require('flight');
 var withDialog = require('../common/withDialog');
 var withForm = require('../common/withForm');
+var Constants = require('../../constants/AdminPortalConstants');
 
 function getAutoArchiveTime(week, day) {
     return (parseInt(week, 10) * 7 + parseInt(day, 10)) * 24 * 3600000;
@@ -17,7 +18,8 @@ function editTreatmentFormDialog() {
         absoluteEventTypeFieldSelector: '#edit-treatment-absoluteEventType',
         descriptionFieldSelector: '#edit-treatment-description',
         archiveWeekSelector: '[name="archiveWeek"]',
-        archiveDaySelector: '[name="archiveDay"]'
+        archiveDaySelector: '[name="archiveDay"]',
+        archiveBlockSelector: '.auto-archive'
     });
 
     this.onShow = function (e, data) {
@@ -32,12 +34,14 @@ function editTreatmentFormDialog() {
             this.select('archiveDaySelector').val(data.autoArchive.day);
         }
 
-        if (data.absoluteEventType !== "NONE") {
+        if (data.absoluteEventType !== Constants.ABSOLUTE_TYPE_NONE) {
+            this.select('archiveBlockSelector').show();
             this.select('archiveWeekSelector').prop('disabled', false);
             this.select('archiveDaySelector').prop('disabled', false);
         } else {
             this.select('archiveWeekSelector').val(0).prop('disabled', true);
             this.select('archiveDaySelector').val(0).prop('disabled', true);
+            this.select('archiveBlockSelector').hide();
         }
     };
 

@@ -460,7 +460,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group auto-archive">
 								<label class="col-sm-5 control-label">Auto Archive:</label>
 
 								<div class="col-sm-7">

@@ -5,5 +5,7 @@ module.exports = {
         3: 'SDM',
         4: 'Voice',
         6: 'RAPT'
-    }
+    },
+
+    ABSOLUTE_TYPE_NONE: 'NONE'
 };
