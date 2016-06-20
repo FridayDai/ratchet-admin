@@ -19,7 +19,8 @@ function editTreatmentFormDialog() {
         descriptionFieldSelector: '#edit-treatment-description',
         archiveWeekSelector: '[name="archiveWeek"]',
         archiveDaySelector: '[name="archiveDay"]',
-        archiveBlockSelector: '.auto-archive'
+        archiveBlockSelector: '.auto-archive',
+        eventTypeSelector: '#eventType'
     });
 
     this.onShow = function (e, data) {
@@ -36,6 +37,7 @@ function editTreatmentFormDialog() {
 
         if (data.absoluteEventType !== Constants.ABSOLUTE_TYPE_NONE) {
             this.select('archiveBlockSelector').show();
+            this.select('eventTypeSelector').text(data.absoluteEventType.toLowerCase());
             this.select('archiveWeekSelector').prop('disabled', false);
             this.select('archiveDaySelector').prop('disabled', false);
         } else {
