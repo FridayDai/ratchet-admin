@@ -12,6 +12,8 @@ function withServerError() {
             alert('Permission denied! Please try to refresh page!');
         } else if(reqObj.status === 400) {
             this.showServerError(Msg.error.errorMessage);
+        } else {
+            this.showServerError(Msg.error.errorMessage);
         }
     };
 
