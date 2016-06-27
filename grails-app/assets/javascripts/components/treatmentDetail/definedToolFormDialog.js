@@ -169,11 +169,24 @@ function definedToolFormDialog() {
     };
 
     this.setEditModalFieldValue = function (tool) {
-
-        if(TOOLTYPE[tool.type] === "VOICE") {
-            this.select('toolTypeVoiceSelector').val(tool.basetoolId);
-        } else {
-            this.select('toolTypeOutcomeSelector').val(tool.basetoolId);
+        switch (TOOLTYPE[tool.type]) {
+            case 'VOICE':
+                this.select('toolTypeVoiceSelector').val(tool.basetoolId);
+                break;
+            case 'OUTCOME':
+                this.select('toolTypeOutcomeSelector').val(tool.basetoolId);
+                break;
+            case 'USER':
+                this.select('toolTypeUserSelector').val(tool.basetoolId);
+                break;
+            case 'RAPT':
+                this.select('toolTypeRaptSelector').val(tool.basetoolId);
+                break;
+            case 'BASIC':
+                this.select('toolTypeBasicSelector').val(tool.basetoolId);
+                break;
+            default:
+                break;
         }
 
         this.select('defaultDueTimeDayFieldSelector').val(tool.defaultDueTimeDay);
