@@ -12,6 +12,7 @@ var TOOLTYPE = {
     1: 'BASIC',
     2: 'OUTCOME',
     4: 'VOICE',
+    5: 'USER',
     6: 'RAPT'
 };
 
@@ -31,6 +32,7 @@ function definedToolFormDialog() {
         toolTypeVoiceSelector: '#voice-tool-type',
         toolTypeBasicSelector: '#basic-tool-type',
         toolTypeRaptSelector: '#rapt-tool-type',
+        toolTypeUserSelector: '#user-tool-type',
         defaultDueTimeDayFieldSelector: '[name="defaultDueTimeDay"]',
         defaultDueTimeHourFieldSelector: '[name="defaultDueTimeHour"]',
         defaultExpireTimeDayFieldSelector: '[name="defaultExpireTimeDay"]',
@@ -119,7 +121,7 @@ function definedToolFormDialog() {
     };
 
     this.changeToolSelect = function (type) {
-        _.each(['BASIC', 'OUTCOME', 'VOICE','RAPT'], function (item) {
+        _.each(['BASIC', 'OUTCOME', 'VOICE','RAPT', 'USER'], function (item) {
             var $item = this.select('toolType{0}Selector'.format(Utility.capitalize(item)));
 
             if (type === item) {

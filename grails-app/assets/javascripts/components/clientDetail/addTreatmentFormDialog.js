@@ -1,6 +1,7 @@
 var flight = require('flight');
 var withForm = require('../common/withForm');
 var withDialog = require('../common/withDialog');
+var Constants = require('../../constants/AdminPortalConstants');
 
 function addTreatmentFormDialog () {
     /* jshint validthis:true */
@@ -8,8 +9,10 @@ function addTreatmentFormDialog () {
     this.attributes({
         submitBtnSelector: '.create-btn',
         absoluteEventTypeSelector: '#AbsoluteEventType',
+        eventTypeSelector: '#eventType',
         archiveWeekSelector: '[name=archiveWeek]',
-        archiveDaySelector: '[name=archiveDay]'
+        archiveDaySelector: '[name=archiveDay]',
+        archiveBlockSelector: '.auto-archive'
     });
 
     this.onFormSuccess = function (e, data) {
@@ -19,12 +22,16 @@ function addTreatmentFormDialog () {
     };
 
     this.onAbsoluteEventTypeChange = function () {
-        var required = this.select('absoluteEventTypeSelector').val();
+        var typeVal = this.select('absoluteEventTypeSelector').val();
 
-        if (required === 'NONE'){
+        this.select('eventTypeSelector').text(typeVal.toLowerCase());
+
+        if (typeVal === Constants.ABSOLUTE_TYPE_NONE) {
             this.select('archiveWeekSelector').val(0).prop('disabled', true);
             this.select('archiveDaySelector').val(0).prop('disabled', true);
+            this.select('archiveBlockSelector').hide();
         } else {
+            this.select('archiveBlockSelector').show();
             this.select('archiveWeekSelector').prop('disabled', false);
             this.select('archiveDaySelector').prop('disabled', false);
         }

@@ -34,7 +34,7 @@
 
 				<div class="active-patient rc-line-space"><strong>Active Patient:</strong> ${treatment.activePatient}</div>
                 <div class="auto-archive rc-line-space" data-auto-archive="${treatment.archiveTime}"><strong>Auto Archive:</strong>
-                    <br><span>${Utility.getAutoArchiveStr(treatment.archiveTime)}</span>
+                    <br><span>${Utility.getAutoArchiveStr(treatment.archiveTime)}<span>&nbsp;${(treatment.absoluteEventType).toLowerCase()}</span></span>
                 </div>
 			</div>
 
@@ -105,7 +105,7 @@
 								</div>
 							</div>
 
-                            <div class="form-group">
+                            <div class="form-group auto-archive">
                                 <label class="col-sm-5 control-label">Auto Archive:</label>
 
                                 <div class="col-sm-7">
@@ -120,8 +120,8 @@
                                             <option value="${i}">${i}</option>
                                         </g:each>
                                     </select>
-                                    <span>days</span>
-                                    <span>after surgery</span>
+                                    <span>days after</span>
+                                    <span id="eventType">surgery</span>
                                 </div>
                             </div>
 
@@ -185,7 +185,8 @@
 							<li><a href="#" id="add-outcome-tool-btn" class="defined" data-type="OUTCOME">Outcome</a></li>
                             <li><a href="#" id="add-voice-tool-btn" class="defined" data-type="VOICE">Voice</a></li>
                             <li><a href="#" id="add-rapt-tool-btn" class="defined" data-type="RAPT">RAPT</a></li>
-						</ul>
+                            <li><a href="#" id="add-user-tool-btn" class="defined" data-type="USER">User</a></li>
+                        </ul>
 					</div>
 				</div>
 			</div>
@@ -237,6 +238,12 @@
 											<option value="${tool.id}">${tool.title}</option>
 										</g:each>
 									</select>
+
+                                    <select name="id" id="user-tool-type" class="form-control defined-tool-type" required>
+                                        <g:each var="tool" in="${userTools}">
+                                            <option value="${tool.id}">${tool.title}</option>
+                                        </g:each>
+                                    </select>
 								</div>
 							</div>
 

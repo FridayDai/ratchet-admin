@@ -58,10 +58,10 @@ function tasksTable() {
 
                         if (sendTime < 0) {
                             direction = -1;
-                            timeStr += ' Before Surgery';
+                            timeStr += ' Before ' + $('.surgery-time-required').find('span').text().toLowerCase();
                         } else {
                             direction = 1;
-                            timeStr += ' After Surgery';
+                            timeStr += ' After ' + $('.surgery-time-required').find('span').text().toLowerCase();
                         }
                     }
 

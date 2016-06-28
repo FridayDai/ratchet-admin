@@ -54,12 +54,12 @@ function treatmentInfoPanel() {
         this.select('absoluteEventTypeSelector').text(data.absoluteEventType);
         this.select('descriptionSelector').text(data.description);
         treatmentStorage.set('absoluteEventType', data.absoluteEventType);
-
         this.select('autoArchiveSelector').data('autoArchive', data.autoArchive ? data.autoArchive.time : 0);
 
+        var absoluteEventType = data.absoluteEventType.toLowerCase();
         this.select('autoArchiveTextSelector').text(
             data.autoArchive && data.autoArchive.time ?
-                '{0}W {1}D after surgery'.format(data.autoArchive.week, data.autoArchive.day) :
+                ('{0}W {1}D after ' + absoluteEventType ).format(data.autoArchive.week, data.autoArchive.day) :
                 'NA'
         );
 

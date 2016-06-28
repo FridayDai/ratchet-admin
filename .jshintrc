@@ -9,6 +9,7 @@
     "latedef": true,
     "globals": {
         "jQuery": false,
+        "JSON": false,
         "$": false,
         "RC": true,
         "_": false,

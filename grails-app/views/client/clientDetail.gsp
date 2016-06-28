@@ -460,7 +460,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group auto-archive">
 								<label class="col-sm-5 control-label">Auto Archive:</label>
 
 								<div class="col-sm-7">
@@ -475,8 +475,8 @@
 											<option value="${i}">${i}</option>
 										</g:each>
 									</select>
-									<span>days</span>
-									<span>after surgery</span>
+									<span>days after</span>
+									<span id="eventType">surgery</span>
 								</div>
 							</div>
 
