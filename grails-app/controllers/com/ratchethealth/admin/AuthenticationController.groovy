@@ -75,42 +75,41 @@ class AuthenticationController extends BaseController {
     }
 
     def beforeTFAVerify(){
+        request.session.authen = true;
         render view:'/security/twoFactor'
     }
 
     def twoFactorAuthenticationVerify(){
         String token = request.session.token
         String sessionId = request.session.sessionId
-        request.session.authen = true;
 
         def otpCode = params.otp
         def resp
 
-        if(otpCode == null){
+        if(otpCode == '') {
             request.session.authen = false;
             render view: '/security/twoFactor'
         } else {
             resp = authenticationService.TFAuthenticate(token, sessionId, otpCode)
+
+            if(resp == null) {
+                request.session.authen = false;
+                render view: '/security/twoFactor'
+            } else {
+                if(resp.token){
+                    request.session.token = resp.token
+                }
+
+                if(resp.groups){
+                    request.session.groups = resp.groups
+                }
+
+                if(resp.id){
+                    request.session.accountId = resp.id
+                }
+                redirect(uri: '/')
+            }
         }
-
-        if(resp == null){
-            request.session.authen = false;
-            render view: '/security/twoFactor'
-        }else {
-            if(resp.token){
-                request.session.token = resp.token
-            }
-
-            if(resp.groups){
-                request.session.groups = resp.groups
-            }
-
-            if(resp.id){
-                request.session.accountId = resp.id
-            }
-            redirect(uri: '/')
-        }
-
     }
 
     def goToApp(){

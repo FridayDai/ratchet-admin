@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
-<g:set var="scriptPath" value="dist/app.bundle.js"/>
+<g:set var="scriptPath" value="dist/twoFactorAuthentication.bundle.js"/>
 <g:set var="cssPath" value="app"/>
 <g:applyLayout name="main">
     <html>
@@ -10,7 +10,7 @@
     <body>
     <div class="content">
         <div class="container">
-            <div class="show-app">
+            <div class="show-app auth-form">
                 <g:if test="${session.keyUrl}">
                     <p>1. Scan barcode</p>
                     <div class="app-barcode">
@@ -20,7 +20,7 @@
                     <g:form method="post" url="[controller:'authentication', action:'enableTFA']">
                         <div id="authentication">
                             <p>2. Enter the code from the application</p>
-                            <input type="text" placeholder="Input QRcode from your App" name="otp">
+                            <input id="otp" type="text" placeholder="Input QRcode from your App" name="otp" maxlength="6">
                             <g:if test="${request.session.MFAValidationRequired == false}">
                                 <div class="text-danger">${errorMsg}</div>
                             </g:if>
