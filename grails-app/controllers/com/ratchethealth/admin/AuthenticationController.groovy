@@ -24,13 +24,18 @@ class AuthenticationController extends BaseController {
 
     def authenticationService
 
-    def login() {
+    def login(LoginCommand login) {
         if (request.method == "GET") {
             render(view: '/security/login')
         } else if (request.method == "POST") {
+            if(login.hasErrors()) {
+                redirect(uri: "/login")
+                return
+            }
+
             String token = request.session.token
-            def email = params.email
-            def password = params.password
+            def email = login.email
+            def password = login.password
 
             def resp = authenticationService.authenticate(token, email, password)
 
