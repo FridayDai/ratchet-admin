@@ -11,18 +11,27 @@ class BasicToolController extends BaseController {
         def page = params.page ?: RatchetConstants.DEFAULT_PAGE_OFFSET
         def pageSize = params.pagesize ?: RatchetConstants.DEFAULT_PAGE_SIZE
         def isAjax = request.isXhr() ?: false
+        def queryOption, basicToolTemplates
+
         String token = request.session.token
 
-        def queryOption = [
-            offset: page,
-            max: pageSize
-        ]
-
-        def basicToolTemplates = basicToolService.getBasicToolTemplates(token, queryOption)
-
         if (isAjax) {
+            queryOption = [
+                    offset: params?.start ?: RatchetConstants.DEFAULT_PAGE_OFFSET,
+                    max: params?.length ?: RatchetConstants.DEFAULT_PAGE_SIZE
+            ]
+
+            basicToolTemplates = basicToolService.getBasicToolTemplates(token, queryOption)
             render basicToolTemplates as JSON
+
         } else {
+            queryOption = [
+                    offset: page,
+                    max: pageSize
+            ]
+
+            basicToolTemplates = basicToolService.getBasicToolTemplates(token, queryOption)
+
             render view: '/basicTool/index', model: [basicToolTemplates: basicToolTemplates, pagesize: pageSize]
         }
     }
