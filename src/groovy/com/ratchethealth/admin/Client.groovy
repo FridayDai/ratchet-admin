@@ -6,7 +6,9 @@ class Client {
 	String favIcon
 	String logoFileName
 	String favIconFileName
+	String shortName
 	String name
+	String legalName
 	String subDomain
 	String portalName
 	String primaryColorHex

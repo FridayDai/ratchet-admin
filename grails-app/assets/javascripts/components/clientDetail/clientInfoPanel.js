@@ -7,6 +7,8 @@ function clientInfoPanel() {
     this.attributes({
         testingSelector: '.testing strong',
         clientNameSelector: '.client-name strong',
+        clientShortNameSelector: '.client-short-name strong',
+        clientLegalNameSelector: '.client-legal-name strong',
         subDomainSelector: '.sub-domain dd',
         portalNameSelector: '.portal-name dd',
         primaryColorSelector: '.primary-color dd',
@@ -18,6 +20,8 @@ function clientInfoPanel() {
         this.trigger('showEditClientFormDialog', {
             isTesting: this.get('testing') === 'true',
             clientName: this.get('clientName'),
+            clientShortName: this.get('clientShortName'),
+            clientLegalName: this.get('clientLegalName'),
             subDomain: this.get('subDomain'),
             portalName: this.get('portalName'),
             primaryColor: this.get('primaryColor'),

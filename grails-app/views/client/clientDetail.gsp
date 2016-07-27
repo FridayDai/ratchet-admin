@@ -15,7 +15,9 @@
 			<div class="client-profile panel row" data-id="${client.id}">
 				<div class="logo col-sm-3">
 					<img src="${client.logo}" alt="logo"/>
-					<div class="client-name rc-line-space"><strong>${client.name}</strong></div>
+					<div class="client-short-name rc-line-space">Short Name: <strong>${client.shortName ?: ''}</strong></div>
+					<div class="client-name rc-line-space">Long Name: <strong>${client.name}</strong></div>
+					<div class="client-legal-name rc-line-space">Legal Name: <strong>${client.legalName ?: ''}</strong></div>
 				</div>
 
 				<div class="main-info col-sm-5">
@@ -202,11 +204,28 @@
 									<input id="isTesting" name="isTesting" type="checkbox"/>
 								</div>
 							</div>
+
 							<div class="form-group">
-								<label for="name" class="col-sm-5 control-label">* Client Name:</label>
+								<label for="shortName" class="col-sm-5 control-label">* Short Client Name:</label>
+
+								<div class="col-sm-6">
+									<input id="shortName" name="shortName" type="text" class="form-control" required/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="name" class="col-sm-5 control-label">* Long Client Name:</label>
 
 								<div class="col-sm-6">
 									<input id="name" name="name" type="text" class="form-control" required/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="legalName" class="col-sm-5 control-label">* Legal Client Name:</label>
+
+								<div class="col-sm-6">
+									<input id="legalName" name="legalName" type="text" class="form-control" required/>
 								</div>
 							</div>
 
