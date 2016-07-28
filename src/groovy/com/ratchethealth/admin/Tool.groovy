@@ -14,6 +14,7 @@ class Tool {
 	String reminder
 	String detailedDescription
 	boolean requireCompletion
+	boolean enableAlert
 	int type
 	long lastUpdated
 }
