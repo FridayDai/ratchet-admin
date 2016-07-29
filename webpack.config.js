@@ -21,6 +21,7 @@ module.exports = {
         accountActivate:"./pages/accountActivate.js",
         hl7Failures:"./pages/hl7/failures.js",
         basicTool:"./pages/basicTool.js",
+        twoFactorAuthentication: "./pages/twoFactorAuthentication.js"
     },
     output: {
         path: absoluteContext,

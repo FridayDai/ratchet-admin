@@ -24,13 +24,18 @@ class AuthenticationController extends BaseController {
 
     def authenticationService
 
-    def login() {
+    def login(LoginCommand login) {
         if (request.method == "GET") {
             render(view: '/security/login')
         } else if (request.method == "POST") {
+            if(login.hasErrors()) {
+                redirect(uri: "/login")
+                return
+            }
+
             String token = request.session.token
-            def email = params.email
-            def password = params.password
+            def email = login.email
+            def password = login.password
 
             def resp = authenticationService.authenticate(token, email, password)
 
@@ -75,36 +80,41 @@ class AuthenticationController extends BaseController {
     }
 
     def beforeTFAVerify(){
+        request.session.authen = true;
         render view:'/security/twoFactor'
     }
 
     def twoFactorAuthenticationVerify(){
         String token = request.session.token
         String sessionId = request.session.sessionId
-        request.session.authen = true;
 
         def otpCode = params.otp
+        def resp
 
-        def resp = authenticationService.TFAuthenticate(token, sessionId, otpCode)
-
-        if(resp == null){
+        if(otpCode == '') {
             request.session.authen = false;
             render view: '/security/twoFactor'
-        }else {
-            if(resp.token){
-                request.session.token = resp.token
-            }
+        } else {
+            resp = authenticationService.TFAuthenticate(token, sessionId, otpCode)
 
-            if(resp.groups){
-                request.session.groups = resp.groups
-            }
+            if(resp == null) {
+                request.session.authen = false;
+                render view: '/security/twoFactor'
+            } else {
+                if(resp.token){
+                    request.session.token = resp.token
+                }
 
-            if(resp.id){
-                request.session.accountId = resp.id
+                if(resp.groups){
+                    request.session.groups = resp.groups
+                }
+
+                if(resp.id){
+                    request.session.accountId = resp.id
+                }
+                redirect(uri: '/')
             }
-            redirect(uri: '/')
         }
-
     }
 
     def goToApp(){

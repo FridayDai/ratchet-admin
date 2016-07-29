@@ -60,7 +60,9 @@ class ClientService extends RatchetAPIService {
 
         withPost(token, clientsUrl) { req ->
             def resp = req
+                    .field("shortName", client.shortName)
                     .field("name", client.name)
+                    .field("legalName", client.legalName)
                     .field("logo", client.logo)
                     .field("logoFileName", client.logoFileName)
                     .field("favIcon", client.favIcon)
@@ -96,7 +98,9 @@ class ClientService extends RatchetAPIService {
 
         withPost(token, clientUrl) { req ->
             def resp = req
+                    .field("shortName", client.shortName)
                     .field("name", client.name)
+                    .field("legalName", client.legalName)
                     .field("subDomain", client.subDomain)
                     .field("portalName", client.portalName)
                     .field("primaryColorHex", client.primaryColorHex)

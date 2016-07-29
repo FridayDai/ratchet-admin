@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: daiyi
-  Date: 16/4/12
-  Time: 下午6:40
---%>
 <!DOCTYPE html>
 <g:set var="commonScriptPath" value="dist/commons.chunk.js"/>
 <g:set var="scriptPath" value="dist/twoFactorAuthentication.bundle.js"/>
@@ -24,7 +18,7 @@
                 <g:form url="[controller:'Authentication', action:'twoFactorAuthenticationVerify']" method="POST" name="TFAVerify">
                     <div class="auth-form-body">
                         <label for="otp">Authentication code</label>
-                        <input type="text" id="otp" name="otp" class="form-control">
+                        <input type="text" id="otp" name="otp" class="form-control" maxlength="6">
                         <g:if test="${request.session.authen == false}">
                             <div class="sms-error">Wrong authentication codes, Please try again.</div>
                         </g:if>
