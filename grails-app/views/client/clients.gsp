@@ -91,10 +91,26 @@
 							</div>
 
 							<div class="form-group">
-								<label for="name" class="col-sm-5 control-label">* Client Name:</label>
+								<label for="shortName" class="col-sm-5 control-label">* Short Client Name:</label>
+
+								<div class="col-sm-6">
+									<input id="shortName" name="shortName" type="text" class="form-control" required/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="name" class="col-sm-5 control-label">* Long Client Name:</label>
 
 								<div class="col-sm-6">
 									<input id="name" name="name" type="text" class="form-control" required/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="legalName" class="col-sm-5 control-label">* Legal Client Name:</label>
+
+								<div class="col-sm-6">
+									<input id="legalName" name="legalName" type="text" class="form-control" required/>
 								</div>
 							</div>
 

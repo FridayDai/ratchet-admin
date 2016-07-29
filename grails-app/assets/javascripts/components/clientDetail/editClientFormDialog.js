@@ -9,6 +9,8 @@ function addClientFormDialog () {
 
         testingFieldSelector: '#isTesting',
         clientNameSelector: '#name',
+        clientShortNameSelector: '#shortName',
+        clientLegalNameSelector: '#legalName',
         subDomainSelector: '#subDomain',
         portalNameSelector: '#portalName',
         primaryColorSelector: '#primaryColorHex',
@@ -18,6 +20,8 @@ function addClientFormDialog () {
     this.onShow = function (event, data) {
         this.select('testingFieldSelector').prop('checked', data.isTesting);
         this.select('clientNameSelector').val(data.clientName);
+        this.select('clientShortNameSelector').val(data.clientShortName);
+        this.select('clientLegalNameSelector').val(data.clientLegalName);
         this.select('subDomainSelector').val(data.subDomain);
         this.select('portalNameSelector').val(data.portalName);
         this.select('primaryColorSelector').val(data.primaryColor);
