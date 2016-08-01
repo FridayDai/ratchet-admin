@@ -38,6 +38,7 @@ function definedToolFormDialog() {
         defaultExpireTimeDayFieldSelector: '[name="defaultExpireTimeDay"]',
         defaultExpireTimeHourFieldSelector: '[name="defaultExpireTimeHour"]',
         reminderFieldSelector: '#defined-tool-reminder',
+        enableAlertFieldSelector: '#enableAlert',
 
         createUrl: '/clients/{0}/treatments/{1}/tools',
         editUrl: '/clients/{0}/treatments/{1}/tools/{2}'
@@ -194,6 +195,7 @@ function definedToolFormDialog() {
         this.select('defaultExpireTimeDayFieldSelector').val(tool.defaultExpireTimeDay);
         this.select('defaultExpireTimeHourFieldSelector').val(tool.defaultExpireTimeHour);
         this.select('reminderFieldSelector').val(tool.reminder);
+        this.select('enableAlertFieldSelector').prop('checked', tool.enableAlert);
     };
 
     this.onFormSuccess = function (e, data) {

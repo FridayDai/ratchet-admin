@@ -296,6 +296,14 @@
 							</div>
 
 							<div class="form-group">
+								<label class="col-sm-5 control-label">Enable alert:</label>
+
+								<div class="col-sm-6">
+									<input type="checkbox" id="enableAlert" name="enableAlert"/>
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label for="defined-tool-reminder" class="col-sm-5 control-label">* Reminder:</label>
 
 								<div class="col-sm-6">
