@@ -19,7 +19,7 @@ function accountsTable() {
             }, {
                 title: 'Email Address',
                 data: 'email',
-                width: '35%',
+                width: '30%',
                 className: "email",
                 orderable: false
             }, {
@@ -36,6 +36,19 @@ function accountsTable() {
                 width: '15%',
                 className: "isEnabled",
                 orderable: false
+            }, {
+                title: 'isMFAEnabled',
+                data: 'isMFAEnabled',
+                width: '10%',
+                className: 'isMFAEnabled',
+                orderable: false,
+                render: function(data, type, full) {
+                    if(full.isMFAEnabled === 'null' || !full.isMFAEnabled) {
+                        return 'false';
+                    } else {
+                        return full.isMFAEnabled;
+                    }
+                }
             }, {
                 data: function (row, type, set, meta) {
                     if (meta) {

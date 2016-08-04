@@ -26,6 +26,7 @@
                     <td>Email Address</td>
                     <td>Status</td>
                     <td>Enabled</td>
+                    <td>isMFAEnabled</td>
                     <td></td>
                     <td></td>
                     <td style="display: none"></td>
@@ -38,6 +39,7 @@
                         <td>${account.email}</td>
                         <td>${account.status}</td>
                         <td>${account.enabled}</td>
+                        <td>${account.isMFAEnabled}</td>
                         <td>
                             <a href="#" class="btn-edit glyphicon glyphicon-pencil" aria-hidden="true" data-row="${i}"
                                data-toggle="modal" data-target="#edit-account-modal"
