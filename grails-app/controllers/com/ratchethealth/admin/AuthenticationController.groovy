@@ -197,7 +197,7 @@ class AuthenticationController extends BaseController {
             code = code.split(',');
             if( recoveryCodes.totalCount == 5){
                 def firstPart = code[0..2]
-                def secondPart = code[2..3]
+                def secondPart = code[3..4]
                 request.session.CODE1 = firstPart;
                 request.session.CODE2 = secondPart;
             }else if(recoveryCodes.totalCount == 10){

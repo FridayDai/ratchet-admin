@@ -18,7 +18,7 @@
                 <g:form url="[controller:'Authentication', action:'twoFactorAuthenticationVerify']" method="POST" name="TFAVerify">
                     <div class="auth-form-body">
                         <label for="otp">Authentication code</label>
-                        <input type="text" id="otp" name="otp" class="form-control" maxlength="6">
+                        <input type="text" id="otp" name="otp" class="form-control" maxlength="8">
                         <g:if test="${request.session.authen == false}">
                             <div class="sms-error">Wrong authentication codes, Please try again.</div>
                         </g:if>
